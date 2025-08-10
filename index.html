@@ -45,7 +45,6 @@
       text-shadow: 0 0 8px rgba(0,0,0,0.7);
       overflow: hidden;
     }
-    /* Dark overlay */
     .banner::before {
       content: "";
       position: absolute;
@@ -62,7 +61,6 @@
       padding: 0 15px;
       text-align: center;
     }
-    /* About Us - full width */
     .about-us {
       max-width: 1200px;
       margin: 10px auto;
@@ -72,7 +70,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
-    /* Row for two sections side by side */
     .services-row {
       max-width: 1200px;
       margin: 10px auto 30px auto;
@@ -83,7 +80,7 @@
       justify-content: center;
     }
     .service-section {
-      flex: 1 1 45%; /* two per row */
+      flex: 1 1 45%;
       max-width: 550px;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
@@ -91,14 +88,22 @@
       padding: 20px;
       box-sizing: border-box;
     }
-    /* Full width sections */
-    .full-width-section {
+    .timing-contact-row {
       max-width: 1200px;
       margin: 10px auto 30px auto;
-      padding: 20px;
+      padding: 0 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .timing-contact-section {
+      flex: 1 1 45%;
+      max-width: 550px;
       background: rgba(255,255,255,0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
       box-sizing: border-box;
     }
     h2 {
@@ -106,7 +111,6 @@
       border-bottom: 2px solid #eee;
       padding-bottom: 5px;
     }
-    /* Custom bullet style */
     ul {
       list-style: none;
       padding: 0;
@@ -130,16 +134,15 @@
       height: 300px;
       margin-top: 10px;
     }
-    /* Appointment section */
     .appointment-container {
-      max-width: 600px;
+      max-width: 1200px;
       margin: 20px auto 50px auto;
       background: rgba(255,255,255,0.85);
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
-    /* Floating WhatsApp Button */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -176,18 +179,14 @@
         transform: translateY(-10px);
       }
     }
-    /* Responsive for mobile */
     @media (max-width: 768px) {
-      .services-row {
+      .services-row, .timing-contact-row {
         flex-direction: column;
         padding: 0 10px;
       }
-      .service-section {
+      .service-section, .timing-contact-section {
         max-width: 100%;
         flex-basis: 100%;
-      }
-      .full-width-section {
-        margin: 10px 10px 30px 10px;
       }
       .appointment-container {
         max-width: 100%;
@@ -206,18 +205,15 @@
   <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
 </header>
 
-<!-- Banner -->
 <div class="banner">
   <h2>Expert Orthopedic & General Care in Chromepet, Chennai</h2>
 </div>
 
-<!-- About Us full width -->
 <div class="about-us">
   <h2>About Us</h2>
   <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
 </div>
 
-<!-- Two sections side by side -->
 <div class="services-row">
   <section class="service-section">
     <h2>Orthopedic & Specialized Care</h2>
@@ -244,33 +240,32 @@
   </section>
 </div>
 
-<!-- Full width Clinic Timing -->
-<section class="full-width-section">
-  <h2>Clinic Timing</h2>
-  <ul>
-    <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
-  </ul>
-</section>
+<div class="timing-contact-row">
+  <section class="timing-contact-section">
+    <h2>Clinic Timing</h2>
+    <ul>
+      <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
+    </ul>
+  </section>
 
-<!-- Full width Contact & Location -->
-<section class="full-width-section">
-  <h2>Contact & Location</h2>
-  <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
-  <p><strong>Phone:</strong> +91 94442 61111</p>
-  <div class="map-container">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000"
-      width="100%"
-      height="100%"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
-  </div>
-</section>
+  <section class="timing-contact-section">
+    <h2>Contact & Location</h2>
+    <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
+    <p><strong>Phone:</strong> +91 94442 61111</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+</div>
 
-<!-- Appointment / Contact Form -->
 <div class="appointment-container">
   <h2>Appointment / Contact Form</h2>
   <iframe 
@@ -283,7 +278,6 @@
   </iframe>
 </div>
 
-<!-- WhatsApp Floating Button -->
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>

@@ -12,21 +12,13 @@
             background-color: #f8f9fa;
             color: #333;
         }
-        /* Header */
-        header {
-            background: linear-gradient(90deg, #007BFF, #0056b3);
-            color: white;
-            padding: 20px 10px;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 1.6rem;
-        }
-        header p {
-            margin: 5px 0 0;
-            font-size: 0.95rem;
+        /* Banner Image */
+        .banner {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            background-color: #004080;
+            display: block;
         }
         /* Content container */
         .container {
@@ -102,9 +94,6 @@
         }
         /* Mobile adjustments */
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.3rem;
-            }
             .contact {
                 padding: 15px;
             }
@@ -115,10 +104,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
-        <p>68, Radha Nagar Main Road, Opposite J2 Mahal, Chromepet, Chennai</p>
-    </header>
+    <!-- Banner Image -->
+    <img src="YOUR_IMAGE_URL_HERE" alt="Dr Mani's Ortho Speciality & General Clinic" class="banner">
 
     <div class="container">
         <h2>Welcome!</h2>
@@ -126,7 +113,7 @@
 
         <div class="contact">
             <h3>Contact Us</h3>
-            <p>📞 Phone: <a href="tel:+919876543210">+91 98765 43210</a></p>
+            <p>📞 Phone: <a href="tel:+919444261111">+91 94442 61111</a></p>
             <p>📧 Email: <a href="mailto:info@drmaniortho.com">info@drmaniortho.com</a></p>
             <p>🗺️ Location: <a href="https://g.page/r/CfKLCQ4kwt5UEBM/review" target="_blank">Google Map</a></p>
         </div>
@@ -136,7 +123,7 @@
     </div>
    
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/919444261111" class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp">
     </a>
 </body>

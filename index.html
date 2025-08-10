@@ -11,31 +11,69 @@
             padding: 0;
             background-color: #f8f9fa;
             color: #333;
-            text-align: center;
         }
+        /* Header */
         header {
-            background-color: #007BFF;
+            background: linear-gradient(90deg, #007BFF, #0056b3);
             color: white;
-            padding: 20px;
+            padding: 20px 10px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
-        h1 {
+        header h1 {
             margin: 0;
+            font-size: 1.6rem;
         }
+        header p {
+            margin: 5px 0 0;
+            font-size: 0.95rem;
+        }
+        /* Content container */
         .container {
             padding: 20px;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
         }
+        .container h2 {
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .container p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        /* Contact box */
         .contact {
             background-color: white;
-            padding: 15px;
+            padding: 20px;
             margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
-            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
             text-align: left;
+        }
+        .contact h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+        .contact p {
+            margin: 8px 0;
         }
         a {
             color: #007BFF;
             text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* WhatsForm iframe */
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
         }
         /* Floating WhatsApp button */
         .whatsapp-float {
@@ -47,27 +85,33 @@
             background-color: #25D366;
             color: white;
             border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
             z-index: 100;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: transform 0.2s ease-in-out, background-color 0.2s;
         }
         .whatsapp-float:hover {
             background-color: #1ebe5b;
+            transform: scale(1.1);
         }
         .whatsapp-icon {
             width: 35px;
             height: 35px;
         }
-        iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-      border-radius: 8px;
-    }
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.3rem;
+            }
+            .contact {
+                padding: 15px;
+            }
+            iframe {
+                height: 70vh;
+            }
+        }
     </style>
 </head>
 <body>
@@ -86,8 +130,9 @@
             <p>📧 Email: <a href="mailto:info@drmaniortho.com">info@drmaniortho.com</a></p>
             <p>🗺️ Location: <a href="https://g.page/r/CfKLCQ4kwt5UEBM/review" target="_blank">Google Map</a></p>
         </div>
-        <iframe src="https://whatsform.com/d3olh_" allowfullscreen></iframe>
 
+        <!-- WhatsForm Embed -->
+        <iframe src="https://whatsform.com/d3olh_" allowfullscreen></iframe>
     </div>
    
     <!-- Floating WhatsApp Button -->

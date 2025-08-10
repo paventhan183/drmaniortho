@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="google-site-verification" content="ZdH7W3PdH4x8LhLwefou5nHwa4eE_g7s6c2q3jyWeMc" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr Mani's Ortho Speciality & General Clinic</title>
 
@@ -111,39 +112,41 @@
       margin: 5px 0;
       font-size: 1rem;
     }
-    /* Banner styles with dark overlay */
-    .banner {
+    /* Banner slider styles */
+    .banner-slider {
       position: relative;
       width: 100%;
       height: 200px;
-      background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');
-      background-size: cover;
-      background-position: center;
-      margin-bottom: 20px;
       border-radius: 0 0 15px 15px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .banner-slider .slide {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
-      overflow: hidden;
+      padding: 0 15px;
+      border-radius: 0 0 15px 15px;
     }
-    .banner::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
-    .banner h2 {
+    .banner-slider .slide.active {
+      opacity: 1;
       position: relative;
-      z-index: 2;
+    }
+    .banner-slider .slide h2 {
       font-size: 2.5rem;
       font-weight: bold;
-      margin: 0;
-      padding: 0 15px;
       text-align: center;
+      margin: 0;
+      z-index: 2;
+      color: white; /* White font */
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
     }
     .about-us {
       max-width: 1200px;
@@ -284,21 +287,57 @@
 </head>
 <body>
 
+<!-- Banner slider with all services as slides -->
+<div class="banner-slider">
+  <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">
+    <h2>Trauma & Fracture Management</h2>
+  </div>
+  <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1350&q=80');">
+    <h2>Joint Replacement Surgery</h2>
+  </div>
+  <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1350&q=80');">
+    <h2>Spine Care & Surgery</h2>
+  </div>
+  <div class="slide" style="background-color: #004080;">
+    <h2>Clinical Laboratory Services</h2>
+  </div>
+  <div class="slide" style="background-color: #660066;">
+    <h2>Physiotherapy</h2>
+  </div>
+  <div class="slide" style="background-color: #003300;">
+    <h2>Digital X-Ray</h2>
+  </div>
+  <div class="slide" style="background-color: #800000;">
+    <h2>Fever & Infections</h2>
+  </div>
+  <div class="slide" style="background-color: #336699;">
+    <h2>Stomach Problems</h2>
+  </div>
+  <div class="slide" style="background-color: #666633;">
+    <h2>General Pain</h2>
+  </div>
+  <div class="slide" style="background-color: #996633;">
+    <h2>Fatigue & Weakness</h2>
+  </div>
+  <div class="slide" style="background-color: #666666;">
+    <h2>Wound Care</h2>
+  </div>
+  <div class="slide" style="background-color: #990000;">
+    <h2>Diabetic Treatment</h2>
+  </div>
+</div>
+
 <header>
   <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
   <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
 </header>
-
-<div class="banner">
-  <h2>Expert Orthopedic & General Care in Chromepet, Chennai</h2>
-</div>
 
 <div class="about-us">
   <h2>About Us</h2>
   <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
 </div>
 
-<div class="services-row">
+<div id="services" class="services-row">
   <section class="service-section">
     <h2>Orthopedic & Specialized Care</h2>
     <ul>
@@ -350,7 +389,7 @@
   </section>
 </div>
 
-<div class="appointment-container">
+<div  id="contact-form" class="appointment-container">
   <h2>Appointment / Contact Form</h2>
   <iframe 
     src="https://whatsform.com/d3olh_" 
@@ -365,6 +404,25 @@
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
+
+<script>
+  const slides = document.querySelectorAll('.banner-slider .slide');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  // Start slider
+  setInterval(nextSlide, 4000); // change slide every 4 seconds
+</script>
 
 </body>
 </html>

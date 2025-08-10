@@ -96,6 +96,12 @@
       padding: 0;
       background: linear-gradient(135deg, #0066cc, #ff66cc);
     }
+
+    /* Force all elements to use the same font */
+    * {
+      font-family: Arial, sans-serif !important;
+    }
+
     header {
       background-color: #0066cc;
       color: white;
@@ -323,7 +329,7 @@
 
 <!-- Banner carousel container -->
 <div class="banner-slider">
-  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">
+  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1588776814546-6f5360fef16d?auto=format&fit=crop&w=1350&q=80');">
     <h2>Trauma & Fracture Management</h2>
   </div>
   <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1350&q=80');">
@@ -461,12 +467,4 @@
   }
 
   function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-  }
-
-  setInterval(nextSlide, 4000); // change slide every 4 seconds
-</script>
-
-</body>
-</html>
+    currentIndex = (currentIndex + 1) %

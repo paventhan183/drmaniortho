@@ -38,6 +38,30 @@
         .contact-info, .timing {
             line-height: 1.6;
         }
+
+        /* Floating WhatsApp button style */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-align: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.2s ease-in-out;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +124,12 @@
         (Open all 7 days a week)
     </div>
 </section>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/919444261111?text=Hello%20Doctor%2C%20I%20would%20like%20to%20book%20an%20appointment." 
+   class="whatsapp-button" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 
 </body>
 </html>

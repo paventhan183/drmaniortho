@@ -27,7 +27,6 @@
       margin: 5px 0;
       font-size: 1rem;
     }
-
     /* Banner styles */
     .banner {
       position: relative;
@@ -51,13 +50,26 @@
       padding: 0 15px;
       text-align: center;
     }
-
+    /* Container for sections */
+    .sections-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 10px 30px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    /* Each section as a flex item */
     section {
+      flex: 1 1 300px; /* grow, shrink, basis */
+      min-width: 280px;
+      max-width: 350px;
       padding: 20px;
       background: rgba(255, 255, 255, 0.85);
-      margin: 10px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
     h2 {
       color: #0066cc;
@@ -75,6 +87,15 @@
       width: 100%;
       height: 300px;
       margin-top: 10px;
+    }
+    /* Appointment section width fix */
+    .appointment-container {
+      max-width: 600px;
+      margin: 20px auto 50px auto;
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     /* Floating WhatsApp Button */
     .whatsapp-button {
@@ -113,6 +134,20 @@
         transform: translateY(-10px);
       }
     }
+    /* Responsive: On mobile, stack sections vertically */
+    @media (max-width: 768px) {
+      .sections-container {
+        flex-direction: column;
+        padding: 0 10px 20px 10px;
+      }
+      section {
+        max-width: 100%;
+      }
+      .appointment-container {
+        max-width: 100%;
+        margin: 20px 10px 50px 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -127,72 +162,74 @@
   <h2>Expert Orthopedic & General Care in Chromepet, Chennai</h2>
 </div>
 
-<section>
-  <h2>About Us</h2>
-  <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
-</section>
+<!-- Sections container for flex layout -->
+<div class="sections-container">
+  <section>
+    <h2>About Us</h2>
+    <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
+  </section>
 
-<section>
-  <h2>Orthopedic & Specialized Care</h2>
-  <ul>
-    <li>✅ Trauma & Fracture Management</li>
-    <li>✅ Joint Replacement Surgery</li>
-    <li>✅ Spine Care & Surgery</li>
-    <li>✅ Clinical Laboratory Services</li>
-    <li>✅ Physiotherapy</li>
-    <li>✅ Digital X-Ray</li>
-  </ul>
-</section>
+  <section>
+    <h2>Orthopedic & Specialized Care</h2>
+    <ul>
+      <li>✅ Trauma & Fracture Management</li>
+      <li>✅ Joint Replacement Surgery</li>
+      <li>✅ Spine Care & Surgery</li>
+      <li>✅ Clinical Laboratory Services</li>
+      <li>✅ Physiotherapy</li>
+      <li>✅ Digital X-Ray</li>
+    </ul>
+  </section>
 
-<section>
-  <h2>General Health Consultation</h2>
-  <ul>
-    <li>✅ Fever & Infections</li>
-    <li>✅ Stomach Problems</li>
-    <li>✅ General Pain</li>
-    <li>✅ Fatigue & Weakness</li>
-    <li>✅ Wound Care</li>
-    <li>✅ Diabetic Treatment</li>
-  </ul>
-</section>
+  <section>
+    <h2>General Health Consultation</h2>
+    <ul>
+      <li>✅ Fever & Infections</li>
+      <li>✅ Stomach Problems</li>
+      <li>✅ General Pain</li>
+      <li>✅ Fatigue & Weakness</li>
+      <li>✅ Wound Care</li>
+      <li>✅ Diabetic Treatment</li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Clinic Timing</h2>
-  <ul>
-    <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
-  </ul>
-</section>
+  <section>
+    <h2>Clinic Timing</h2>
+    <ul>
+      <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Contact & Location</h2>
-  <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
-  <p><strong>Phone:</strong> +91 94442 61111</p>
-  <div class="map-container">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000"
-      width="100%"
-      height="100%"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
-  </div>
-</section>
+  <section>
+    <h2>Contact & Location</h2>
+    <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
+    <p><strong>Phone:</strong> +91 94442 61111</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+</div>
 
-<section>
+<!-- Appointment / Contact Form outside sections container -->
+<div class="appointment-container">
   <h2>Appointment / Contact Form</h2>
-  <div style="width: 100%; max-width: 600px; margin: auto;">
-    <iframe 
-      src="https://whatsform.com/d3olh_" 
-      width="100%" 
-      height="600" 
-      style="border:none; border-radius: 10px;" 
-      scrolling="no" 
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
+  <iframe 
+    src="https://whatsform.com/d3olh_" 
+    width="100%" 
+    height="600" 
+    style="border:none; border-radius: 10px;" 
+    scrolling="no" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 <!-- WhatsApp Floating Button -->
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">

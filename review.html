@@ -8,11 +8,12 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: #f0f4f8;
+      background: linear-gradient(135deg, #ff99cc, #66cc99); /* pink + green gradient */
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
     .container {
       background: white;
@@ -72,8 +73,8 @@
   <label for="name">Name:</label>
   <input type="text" id="name" placeholder="Enter patient name" />
 
-  <label for="mobile">Mobile Number (with country code):</label>
-  <input type="tel" id="mobile" placeholder="e.g. 919876543210" />
+  <label for="mobile">Mobile Number (without country code):</label>
+  <input type="tel" id="mobile" placeholder="e.g. 9444261111" />
 
   <button id="sendBtn">Send Message</button>
 </div>
@@ -81,15 +82,18 @@
 <script>
   document.getElementById('sendBtn').addEventListener('click', () => {
     const name = document.getElementById('name').value.trim();
-    const mobile = document.getElementById('mobile').value.trim();
+    let mobile = document.getElementById('mobile').value.trim();
 
     // Basic validation
-    const phoneRegex = /^[0-9]{10,15}$/; // digits only, 10-15 length
+    const phoneRegex = /^[0-9]{10}$/; // exactly 10 digits for local number
     if (!name || !phoneRegex.test(mobile)) {
       document.getElementById('error').style.display = 'block';
       return;
     }
     document.getElementById('error').style.display = 'none';
+
+    // Add country code 91 before mobile
+    mobile = '91' + mobile;
 
     // Message with line breaks encoded as %0A for WhatsApp
     const message = 
@@ -103,8 +107,7 @@ Your rating would help us serve you even better!`;
     // Encode message for URL
     const encodedMessage = encodeURIComponent(message);
 
-    // WhatsApp link (using international number format)
-    // User enters mobile like "919876543210" (country code + number)
+    // WhatsApp link (with country code added)
     const waLink = `https://wa.me/${mobile}?text=${encodedMessage}`;
 
     // Open WhatsApp link in new tab

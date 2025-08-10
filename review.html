@@ -9,44 +9,46 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       margin: 0;
-      background: linear-gradient(135deg, #0066cc, #ff66cc); /* blue + pink */
+      background: linear-gradient(135deg, #0066cc, #ff66cc); /* blue + pink gradient */
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
     .container {
-      background: linear-gradient(135deg, #004a99, #ff33cc); /* blue + pink */
+      background: rgba(255, 230, 245, 0.9); /* light pastel pink with some transparency */
       padding: 25px 30px;
       border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
       width: 320px;
-      color: white;
       box-sizing: border-box;
+      color: #333; /* dark text for readability */
     }
     h2 {
       margin-bottom: 20px;
+      color: #0066cc; /* blue heading */
       text-align: center;
     }
     label {
       display: block;
       margin-bottom: 6px;
       font-weight: bold;
-      color: white;
+      color: #444;
     }
     input[type="text"], input[type="tel"] {
       width: 100%;
       padding: 8px 10px;
       margin-bottom: 15px;
-      border: none;
+      border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
       box-sizing: border-box;
+      color: #333;
     }
     button {
       width: 100%;
       padding: 10px 0;
-      background-color: #003366;
+      background-color: #0066cc;
       color: white;
       border: none;
       border-radius: 6px;
@@ -55,10 +57,10 @@
       transition: background-color 0.3s ease;
     }
     button:hover {
-      background-color: #002244;
+      background-color: #004a99;
     }
     .error {
-      color: #ffcccc;
+      color: red;
       margin-bottom: 10px;
       font-size: 0.9rem;
       display: none;
@@ -85,7 +87,7 @@
     const name = document.getElementById('name').value.trim();
     let mobile = document.getElementById('mobile').value.trim();
 
-    const phoneRegex = /^[0-9]{10}$/; // exactly 10 digits for local number
+    const phoneRegex = /^[0-9]{10}$/;
     if (!name || !phoneRegex.test(mobile)) {
       document.getElementById('error').style.display = 'block';
       return;

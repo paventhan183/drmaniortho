@@ -112,36 +112,82 @@
       margin: 5px 0;
       font-size: 1rem;
     }
-    .phone-number {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      color: #fff;
-      text-decoration: underline;
-      cursor: pointer;
-      display: inline-block;
+    /* Banner slider styles */
+    .banner-slider {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      margin-bottom: 20px;
     }
-    .phone-number:hover {
-      color: #ffcc00;
+    .banner-slider .slide {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      border-radius: 0 0 15px 15px;
     }
-    .about-us, .services-row, .timing-contact-row, .appointment-container, .testimonials-section, .review-form-section {
+    .banner-slider .slide.active {
+      opacity: 1;
+      position: relative;
+    }
+    .banner-slider .slide h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      z-index: 2;
+      color: white; /* White font */
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    }
+    .about-us {
       max-width: 1200px;
-      margin: 20px auto;
+      margin: 10px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    .services-row {
+      max-width: 1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .service-section {
+      flex: 1 1 45%;
+      max-width: 550px;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
       box-sizing: border-box;
     }
-    .services-row, .timing-contact-row {
+    .timing-contact-row {
+      max-width: 1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
-    .service-section, .timing-contact-section {
+    .timing-contact-section {
       flex: 1 1 45%;
       max-width: 550px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255,255,255,0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
@@ -174,6 +220,15 @@
       width: 100%;
       height: 300px;
       margin-top: 10px;
+    }
+    .appointment-container {
+      max-width: 1200px;
+      margin: 20px auto 50px auto;
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
     .whatsapp-button {
       position: fixed;
@@ -211,90 +266,6 @@
         transform: translateY(-10px);
       }
     }
-
-    /* Banner slider styles */
-    .banner-slider {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      border-radius: 0 0 15px 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .banner-slider .slide {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 15px;
-      border-radius: 0 0 15px 15px;
-    }
-    .banner-slider .slide.active {
-      opacity: 1;
-      position: relative;
-    }
-    .banner-slider .slide h2 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-align: center;
-      margin: 0;
-      z-index: 2;
-      color: white;
-      text-shadow: 0 0 8px rgba(0,0,0,0.8);
-    }
-
-    /* Testimonials Section */
-    .testimonials-section {
-      text-align: center;
-    }
-    .testimonial {
-      font-style: italic;
-      margin-bottom: 10px;
-      color: #444;
-    }
-    .testimonial-author {
-      font-weight: bold;
-      color: #0066cc;
-      margin-bottom: 20px;
-    }
-
-    /* Review Form */
-    .review-form-section form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .review-form-section label {
-      font-weight: bold;
-      color: #0066cc;
-    }
-    .review-form-section input {
-      padding: 8px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .review-form-section button {
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .review-form-section button:hover {
-      background-color: #004080;
-    }
-
     @media (max-width: 768px) {
       .services-row, .timing-contact-row {
         flex-direction: column;
@@ -304,9 +275,12 @@
         max-width: 100%;
         flex-basis: 100%;
       }
-      .appointment-container, .about-us, .testimonials-section, .review-form-section {
-        margin: 20px 10px 50px 10px;
+      .appointment-container {
         max-width: 100%;
+        margin: 20px 10px 50px 10px;
+      }
+      .about-us {
+        margin: 10px 10px;
       }
     }
   </style>
@@ -356,7 +330,6 @@
 <header>
   <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
   <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
-  <a href="tel:+919444261111" class="phone-number">📞 +91 94442 61111</a>
 </header>
 
 <div class="about-us">
@@ -428,36 +401,28 @@
   </iframe>
 </div>
 
-<!-- Patient Testimonials Section -->
-<div class="testimonials-section">
-  <h2>Patient Testimonials</h2>
-  <div class="testimonial">
-    <p>"Dr. Mani is very caring and knowledgeable. My knee surgery went smoothly, and I recovered quickly."</p>
-    <p class="testimonial-author">– S. Rajesh</p>
-  </div>
-  <div class="testimonial">
-    <p>"Excellent service and friendly staff. I highly recommend this clinic for all orthopedic needs."</p>
-    <p class="testimonial-author">– Meena K.</p>
-  </div>
-  <div class="testimonial">
-    <p>"The physiotherapy sessions helped me regain strength after my fracture. Thank you, Dr. Mani!"</p>
-    <p class="testimonial-author">– Arjun S.</p>
-  </div>
-</div>
-
-<!-- Review Form Section -->
-<div class="review-form-section">
-  <h2>Submit Your Review</h2>
-  <form id="reviewForm">
-    <label for="reviewName">Name</label>
-    <input type="text" id="reviewName" name="reviewName" placeholder="Your name" required />
-    
-    <label for="reviewPhone">Phone Number</label>
-    <input type="tel" id="reviewPhone" name="reviewPhone" placeholder="Your phone number" required pattern="[0-9]{10,15}" />
-    
-    <button type="submit">Send Review Message</button>
-  </form>
-</div>
-
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+<script>
+  const slides = document.querySelectorAll('.banner-slider .slide');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  // Start slider
+  setInterval(nextSlide, 4000); // change slide every 4 seconds
+</script>
+
+</body>
+</html>

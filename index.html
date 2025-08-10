@@ -112,6 +112,20 @@
       margin: 5px 0;
       font-size: 1rem;
     }
+    header p.phone-number {
+      background-color: #004080;
+      color: white;
+      padding: 8px;
+      border-radius: 5px;
+      font-weight: bold;
+      max-width: 220px;
+      margin: 10px auto 0 auto;
+      cursor: pointer;
+    }
+    header p.phone-number a {
+      color: white;
+      text-decoration: none;
+    }
     /* Banner slider styles */
     .banner-slider {
       position: relative;
@@ -145,7 +159,7 @@
       text-align: center;
       margin: 0;
       z-index: 2;
-      color: white; /* White font */
+      color: white;
       text-shadow: 0 0 8px rgba(0,0,0,0.8);
     }
     .about-us {
@@ -266,6 +280,7 @@
         transform: translateY(-10px);
       }
     }
+    /* Responsive */
     @media (max-width: 768px) {
       .services-row, .timing-contact-row {
         flex-direction: column;
@@ -282,6 +297,32 @@
       .about-us {
         margin: 10px 10px;
       }
+    }
+
+    /* Testimonials styles */
+    .testimonials-container {
+      max-width: 900px;
+      margin: 40px auto 60px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    .testimonial-slider {
+      position: relative;
+      overflow: hidden;
+      height: 150px;
+    }
+    .testimonial-slide {
+      display: none;
+      padding: 15px;
+      font-style: italic;
+      font-size: 1rem;
+      color: #333;
+    }
+    .testimonial-slide.active {
+      display: block;
     }
   </style>
 </head>
@@ -330,6 +371,9 @@
 <header>
   <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
   <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
+  <p class="phone-number">
+    <a href="tel:+919444261111" aria-label="Call +91 94442 61111">📞 +91 94442 61111</a>
+  </p>
 </header>
 
 <div class="about-us">
@@ -405,24 +449,14 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
 
-<script>
-  const slides = document.querySelectorAll('.banner-slider .slide');
-  let current = 0;
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-  }
-
-  function nextSlide() {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }
-
-  // Start slider
-  setInterval(nextSlide, 4000); // change slide every 4 seconds
-</script>
-
-</body>
-</html>
+<!-- Patient Testimonials Section -->
+<section class="testimonials-container">
+  <h2>Patient Testimonials</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial-slide active">
+      "Dr. Mani provided excellent care and helped me recover quickly. Highly recommended!"
+      <br/><br/><strong>- Ramesh K.</strong>
+    </div>
+    <div class="testimonial-slide">
+      "Friendly staff and very professional treatment. The clinic is clean and well-equipped."
+    </div>

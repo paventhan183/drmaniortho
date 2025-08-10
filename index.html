@@ -1,131 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr Mani's Ortho Speciality & General Clinic</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            background-color: #0066cc;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-        header p {
-            margin: 5px 0;
-            font-size: 1rem;
-        }
-        section {
-            padding: 20px;
-            background: white;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #0066cc;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            margin-bottom: 5px;
-        }
-        .map-container {
-            width: 100%;
-            height: 300px;
-            margin-top: 10px;
-        }
-        /* Floating WhatsApp Button */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
-            text-decoration: none;
-            z-index: 1000;
-        }
-        .whatsapp-button:hover {
-            background-color: #20b358;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr Mani's Ortho Speciality & General Clinic</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #0066cc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    header p {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+    section {
+      padding: 20px;
+      background: white;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #0066cc;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin-bottom: 5px;
+    }
+    .map-container {
+      width: 100%;
+      height: 300px;
+      margin-top: 10px;
+    }
+    /* Floating WhatsApp Button */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+      text-decoration: none;
+      z-index: 1000;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+    .whatsapp-button:hover {
+      background-color: #20b358;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
-    <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
+  <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
+  <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
 </header>
 
 <section>
-    <h2>About Us</h2>
-    <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
+  <h2>About Us</h2>
+  <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
 </section>
 
 <section>
-    <h2>Orthopedic & Specialized Care</h2>
-    <ul>
-        <li>✅ Trauma & Fracture Management</li>
-        <li>✅ Joint Replacement Surgery</li>
-        <li>✅ Spine Care & Surgery</li>
-        <li>✅ Clinical Laboratory Services</li>
-        <li>✅ Physiotherapy</li>
-        <li>✅ Digital X-Ray</li>
-    </ul>
+  <h2>Orthopedic & Specialized Care</h2>
+  <ul>
+    <li>✅ Trauma & Fracture Management</li>
+    <li>✅ Joint Replacement Surgery</li>
+    <li>✅ Spine Care & Surgery</li>
+    <li>✅ Clinical Laboratory Services</li>
+    <li>✅ Physiotherapy</li>
+    <li>✅ Digital X-Ray</li>
+  </ul>
 </section>
 
 <section>
-    <h2>General Health Consultation</h2>
-    <ul>
-        <li>✅ Fever & Infections</li>
-        <li>✅ Stomach Problems</li>
-        <li>✅ General Pain</li>
-        <li>✅ Fatigue & Weakness</li>
-        <li>✅ Wound Care</li>
-        <li>✅ Diabetic Treatment</li>
-    </ul>
+  <h2>General Health Consultation</h2>
+  <ul>
+    <li>✅ Fever & Infections</li>
+    <li>✅ Stomach Problems</li>
+    <li>✅ General Pain</li>
+    <li>✅ Fatigue & Weakness</li>
+    <li>✅ Wound Care</li>
+    <li>✅ Diabetic Treatment</li>
+  </ul>
 </section>
 
 <section>
-    <h2>Clinic Timing</h2>
-    <ul>
-        <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
-    </ul>
+  <h2>Clinic Timing</h2>
+  <ul>
+    <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
+  </ul>
 </section>
 
 <section>
-    <h2>Contact & Location</h2>
-    <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
-    <p><strong>Phone:</strong> +91 94442 61111</p>
-    <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
+  <h2>Contact & Location</h2>
+  <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
+  <p><strong>Phone:</strong> +91 94442 61111</p>
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000"
+      width="100%"
+      height="100%"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
 </section>
 
 <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank">💬</a>
+<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+  💬
+</a>
 
 </body>
 </html>

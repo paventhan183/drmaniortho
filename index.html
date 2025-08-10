@@ -211,6 +211,44 @@
         transform: translateY(-10px);
       }
     }
+
+    /* Banner slider styles */
+    .banner-slider {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .banner-slider .slide {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      border-radius: 0 0 15px 15px;
+    }
+    .banner-slider .slide.active {
+      opacity: 1;
+      position: relative;
+    }
+    .banner-slider .slide h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      z-index: 2;
+      color: white;
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    }
+
     /* Testimonials Section */
     .testimonials-section {
       text-align: center;
@@ -225,6 +263,7 @@
       color: #0066cc;
       margin-bottom: 20px;
     }
+
     /* Review Form */
     .review-form-section form {
       max-width: 500px;
@@ -255,6 +294,7 @@
     .review-form-section button:hover {
       background-color: #004080;
     }
+
     @media (max-width: 768px) {
       .services-row, .timing-contact-row {
         flex-direction: column;
@@ -420,27 +460,4 @@
 </div>
 
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-</a>
-
-<script>
-  document.getElementById('reviewForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('reviewName').value.trim();
-    const phone = document.getElementById('reviewPhone').value.trim();
-
-    if (!name || !phone) {
-      alert('Please enter both your name and phone number.');
-      return;
-    }
-
-    // Message content with user name included
-    const message = `Hello ${encodeURIComponent(name)},%0A` +
-                    `Thank you for visiting *Dr. Mani's Ortho Speciality & General Clinic*.%0A` +
-                    `Your review means a lot to us — it helps others find the right care and encourages our team.%0A` +
-                    `If you were happy with our service, please give us a *5-star rating* ⭐⭐⭐⭐⭐.%0A` +
-                    `You can share your feedback here: https://g.page/r/CfKLCQ4kwt5UEBM/review%0A` +
-                    `Your rating would help us serve you even better!`;
-
-    //
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt

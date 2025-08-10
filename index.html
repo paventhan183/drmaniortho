@@ -16,6 +16,8 @@
       color: white;
       padding: 20px;
       text-align: center;
+      position: relative;
+      z-index: 10;
     }
     header h1 {
       margin: 0;
@@ -25,6 +27,31 @@
       margin: 5px 0;
       font-size: 1rem;
     }
+
+    /* Banner styles */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 20px;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    }
+    .banner h2 {
+      font-size: 2rem;
+      margin: 0;
+      padding: 0 15px;
+      text-align: center;
+    }
+
     section {
       padding: 20px;
       background: rgba(255, 255, 255, 0.85);
@@ -94,6 +121,11 @@
   <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
   <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
 </header>
+
+<!-- Banner -->
+<div class="banner">
+  <h2>Expert Orthopedic & General Care in Chromepet, Chennai</h2>
+</div>
 
 <section>
   <h2>About Us</h2>

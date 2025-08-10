@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Send Review Link</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 320px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #0066cc;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px 0;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #004a99;
+    }
+    .error {
+      color: red;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Send Review Link</h2>
+  <div id="error" class="error">Please enter a valid name and mobile number.</div>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter patient name" />
+
+  <label for="mobile">Mobile Number (with country code):</label>
+  <input type="tel" id="mobile" placeholder="e.g. 919876543210" />
+
+  <button id="sendBtn">Send Message</button>
+</div>
+
+<script>
+  document.getElementById('sendBtn').addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+
+    // Basic validation
+    const phoneRegex = /^[0-9]{10,15}$/; // digits only, 10-15 length
+    if (!name || !phoneRegex.test(mobile)) {
+      document.getElementById('error').style.display = 'block';
+      return;
+    }
+    document.getElementById('error').style.display = 'none';
+
+    // Message with line breaks encoded as %0A for WhatsApp
+    const message = 
+`Hello ${name},
+Thank you for visiting *Dr. Mani's Ortho Speciality & General Clinic*.
+Your review means a lot to us — it helps others find the right care and encourages our team.
+If you were happy with our service, please give us a *5-star rating* ⭐⭐⭐⭐⭐.
+You can share your feedback here: https://g.page/r/CfKLCQ4kwt5UEBM/review
+Your rating would help us serve you even better!`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // WhatsApp link (using international number format)
+    // User enters mobile like "919876543210" (country code + number)
+    const waLink = `https://wa.me/${mobile}?text=${encodedMessage}`;
+
+    // Open WhatsApp link in new tab
+    window.open(waLink, '_blank');
+  });
+</script>
+
+</body>
+</html>

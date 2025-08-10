@@ -8,36 +8,37 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: linear-gradient(135deg, #ff99cc, #66cc99); /* pink + green gradient */
+      margin: 0;
+      background: linear-gradient(135deg, #0066cc, #ff66cc); /* blue + pink */
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
     }
     .container {
-      background: white;
+      background: linear-gradient(135deg, #004a99, #ff33cc); /* blue + pink */
       padding: 25px 30px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
       width: 320px;
+      color: white;
+      box-sizing: border-box;
     }
     h2 {
       margin-bottom: 20px;
-      color: #0066cc;
       text-align: center;
     }
     label {
       display: block;
       margin-bottom: 6px;
       font-weight: bold;
-      color: #333;
+      color: white;
     }
     input[type="text"], input[type="tel"] {
       width: 100%;
       padding: 8px 10px;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 5px;
       font-size: 1rem;
       box-sizing: border-box;
@@ -45,7 +46,7 @@
     button {
       width: 100%;
       padding: 10px 0;
-      background-color: #0066cc;
+      background-color: #003366;
       color: white;
       border: none;
       border-radius: 6px;
@@ -54,10 +55,10 @@
       transition: background-color 0.3s ease;
     }
     button:hover {
-      background-color: #004a99;
+      background-color: #002244;
     }
     .error {
-      color: red;
+      color: #ffcccc;
       margin-bottom: 10px;
       font-size: 0.9rem;
       display: none;
@@ -84,7 +85,6 @@
     const name = document.getElementById('name').value.trim();
     let mobile = document.getElementById('mobile').value.trim();
 
-    // Basic validation
     const phoneRegex = /^[0-9]{10}$/; // exactly 10 digits for local number
     if (!name || !phoneRegex.test(mobile)) {
       document.getElementById('error').style.display = 'block';
@@ -92,10 +92,8 @@
     }
     document.getElementById('error').style.display = 'none';
 
-    // Add country code 91 before mobile
     mobile = '91' + mobile;
 
-    // Message with line breaks encoded as %0A for WhatsApp
     const message = 
 `Hello ${name},
 Thank you for visiting *Dr. Mani's Ortho Speciality & General Clinic*.
@@ -104,13 +102,8 @@ If you were happy with our service, please give us a *5-star rating* ⭐⭐⭐�
 You can share your feedback here: https://g.page/r/CfKLCQ4kwt5UEBM/review
 Your rating would help us serve you even better!`;
 
-    // Encode message for URL
     const encodedMessage = encodeURIComponent(message);
-
-    // WhatsApp link (with country code added)
     const waLink = `https://wa.me/${mobile}?text=${encodedMessage}`;
-
-    // Open WhatsApp link in new tab
     window.open(waLink, '_blank');
   });
 </script>

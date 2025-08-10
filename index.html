@@ -123,82 +123,25 @@
     .phone-number:hover {
       color: #ffcc00;
     }
-    /* Banner slider styles */
-    .banner-slider {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      border-radius: 0 0 15px 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .banner-slider .slide {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 15px;
-      border-radius: 0 0 15px 15px;
-    }
-    .banner-slider .slide.active {
-      opacity: 1;
-      position: relative;
-    }
-    .banner-slider .slide h2 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-align: center;
-      margin: 0;
-      z-index: 2;
-      color: white; /* White font */
-      text-shadow: 0 0 8px rgba(0,0,0,0.8);
-    }
-    .about-us {
+    .about-us, .services-row, .timing-contact-row, .appointment-container, .testimonials-section, .review-form-section {
       max-width: 1200px;
-      margin: 10px auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
-    .services-row {
-      max-width: 1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .service-section {
-      flex: 1 1 45%;
-      max-width: 550px;
+      margin: 20px auto;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
       box-sizing: border-box;
     }
-    .timing-contact-row {
-      max-width: 1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
+    .services-row, .timing-contact-row {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
-    .timing-contact-section {
+    .service-section, .timing-contact-section {
       flex: 1 1 45%;
       max-width: 550px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
@@ -232,15 +175,6 @@
       height: 300px;
       margin-top: 10px;
     }
-    .appointment-container {
-      max-width: 1200px;
-      margin: 20px auto 50px auto;
-      background: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -269,88 +203,54 @@
       user-select: none;
       pointer-events: none;
     }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
     /* Testimonials Section */
     .testimonials-section {
-      max-width: 1200px;
-      margin: 0 auto 40px auto;
-      background: rgba(255,255,255,0.85);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
+      text-align: center;
     }
-    .testimonial-slider {
-      position: relative;
-      overflow: hidden;
-      height: 160px;
-    }
-    .testimonial-slide {
-      opacity: 0;
-      position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-      transition: opacity 1s ease-in-out;
-      padding: 10px 20px;
-      box-sizing: border-box;
-    }
-    .testimonial-slide.active {
-      opacity: 1;
-      position: relative;
-    }
-    .testimonial-text {
+    .testimonial {
       font-style: italic;
-      font-size: 1.1rem;
-      color: #333;
       margin-bottom: 10px;
+      color: #444;
     }
     .testimonial-author {
-      text-align: right;
       font-weight: bold;
       color: #0066cc;
+      margin-bottom: 20px;
     }
     /* Review Form */
-    .review-form-section {
-      max-width: 1200px;
-      margin: 0 auto 50px auto;
-      background: rgba(255,255,255,0.85);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
-    .review-form-section h2 {
-      margin-bottom: 15px;
-    }
     .review-form-section form {
+      max-width: 500px;
+      margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 15px;
-      align-items: flex-end;
     }
     .review-form-section label {
-      flex-basis: 100%;
       font-weight: bold;
-      margin-bottom: 5px;
       color: #0066cc;
     }
     .review-form-section input {
-      flex: 1 1 200px;
       padding: 8px;
       font-size: 1rem;
       border-radius: 5px;
       border: 1px solid #ccc;
-      box-sizing: border-box;
     }
     .review-form-section button {
       background-color: #0066cc;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px;
       border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
-      flex-shrink: 0;
     }
     .review-form-section button:hover {
       background-color: #004080;
@@ -464,4 +364,83 @@
     <p><strong>Phone:</strong> +91 94442 61111</p>
     <div class="map-container">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.144931903988!2d80.1413!3d12.9482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f7c84a1d6e3%3A0x55c54c436e4b8e4a!2s68%2C%20Radha%20Nagar%20Main%20Rd%2C%20Radha%20Nagar%2C%20Chromepet%2C%20Chennai%2C%20Tamil%20Nadu%20600044!5e0!3m2!1sen!2sin!4v1691689600000"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+</div>
+
+<div  id="contact-form" class="appointment-container">
+  <h2>Appointment / Contact Form</h2>
+  <iframe 
+    src="https://whatsform.com/d3olh_" 
+    width="100%" 
+    height="600" 
+    style="border:none; border-radius: 10px;" 
+    scrolling="no" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Patient Testimonials Section -->
+<div class="testimonials-section">
+  <h2>Patient Testimonials</h2>
+  <div class="testimonial">
+    <p>"Dr. Mani is very caring and knowledgeable. My knee surgery went smoothly, and I recovered quickly."</p>
+    <p class="testimonial-author">– S. Rajesh</p>
+  </div>
+  <div class="testimonial">
+    <p>"Excellent service and friendly staff. I highly recommend this clinic for all orthopedic needs."</p>
+    <p class="testimonial-author">– Meena K.</p>
+  </div>
+  <div class="testimonial">
+    <p>"The physiotherapy sessions helped me regain strength after my fracture. Thank you, Dr. Mani!"</p>
+    <p class="testimonial-author">– Arjun S.</p>
+  </div>
+</div>
+
+<!-- Review Form Section -->
+<div class="review-form-section">
+  <h2>Submit Your Review</h2>
+  <form id="reviewForm">
+    <label for="reviewName">Name</label>
+    <input type="text" id="reviewName" name="reviewName" placeholder="Your name" required />
+    
+    <label for="reviewPhone">Phone Number</label>
+    <input type="tel" id="reviewPhone" name="reviewPhone" placeholder="Your phone number" required pattern="[0-9]{10,15}" />
+    
+    <button type="submit">Send Review Message</button>
+  </form>
+</div>
+
+<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+<script>
+  document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('reviewName').value.trim();
+    const phone = document.getElementById('reviewPhone').value.trim();
+
+    if (!name || !phone) {
+      alert('Please enter both your name and phone number.');
+      return;
+    }
+
+    // Message content with user name included
+    const message = `Hello ${encodeURIComponent(name)},%0A` +
+                    `Thank you for visiting *Dr. Mani's Ortho Speciality & General Clinic*.%0A` +
+                    `Your review means a lot to us — it helps others find the right care and encourages our team.%0A` +
+                    `If you were happy with our service, please give us a *5-star rating* ⭐⭐⭐⭐⭐.%0A` +
+                    `You can share your feedback here: https://g.page/r/CfKLCQ4kwt5UEBM/review%0A` +
+                    `Your rating would help us serve you even better!`;
+
+    //

@@ -27,7 +27,7 @@
       margin: 5px 0;
       font-size: 1rem;
     }
-    /* Banner styles */
+    /* Banner styles with dark overlay */
     .banner {
       position: relative;
       width: 100%;
@@ -43,32 +43,53 @@
       justify-content: center;
       color: white;
       text-shadow: 0 0 8px rgba(0,0,0,0.7);
+      overflow: hidden;
+    }
+    /* Dark overlay */
+    .banner::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
     .banner h2 {
-      font-size: 2rem;
+      position: relative;
+      z-index: 2;
+      font-size: 2.5rem;
+      font-weight: bold;
       margin: 0;
       padding: 0 15px;
       text-align: center;
     }
-    /* Container for sections */
-    .sections-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 0 10px 30px 10px;
+    /* About Us - full width */
+    .about-us {
       max-width: 1200px;
-      margin: 0 auto;
-    }
-    /* Each section as a flex item */
-    section {
-      flex: 1 1 300px; /* grow, shrink, basis */
-      min-width: 280px;
-      max-width: 350px;
+      margin: 10px auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    /* Container for services side-by-side */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
+    }
+    /* Each service section */
+    .service-section {
+      flex: 1 1 280px; /* grow, shrink, basis */
+      max-width: 350px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
       box-sizing: border-box;
     }
     h2 {
@@ -76,19 +97,31 @@
       border-bottom: 2px solid #eee;
       padding-bottom: 5px;
     }
+    /* Custom bullet style */
     ul {
-      list-style: none;
+      list-style: none; /* Remove default bullets */
       padding: 0;
     }
     ul li {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      padding-left: 25px;
+      position: relative;
+      font-size: 1rem;
+      color: #333;
+    }
+    ul li::before {
+      content: "✔"; /* Checkmark bullet */
+      position: absolute;
+      left: 0;
+      color: #25d366; /* WhatsApp green */
+      font-weight: bold;
     }
     .map-container {
       width: 100%;
       height: 300px;
       margin-top: 10px;
     }
-    /* Appointment section width fix */
+    /* Appointment section */
     .appointment-container {
       max-width: 600px;
       margin: 20px auto 50px auto;
@@ -134,18 +167,21 @@
         transform: translateY(-10px);
       }
     }
-    /* Responsive: On mobile, stack sections vertically */
+    /* Responsive for mobile */
     @media (max-width: 768px) {
-      .sections-container {
+      .services-container {
         flex-direction: column;
-        padding: 0 10px 20px 10px;
+        padding: 0 10px;
       }
-      section {
+      .service-section {
         max-width: 100%;
       }
       .appointment-container {
         max-width: 100%;
         margin: 20px 10px 50px 10px;
+      }
+      .about-us {
+        margin: 10px 10px;
       }
     }
   </style>
@@ -162,45 +198,46 @@
   <h2>Expert Orthopedic & General Care in Chromepet, Chennai</h2>
 </div>
 
-<!-- Sections container for flex layout -->
-<div class="sections-container">
-  <section>
-    <h2>About Us</h2>
-    <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
-  </section>
+<!-- About Us full width -->
+<div class="about-us">
+  <h2>About Us</h2>
+  <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
+</div>
 
-  <section>
+<!-- Services side by side -->
+<div class="services-container">
+  <section class="service-section">
     <h2>Orthopedic & Specialized Care</h2>
     <ul>
-      <li>✅ Trauma & Fracture Management</li>
-      <li>✅ Joint Replacement Surgery</li>
-      <li>✅ Spine Care & Surgery</li>
-      <li>✅ Clinical Laboratory Services</li>
-      <li>✅ Physiotherapy</li>
-      <li>✅ Digital X-Ray</li>
+      <li>Trauma & Fracture Management</li>
+      <li>Joint Replacement Surgery</li>
+      <li>Spine Care & Surgery</li>
+      <li>Clinical Laboratory Services</li>
+      <li>Physiotherapy</li>
+      <li>Digital X-Ray</li>
     </ul>
   </section>
 
-  <section>
+  <section class="service-section">
     <h2>General Health Consultation</h2>
     <ul>
-      <li>✅ Fever & Infections</li>
-      <li>✅ Stomach Problems</li>
-      <li>✅ General Pain</li>
-      <li>✅ Fatigue & Weakness</li>
-      <li>✅ Wound Care</li>
-      <li>✅ Diabetic Treatment</li>
+      <li>Fever & Infections</li>
+      <li>Stomach Problems</li>
+      <li>General Pain</li>
+      <li>Fatigue & Weakness</li>
+      <li>Wound Care</li>
+      <li>Diabetic Treatment</li>
     </ul>
   </section>
 
-  <section>
+  <section class="service-section">
     <h2>Clinic Timing</h2>
     <ul>
       <li>Monday – Sunday: 9:00 AM – 10:00 PM</li>
     </ul>
   </section>
 
-  <section>
+  <section class="service-section">
     <h2>Contact & Location</h2>
     <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
     <p><strong>Phone:</strong> +91 94442 61111</p>
@@ -218,7 +255,7 @@
   </section>
 </div>
 
-<!-- Appointment / Contact Form outside sections container -->
+<!-- Appointment / Contact Form -->
 <div class="appointment-container">
   <h2>Appointment / Contact Form</h2>
   <iframe 

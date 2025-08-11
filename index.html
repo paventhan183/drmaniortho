@@ -87,6 +87,20 @@
       }
     ]
   }
+    const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+
+// For accessibility: toggle menu with keyboard (Enter or Space)
+menuToggle.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    navMenu.classList.toggle('show');
+  }
+});
   </script>
 
   <style>
@@ -126,7 +140,98 @@
       color: white;
       text-decoration: none;
     }
+/* Header styles */
+header {
+  background-color: #0066cc;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+  flex-wrap: wrap;
+}
 
+header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+/* Nav menu styles */
+nav#nav-menu {
+  display: flex;
+  gap: 20px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+nav#nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav#nav-menu a:hover,
+nav#nav-menu a:focus {
+  background-color: #004a99;
+  outline: none;
+}
+
+/* Hamburger menu */
+#menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#menu-toggle div {
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  /* Show hamburger */
+  #menu-toggle {
+    display: flex;
+    order: 2;
+  }
+
+  /* Hide nav menu by default */
+  nav#nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #0066cc;
+    margin-top: 10px;
+    order: 3;
+    border-radius: 0 0 10px 10px;
+  }
+
+  nav#nav-menu.show {
+    display: flex;
+  }
+
+  nav#nav-menu a {
+    padding: 12px 20px;
+    border-bottom: 1px solid #005bb5;
+  }
+
+  nav#nav-menu a:last-child {
+    border-bottom: none;
+  }
+}
     /* Banner carousel styles */
     .banner-slider {
       position: relative;
@@ -320,7 +425,22 @@
   </style>
 </head>
 <body>
+<header>
+  <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
 
+  <!-- Hamburger menu toggle -->
+  <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <nav id="nav-menu">
+    <a href="#doctor-profile">Home</a>
+    <a href="#about">About</a>
+    <a href="#detailed-surgeries">This Page</a>
+  </nav>
+</header>
 <!-- Banner carousel container -->
 <div class="banner-slider">
   <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">

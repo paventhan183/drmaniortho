@@ -3,125 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Appointment / Contact Form</title>
+  <title>FAQ - Dr Mani's Ortho Clinic</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f3eaff;
+      max-width: 700px;
+      margin: 40px auto;
       padding: 20px;
-      color: #0047b3;
+      color: #333;
+      background: #f9f9f9;
     }
-    h2 {
-      font-weight: bold;
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 40px;
     }
-    form {
-      background: white;
-      padding: 20px;
-      max-width: 400px;
+    .faq-item {
+      background: #fff;
       border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    label {
+    .faq-item strong {
+      color: #007bff;
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    input[type="text"],
-    input[type="number"],
-    input[type="date"] {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .gender-options {
-      margin-top: 5px;
-    }
-    .gender-options label {
-      font-weight: normal;
-      margin-right: 15px;
-    }
-    .whatsapp-btn {
-      margin-top: 20px;
-      background-color: #25d366;
-      color: white;
-      border: none;
-      padding: 10px 15px;
+      margin-bottom: 8px;
       font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
     }
-    .whatsapp-btn img {
-      height: 20px;
-      margin-right: 8px;
+    .faq-item p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
 
-  <h2>Appointment / Contact Form</h2>
+  <h1>Frequently Asked Questions (FAQ)</h1>
 
-  <form id="appointmentForm">
-    <label for="name">* Name</label>
-    <input type="text" id="name" name="name" required />
+  <div class="faq-item">
+    <strong>Q1: What types of orthopedic treatments do you provide?</strong>
+    <p>A: We provide joint replacement, fracture fixation, arthroscopic surgery, spinal surgery, sports injury treatment, and physiotherapy.</p>
+  </div>
 
-    <label for="age">* Age</label>
-    <input type="number" id="age" name="age" min="0" required />
+  <div class="faq-item">
+    <strong>Q2: How do I know if I need surgery or non-surgical treatment?</strong>
+    <p>A: The doctor will evaluate your condition with a physical exam and tests like X-rays or MRI before recommending the best treatment.</p>
+  </div>
 
-    <label>Gender</label>
-    <div class="gender-options">
-      <label><input type="radio" name="gender" value="Male" /> Male</label>
-      <label><input type="radio" name="gender" value="Female" /> Female</label>
-    </div>
+  <div class="faq-item">
+    <strong>Q3: How long is the recovery time after surgery?</strong>
+    <p>A: Recovery depends on the type of surgery. For example, joint replacement may take a few weeks to months, while arthroscopic surgery usually has a faster recovery.</p>
+  </div>
 
-    <label for="mobile">* Mobile Number</label>
-    <div style="display:flex; align-items:center;">
-      <span style="margin-right:5px;">🇮🇳 +91</span>
-      <input type="text" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Enter 10 digit number" required style="flex:1" />
-    </div>
+  <div class="faq-item">
+    <strong>Q4: Do you accept walk-in patients or is appointment necessary?</strong>
+    <p>A: We recommend booking an appointment to avoid waiting, but walk-in patients are also welcome.</p>
+  </div>
 
-    <label for="visitDate">* Clinic Visit</label>
-    <input type="date" id="visitDate" name="visitDate" required />
+  <div class="faq-item">
+    <strong>Q5: What are the clinic’s working hours?</strong>
+    <p>A: Our clinic is open Monday to Saturday from 9 AM to 6 PM. We are closed on Sundays.</p>
+  </div>
 
-    <label> * Reason for visit</label>
-    <label><input type="radio" name="reason" value="Ortho" required /> Ortho</label><br />
-    <label><input type="radio" name="reason" value="General problem (Fever,Cold,Others)" /> General problem (Fever,Cold,Others)</label>
+  <div class="faq-item">
+    <strong>Q6: Can I get a second opinion before surgery?</strong>
+    <p>A: Yes, we encourage patients to get a second opinion if they want before proceeding with surgery.</p>
+  </div>
 
-    <button type="submit" class="whatsapp-btn">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-      Submit on WhatsApp
-    </button>
-  </form>
+  <div class="faq-item">
+    <strong>Q7: What insurance plans do you accept?</strong>
+    <p>A: Please contact us with your insurance details; we can guide you about coverage and cashless treatment options.</p>
+  </div>
 
-  <script>
-    const form = document.getElementById('appointmentForm');
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
+  <div class="faq-item">
+    <strong>Q8: How do I prepare for orthopedic surgery?</strong>
+    <p>A: The doctor will give you specific instructions before surgery, like fasting, medication adjustments, and necessary tests.</p>
+  </div>
 
-      // Collect form data
-      const name = form.name.value.trim();
-      const age = form.age.value.trim();
-      const gender = form.gender.value || "Not specified";
-      const mobile = form.mobile.value.trim();
-      const visitDate = form.visitDate.value;
-      const reason = form.reason.value;
+  <div class="faq-item">
+    <strong>Q9: Are there any risks or complications from surgery?</strong>
+    <p>A: Like any surgery, there are risks such as infection or blood clots, but we take all precautions to minimize them.</p>
+  </div>
 
-      // Prepare WhatsApp message
-      let message = `Appointment Booking Details:\n`;
-      message += `Name: ${name}\nAge: ${age}\nGender: ${gender}\nMobile: +91${mobile}\nClinic Visit Date: ${visitDate}\nReason for Visit: ${reason}`;
+  <div class="faq-item">
+    <strong>Q10: Do you provide physiotherapy after surgery?</strong>
+    <p>A: Yes, we offer physiotherapy and rehabilitation to help you recover faster and regain strength.</p>
+  </div>
 
-      // WhatsApp URL (change number below to your clinic's WhatsApp)
-      const whatsappNumber = "9444261111"; 
-      const url = `https://wa.me/91${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  <div class="faq-item">
+    <strong>Q11: Can I get a consultation online or by phone?</strong>
+    <p>A: Currently, consultations are in-person, but you can call us for any questions or preliminary advice.</p>
+  </div>
 
-      // Open WhatsApp link in new tab
-      window.open(url, '_blank');
-    });
-  </script>
+  <div class="faq-item">
+    <strong>Q12: What should I do in case of a sports injury?</strong>
+    <p>A: Rest, ice the area, and contact our clinic as soon as possible for evaluation and treatment.</p>
+  </div>
+
+  <div class="faq-item">
+    <strong>Q13: How soon can I return to work after surgery?</strong>
+    <p>A: It depends on your surgery type and job. The doctor will advise you during follow-up visits.</p>
+  </div>
+
+  <div class="faq-item">
+    <strong>Q14: Do you treat both adults and children?</strong>
+    <p>A: Yes, we treat patients of all ages with orthopedic conditions.</p>
+  </div>
+
+  <div class="faq-item">
+    <strong>Q15: What payment methods do you accept?</strong>
+    <p>A: We accept cash, card payments, and insurance-based cashless treatments.</p>
+  </div>
 
 </body>
 </html>

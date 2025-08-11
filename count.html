@@ -227,27 +227,26 @@
       left: 20px; /* final position */
     }
 
-    /* Services slider with background images */
-    #services-slider {
-      max-width: 1000px;
-      margin: 20px auto 0 auto;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 15px 20px;
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #0066cc;
-      border-radius: 8px;
+    /* Service blocks with different background colors */
+    .service-block {
+      width: 220px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      opacity: 1;
-      transition: opacity 0.8s ease, background-image 0.8s ease;
-      min-height: 140px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 10px;
+      padding: 15px;
+      color: #333;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .service-joint {
+      background-color: #AED6F1; /* Light Blue */
+    }
+    .service-fracture {
+      background-color: #F9E79F; /* Light Yellow */
+    }
+    .service-arthro {
+      background-color: #ABEBC6; /* Light Green */
+    }
+    .service-physio {
+      background-color: #F5B7B1; /* Light Pink */
     }
   </style>
 </head>
@@ -292,23 +291,22 @@
     <section style="padding: 20px; font-family: Arial, sans-serif;">
       <h2 style="text-align: center; color: #0074B7;">Our Orthopedic Services</h2>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-        <!-- Joint Replacement Surgery -->
-        <div style="width: 220px; text-align: center;">
+        <div class="service-block service-joint">
           <img src="images/images (8).jpeg" alt="Joint Replacement" style="width:80px; height:80px;">
           <h4>Joint Replacement (Knee, Hip)</h4>
         </div>
-        <!-- Fracture Fixation & Treatment -->
-        <div style="width: 220px; text-align: center;">
+
+        <div class="service-block service-fracture">
           <img src="images/images (9).jpeg" alt="Fracture Treatment" style="width:80px; height:80px;">
           <h4>Fracture Fixation & Treatment</h4>
         </div>
-        <!-- Arthroscopic Surgery -->
-        <div style="width: 220px; text-align: center;">
+
+        <div class="service-block service-arthro">
           <img src="images/images (10).jpeg" alt="Arthroscopic Surgery" style="width:80px; height:80px;">
           <h4>Arthroscopic Surgery<br>(Minimally Invasive)</h4>
         </div>
-        <!-- Physiotherapy & Sports Injury -->
-        <div style="width: 220px; text-align: center;">
+
+        <div class="service-block service-physio">
           <img src="images/images (11).jpeg" alt="Rehabilitation and Sports Injury" style="width:80px; height:80px;">
           <h4>Sports Injury Treatment<br> & Physiotherapy</h4>
         </div>
@@ -325,9 +323,6 @@
       </blockquote>
     </section>
   </div>
-
-  <!-- Services Sliding Text with Background -->
-  <div id="services-slider">Loading services...</div>
 
   <!-- Detailed Surgeries full row -->
   <section id="detailed-surgeries" class="full-row">
@@ -381,64 +376,10 @@
         navMenu.classList.toggle('show');
       }
     });
-
-    // Floating Call Button show animation
+    // Wait until page is fully loaded, then slide in the button
     window.addEventListener('load', function() {
       document.getElementById('call-btn').classList.add('show');
     });
-
-    // Services slider with background images
-    const services = [
-      {
-        text: "Joint Replacement Surgery (Knee, Hip)",
-        image: "images/services/joint-replacement.jpg"
-      },
-      {
-        text: "Fracture Fixation and Treatment",
-        image: "images/services/fracture-fixation.jpg"
-      },
-      {
-        text: "Arthroscopic Surgery (Minimally Invasive)",
-        image: "images/services/arthroscopic.jpg"
-      },
-      {
-        text: "Spinal Surgery",
-        image: "images/services/spinal-surgery.jpg"
-      },
-      {
-        text: "Sports Injury Treatment",
-        image: "images/services/sports-injury.jpg"
-      },
-      {
-        text: "Physiotherapy and Rehabilitation",
-        image: "images/services/physiotherapy.jpg"
-      }
-    ];
-
-    const slider = document.getElementById('services-slider');
-    let currentIndex = 0;
-
-    function showNextService() {
-      slider.style.opacity = 0;
-
-      setTimeout(() => {
-        // Update text
-        slider.textContent = services[currentIndex].text;
-        // Update background image
-        slider.style.backgroundImage = `url('${services[currentIndex].image}')`;
-
-        slider.style.opacity = 1;
-
-        currentIndex = (currentIndex + 1) % services.length;
-      }, 800);
-    }
-
-    // Initial display
-    slider.textContent = services[0].text;
-    slider.style.backgroundImage = `url('${services[0].image}')`;
-    currentIndex = 1;
-
-    setInterval(showNextService, 3000);
   </script>
 </body>
 </html>

@@ -96,12 +96,6 @@
       padding: 0;
       background: linear-gradient(135deg, #0066cc, #ff66cc);
     }
-
-    /* Force all elements to use the same font */
-    * {
-      font-family: Arial, sans-serif !important;
-    }
-
     header {
       background-color: #0066cc;
       color: white;
@@ -124,14 +118,13 @@
       padding: 8px;
       border-radius: 5px;
       font-weight: bold;
-      
+      max-width: 220px;
       margin: 10px auto 0 auto;
       cursor: pointer;
     }
     header p.phone-number a {
       color: white;
       text-decoration: none;
-      
     }
 
     /* Banner carousel styles */
@@ -319,7 +312,7 @@
       font-style: italic;
       font-size: 1rem;
       color: #333;
-     
+      line-height: 1.5;
     }
     .testimonials-container p {
       margin-bottom: 20px;
@@ -330,13 +323,13 @@
 
 <!-- Banner carousel container -->
 <div class="banner-slider">
-  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1588776814546-6f5360fef16d?auto=format&fit=crop&w=1350&q=80');">
+  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">
     <h2>Trauma & Fracture Management</h2>
   </div>
   <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1350&q=80');">
     <h2>Joint Replacement Surgery</h2>
   </div>
-  <div class="slide" style="background-color: #336699;">>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1350&q=80');">
     <h2>Spine Care & Surgery</h2>
   </div>
   <div class="slide" style="background-color: #004080;">
@@ -434,22 +427,15 @@
 </div>
 
 <div  id="contact-form" class="appointment-container">
-  <section>
-      
-    
-    <iframe src="contact.html" 
-          width="100%" 
-          height="400" 
-          style="border:1px solid #ccc;">
+  <h2>Appointment / Contact Form</h2>
+  <iframe 
+    src="https://whatsform.com/d3olh_" 
+    width="100%" 
+    height="600" 
+    style="border:none; border-radius: 10px;" 
+    scrolling="no" 
+    allowfullscreen>
   </iframe>
-  </section>
-
-  <section class="testimonials-container">
-  <h2>Patient Testimonials</h2>
-  <p>"Dr. Mani provided excellent care and helped me recover quickly. Highly recommended!"<br/><strong>- Ramesh K.</strong></p>
-  <p>"Friendly staff and very professional treatment. The clinic is clean and well-equipped."<br/><strong>- Anjali S.</strong></p>
-  <p>"Great experience with joint replacement surgery. Now I’m pain-free and mobile again."<br/><strong>- Vijay M.</strong></p>
-</section>
 </div>
 
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
@@ -457,7 +443,12 @@
 </a>
 
 <!-- Patient Testimonials Section -->
-
+<section class="testimonials-container">
+  <h2>Patient Testimonials</h2>
+  <p>"Dr. Mani provided excellent care and helped me recover quickly. Highly recommended!"<br/><strong>- Ramesh K.</strong></p>
+  <p>"Friendly staff and very professional treatment. The clinic is clean and well-equipped."<br/><strong>- Anjali S.</strong></p>
+  <p>"Great experience with joint replacement surgery. Now I’m pain-free and mobile again."<br/><strong>- Vijay M.</strong></p>
+</section>
 
 <script>
   const slides = document.querySelectorAll('.banner-slider .slide');
@@ -470,4 +461,12 @@
   }
 
   function nextSlide() {
-    currentIndex = (currentIndex + 1) %
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  setInterval(nextSlide, 4000); // change slide every 4 seconds
+</script>
+
+</body>
+</html>

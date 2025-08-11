@@ -2,237 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="google-site-verification" content="ZdH7W3PdH4x8LhLwefou5nHwa4eE_g7s6c2q3jyWeMc" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr Mani's Ortho Speciality & General Clinic</title>
 
-  <!-- JSON-LD Structured Data for Services -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet",
-      "addressLocality": "Chennai",
-      "postalCode": "600044",
-      "addressCountry": "IN"
-    },
-    "telephone": "+91 94442 61111",
-    "medicalSpecialty": [
-      "Orthopedic",
-      "General Practice"
-    ],
-    "availableService": [
-      {
-        "@type": "MedicalProcedure",
-        "name": "Trauma & Fracture Management",
-        "description": "Treatment for trauma injuries and fracture management."
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Joint Replacement Surgery",
-        "description": "Surgical replacement of joints to restore mobility."
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Spine Care & Surgery",
-        "description": "Specialized care and surgery for spine-related issues."
-      },
-      {
-        "@type": "MedicalTest",
-        "name": "Clinical Laboratory Services",
-        "description": "Laboratory testing and diagnostics services."
-      },
-      {
-        "@type": "TherapeuticProcedure",
-        "name": "Physiotherapy",
-        "description": "Physical therapy for rehabilitation and pain relief."
-      },
-      {
-        "@type": "MedicalTest",
-        "name": "Digital X-Ray",
-        "description": "Digital radiography services for accurate imaging."
-      },
-      {
-        "@type": "MedicalService",
-        "name": "Fever & Infections",
-        "description": "Consultation and treatment for fever and infections."
-      },
-      {
-        "@type": "MedicalService",
-        "name": "Stomach Problems",
-        "description": "Diagnosis and treatment for stomach related illnesses."
-      },
-      {
-        "@type": "MedicalService",
-        "name": "General Pain",
-        "description": "Consultation for various general pain conditions."
-      },
-      {
-        "@type": "MedicalService",
-        "name": "Fatigue & Weakness",
-        "description": "Evaluation and treatment for fatigue and weakness."
-      },
-      {
-        "@type": "MedicalService",
-        "name": "Wound Care",
-        "description": "Care and treatment for wounds."
-      },
-      {
-        "@type": "MedicalService",
-        "name": "Diabetic Treatment",
-        "description": "Management and treatment of diabetes."
-      }
-    ]
-  }
-    const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('show');
-});
-
-// For accessibility: toggle menu with keyboard (Enter or Space)
-menuToggle.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    navMenu.classList.toggle('show');
-  }
-});
-  </script>
-
   <style>
+    /* Body and base styles */
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: linear-gradient(135deg, #0066cc, #ff66cc);
+      color: #333;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
     }
     header {
       background-color: #0066cc;
       color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: relative;
-      z-index: 10;
+      z-index: 1000; /* Important so nav stays clickable */
+      flex-wrap: wrap;
     }
     header h1 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      flex: 1 1 auto;
+      min-width: 200px;
     }
-    header p {
-      margin: 5px 0;
-      font-size: 1rem;
+    nav#nav-menu {
+      display: flex;
+      gap: 20px;
+      flex: 1 1 auto;
+      justify-content: flex-end;
     }
-    header p.phone-number {
-      background-color: #004080;
+    nav#nav-menu a {
       color: white;
-      padding: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 12px;
       border-radius: 5px;
-      font-weight: bold;
-      max-width: 220px;
-      margin: 10px auto 0 auto;
+      transition: background-color 0.3s;
       cursor: pointer;
     }
-    header p.phone-number a {
-      color: white;
-      text-decoration: none;
+    nav#nav-menu a:hover,
+    nav#nav-menu a:focus {
+      background-color: #004a99;
+      outline: none;
     }
-/* Header styles */
-header {
-  background-color: #0066cc;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 10;
-  flex-wrap: wrap;
-}
+    #menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+    #menu-toggle div {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+    @media (max-width: 768px) {
+      #menu-toggle {
+        display: flex;
+        order: 2;
+      }
+      nav#nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #0066cc;
+        margin-top: 10px;
+        order: 3;
+        border-radius: 0 0 10px 10px;
+      }
+      nav#nav-menu.show {
+        display: flex;
+      }
+      nav#nav-menu a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #005bb5;
+      }
+      nav#nav-menu a:last-child {
+        border-bottom: none;
+      }
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 1.4rem;
-  flex: 1 1 auto;
-  min-width: 200px;
-}
-
-/* Nav menu styles */
-nav#nav-menu {
-  display: flex;
-  gap: 20px;
-  flex: 1 1 auto;
-  justify-content: flex-end;
-}
-
-nav#nav-menu a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 8px 12px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-nav#nav-menu a:hover,
-nav#nav-menu a:focus {
-  background-color: #004a99;
-  outline: none;
-}
-
-/* Hamburger menu */
-#menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  cursor: pointer;
-}
-
-#menu-toggle div {
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-}
-
-/* Mobile styles */
-@media (max-width: 768px) {
-  /* Show hamburger */
-  #menu-toggle {
-    display: flex;
-    order: 2;
-  }
-
-  /* Hide nav menu by default */
-  nav#nav-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #0066cc;
-    margin-top: 10px;
-    order: 3;
-    border-radius: 0 0 10px 10px;
-  }
-
-  nav#nav-menu.show {
-    display: flex;
-  }
-
-  nav#nav-menu a {
-    padding: 12px 20px;
-    border-bottom: 1px solid #005bb5;
-  }
-
-  nav#nav-menu a:last-child {
-    border-bottom: none;
-  }
-}
-    /* Banner carousel styles */
+    /* Banner Slider */
     .banner-slider {
       position: relative;
       width: 100%;
@@ -241,6 +102,7 @@ nav#nav-menu a:focus {
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       margin-bottom: 20px;
+      z-index: 1;
     }
     .banner-slider .slide {
       position: absolute;
@@ -256,10 +118,12 @@ nav#nav-menu a:focus {
       align-items: center;
       justify-content: center;
       border-radius: 0 0 15px 15px;
+      z-index: 0;
     }
     .banner-slider .slide.active {
       opacity: 1;
       position: relative;
+      z-index: 1;
     }
     .banner-slider .slide h2 {
       color: white;
@@ -269,46 +133,32 @@ nav#nav-menu a:focus {
       padding: 0 15px;
     }
 
-    .about-us {
-      max-width: 1200px;
-      margin: 10px auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
-    .services-row {
+    /* Content Sections */
+    .about-us,
+    .services-row,
+    .timing-contact-row,
+    .appointment-container,
+    .testimonials-container {
       max-width: 1200px;
       margin: 10px auto 30px auto;
-      padding: 0 10px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .service-section {
-      flex: 1 1 45%;
-      max-width: 550px;
-      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      background: rgba(255,255,255,0.9);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
       box-sizing: border-box;
     }
+    .services-row,
     .timing-contact-row {
-      max-width: 1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
+    .service-section,
     .timing-contact-section {
       flex: 1 1 45%;
       max-width: 550px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
@@ -337,20 +187,15 @@ nav#nav-menu a:focus {
       color: #25d366;
       font-weight: bold;
     }
+
+    /* Map */
     .map-container {
       width: 100%;
       height: 300px;
       margin-top: 10px;
     }
-    .appointment-container {
-      max-width: 1200px;
-      margin: 20px auto 50px auto;
-      background: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
+
+    /* WhatsApp Button */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -380,19 +225,19 @@ nav#nav-menu a:focus {
       pointer-events: none;
     }
     @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .services-row, .timing-contact-row {
+      .services-row,
+      .timing-contact-row {
         flex-direction: column;
         padding: 0 10px;
       }
-      .service-section, .timing-contact-section {
+      .service-section,
+      .timing-contact-section {
         max-width: 100%;
         flex-basis: 100%;
       }
@@ -405,15 +250,8 @@ nav#nav-menu a:focus {
       }
     }
 
-    /* Testimonials styles */
+    /* Testimonials */
     .testimonials-container {
-      max-width: 900px;
-      margin: 40px auto 60px auto;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
       font-style: italic;
       font-size: 1rem;
       color: #333;
@@ -425,6 +263,7 @@ nav#nav-menu a:focus {
   </style>
 </head>
 <body>
+
 <header>
   <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
 
@@ -441,7 +280,8 @@ nav#nav-menu a:focus {
     <a href="#detailed-surgeries">This Page</a>
   </nav>
 </header>
-<!-- Banner carousel container -->
+
+<!-- Banner slider -->
 <div class="banner-slider">
   <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">
     <h2>Trauma & Fracture Management</h2>
@@ -481,14 +321,14 @@ nav#nav-menu a:focus {
   </div>
 </div>
 
-
-
-<div class="about-us">
+<!-- About Us -->
+<div class="about-us" id="about">
   <h2>About Us</h2>
   <p>Dr. Mani Arumugam is a highly experienced Orthopedic Specialist based in Chromepet, Chennai. He provides expert care for fractures, joint pain, bone surgeries, and general health consultations for common illnesses such as fever, cold, diabetes, blood pressure, infections, wound care, and more.</p>
 </div>
 
-<div id="services" class="services-row">
+<!-- Services -->
+<div id="services" class="services-row" id="detailed-surgeries">
   <section class="service-section">
     <h2>Orthopedic & Specialized Care</h2>
     <ul>
@@ -514,6 +354,7 @@ nav#nav-menu a:focus {
   </section>
 </div>
 
+<!-- Timing and Contact -->
 <div class="timing-contact-row">
   <section class="timing-contact-section">
     <h2>Clinic Timing</h2>
@@ -540,7 +381,8 @@ nav#nav-menu a:focus {
   </section>
 </div>
 
-<div  id="contact-form" class="appointment-container">
+<!-- Appointment Form -->
+<div id="contact-form" class="appointment-container">
   <h2>Appointment / Contact Form</h2>
   <iframe 
     src="https://whatsform.com/d3olh_" 
@@ -552,11 +394,12 @@ nav#nav-menu a:focus {
   </iframe>
 </div>
 
-<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
 
-<!-- Patient Testimonials Section -->
+<!-- Patient Testimonials -->
 <section class="testimonials-container">
   <h2>Patient Testimonials</h2>
   <p>"Dr. Mani provided excellent care and helped me recover quickly. Highly recommended!"<br/><strong>- Ramesh K.</strong></p>
@@ -565,8 +408,23 @@ nav#nav-menu a:focus {
 </section>
 
 <script>
+  // Hamburger menu toggle script
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navMenu.classList.toggle('show');
+    }
+  });
+
+  // Banner slider script
   const slides = document.querySelectorAll('.banner-slider .slide');
-  let currentIndex = 0;
+  let currentSlide = 0;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
@@ -575,11 +433,11 @@ nav#nav-menu a:focus {
   }
 
   function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
   }
 
-  setInterval(nextSlide, 4000); // change slide every 4 seconds
+  setInterval(nextSlide, 4000); // Change every 4 seconds
 </script>
 
 </body>

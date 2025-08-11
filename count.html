@@ -1,88 +1,78 @@
-<!-- Stats Section -->
-<section id="stats-section">
-  <div class="stat-item">
-    <img src="happy-clients.png" alt="Happy Clients">
-    <h2 class="counter" data-target="20000">0</h2>
-    <p>Happy Clients</p>
-  </div>
-  <div class="stat-item">
-    <img src="experience.png" alt="Years of Experience">
-    <h2 class="counter" data-target="20">0</h2>
-    <p>Years of Experience</p>
-  </div>
-  <div class="stat-item">
-    <img src="doctors.png" alt="Doctors & Staff">
-    <h2 class="counter" data-target="70">0</h2>
-    <p>Doctors & Staff</p>
-  </div>
-  <div class="stat-item">
-    <img src="appointments.png" alt="Online Appointments">
-    <h2 class="counter" data-target="340">0</h2>
-    <p>Online Appointments</p>
-  </div>
-</section>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Counter</title>
 <style>
-  #stats-section {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  body {
+    font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #fffbea;
-    padding: 40px 20px;
+    margin: 0;
+    padding: 0;
   }
-  .stat-item {
-    flex: 1 1 200px;
-    margin: 20px;
+  .counter-section {
+    height: 100vh; /* just for demo scroll effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #007BFF; /* Blue background */
+    color: white; /* Text color for better contrast */
   }
-  .stat-item img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
+  .counter {
+    font-size: 48px;
+    font-weight: bold;
   }
-  .stat-item h2 {
-    font-size: 2rem;
-    color: #333;
-    margin: 10px 0 5px;
-  }
-  .stat-item p {
-    color: #777;
-    font-size: 1rem;
+  img {
+    width: 100px;
+    margin-top: 20px;
   }
 </style>
+</head>
+<body>
+
+<div style="height:100vh; background:#eee;">
+  <h2>Scroll down to see counter</h2>
+</div>
+
+<div class="counter-section" id="counterSection">
+  <div class="counter" id="count">0</div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Green_check.svg/1024px-Green_check.svg.png" alt="Icon">
+</div>
 
 <script>
-  // Function to animate counting
-  function animateCounter(counter) {
-    const target = +counter.getAttribute('data-target');
-    const speed = 100; // smaller is faster
-    const increment = target / speed;
+let counted = false;
 
-    let count = 0;
-    function updateCount() {
-      count += increment;
-      if (count < target) {
-        counter.textContent = Math.floor(count);
-        requestAnimationFrame(updateCount);
-      } else {
-        counter.textContent = target.toLocaleString(); // format with commas
-      }
+function startCounter() {
+  if (counted) return; // only run once
+  counted = true;
+
+  let count = 0;
+  let target = 100; // final number
+  let speed = 20; // smaller = faster
+
+  let counter = document.getElementById("count");
+
+  let update = setInterval(() => {
+    count++;
+    counter.textContent = count;
+    if (count >= target) {
+      clearInterval(update);
     }
-    updateCount();
+  }, speed);
+}
+
+window.addEventListener("scroll", function() {
+  let section = document.getElementById("counterSection");
+  let position = section.getBoundingClientRect().top;
+  let screenHeight = window.innerHeight;
+
+  if (position < screenHeight && position > 0) {
+    startCounter();
   }
-
-  // Detect when section is visible
-  const counters = document.querySelectorAll('.counter');
-  let started = false;
-
-  window.addEventListener('scroll', () => {
-    const section = document.getElementById('stats-section');
-    const sectionTop = section.getBoundingClientRect().top;
-    const screenHeight = window.innerHeight;
-
-    if (!started && sectionTop < screenHeight) {
-      counters.forEach(counter => animateCounter(counter));
-      started = true;
-    }
-  });
+});
 </script>
+
+</body>
+</html>

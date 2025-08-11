@@ -3,467 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Murugan Ortho Clinic</title>
+  <title>Dr Mani's Ortho Speciality & General Clinic</title>
   <style>
-    /* Reset some default styles */
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #fff;
-      color: #222;
-    }
-
-    header {
-      background-color: #002b7f; /* Dark blue */
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header .contact-info {
-      font-size: 0.9rem;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    header .contact-info span {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    header img.logo {
-      height: 40px;
-    }
-
-    nav {
-      background-color: #002b7f;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
+      line-height: 1.6;
       margin: 0;
       padding: 0;
+      background-color: #fefefe;
+      color: #333;
     }
-
-    nav ul li {
+    header {
+      background-color: #4CAF50;
       color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .carousel {
-      position: relative;
-      margin: 20px;
-      height: 250px;
-      background: url('https://via.placeholder.com/800x250?text=Clinic+Room') center/cover no-repeat;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #111;
-      font-size: 1.8rem;
-      font-weight: bold;
+      padding: 15px 0;
       text-align: center;
-      padding: 0 20px;
     }
-
-    .info-cards {
-      display: flex;
-      justify-content: space-around;
-      gap: 15px;
-      margin: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background-color: #003891;
-      color: white;
-      flex: 1 1 200px;
+    section {
+      max-width: 700px;
+      margin: 30px auto;
       padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      min-width: 200px;
     }
-
-    .card h3 {
-      margin-top: 0;
-    }
-
-    .highlight-section {
-      background-color: #e71919;
-      color: white;
-      margin: 20px;
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .main-content {
-      background: linear-gradient(180deg, #27378f 0%, #eb7684 100%);
-      color: white;
-      padding: 30px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .text-section {
-      flex: 1 1 400px;
-      min-width: 300px;
-      max-width: 600px;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .form-section {
-      flex: 1 1 300px;
-      min-width: 280px;
-      background: rgba(0,0,0,0.2);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .form-section h2 {
-      text-align: center;
-      font-size: 1.5rem;
+    h2 {
+      color: #4CAF50;
       margin-bottom: 15px;
-      color: #ffc107; /* yellow */
+      text-align: center;
     }
-
-    .form-section form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    #doctor-profile img {
+      width: 150px;
+      border-radius: 50%;
+      display: block;
+      margin: 15px auto;
     }
-
-    .form-section input, .form-section select {
-      padding: 8px;
+    ul {
+      list-style: inside disc;
+    }
+    blockquote {
+      border-left: 4px solid #4CAF50;
+      padding-left: 15px;
+      font-style: italic;
+      margin-bottom: 20px;
+      background: #f0f9f0;
       border-radius: 5px;
-      border: none;
-      font-size: 1rem;
     }
-
-    .form-section button {
-      background-color: #00acee;
-      border: none;
-      padding: 10px;
-      color: white;
-      font-weight: bold;
+    #facilities {
+      background-color: #e8f5e9;
+      text-align: center;
       border-radius: 8px;
+    }
+    #contact {
+      text-align: center;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
-
-    .form-section button:hover {
-      background-color: #0086c3;
+    button:hover {
+      background-color: #45a049;
     }
-
-    .services-section {
-      background-color: #15236b;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    .services-section h2 {
-      font-size: 2rem;
-      margin-bottom: 25px;
-      color: #ffc107;
-    }
-
-    .service-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .service-card {
-      background: #0d1c59;
-      border-radius: 15px;
-      padding: 15px;
-      flex: 1 1 280px;
-      min-width: 280px;
-      text-align: left;
-    }
-
-    .service-card h3 {
-      color: #ffc107;
-      margin-top: 0;
-    }
-
-    .service-card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .branches-section {
-      background: #001a66;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    .branches-section h2 {
-      color: #ffc107;
-      margin-bottom: 25px;
-    }
-
-    .branch-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .branch-card {
-      background: #003080;
-      border-radius: 15px;
-      padding: 20px;
-      flex: 1 1 250px;
-      min-width: 250px;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-
-    .branch-card a {
-      color: #b4d1ff;
+    a {
+      color: #4CAF50;
       text-decoration: none;
     }
-
-    .branch-card a:hover {
+    a:hover {
       text-decoration: underline;
-    }
-
-    .contact-section {
-      background: #eb7684;
-      color: #222;
-      padding: 30px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .contact-info {
-      flex: 1 1 300px;
-      min-width: 280px;
-    }
-
-    .contact-info h2 {
-      color: #ffc107;
-      margin-bottom: 20px;
-    }
-
-    .contact-info p {
-      margin: 8px 0;
-      font-size: 1rem;
-    }
-
-    .contact-info span {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .contact-info svg {
-      width: 20px;
-      height: 20px;
-      fill: #222;
-    }
-
-    .map {
-      flex: 1 1 300px;
-      min-width: 280px;
-      background: #ccc;
-      height: 200px;
-      border-radius: 10px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .info-cards, .service-cards, .branch-cards, .main-content, .contact-section {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .service-card, .branch-card, .card {
-        min-width: 90%;
-      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Murugan_Ortho_logo.svg/1200px-Murugan_Ortho_logo.svg.png" alt="Murugan Ortho Logo" class="logo" />
-    <div class="contact-info">
-      <span>📞 +91 9047899157</span>
-      <span>✉ info@muruganortho.com</span>
-      <span>📍 107, GST Road, Sunnambu Colony, Chrompet Chennai</span>
-    </div>
+    <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
+    <p>Trusted Orthopedic Care in Chromepet, Chennai</p>
   </header>
 
-  <nav>
+  <section id="doctor-profile">
+    <h2>Meet Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho)</h2>
+    <img src="doctor-photo.jpg" alt="Dr Mani Arumugam" />
+    <p>Dr. Mani Arumugam is a highly experienced orthopedic surgeon with over 15 years of expertise in treating fractures, joint pain, and performing advanced orthopedic surgeries.</p>
+    <p>He is committed to providing personalized care using the latest technology and techniques to help you recover quickly and safely.</p>
+  </section>
+
+  <section id="testimonials" style="background-color: #f9f9f9; border-radius: 8px;">
+    <h2>What Our Patients Say</h2>
+    <blockquote>
+      “Thanks to Dr. Mani, my knee pain is gone, and I can walk comfortably again. The care and attention were amazing!”<br />– R. Kumar
+    </blockquote>
+    <blockquote>
+      “The surgery was successful and the whole team was supportive throughout my recovery.”<br />– S. Meena
+    </blockquote>
+  </section>
+
+  <section id="services">
+    <h2>Our Orthopedic Services</h2>
     <ul>
-      <li>Home</li>
-      <li>Services</li>
-      <li>Branches</li>
-      <li>Contact</li>
+      <li>Joint Replacement Surgery (Knee, Hip)</li>
+      <li>Fracture Fixation and Treatment</li>
+      <li>Arthroscopic Surgery (Minimally Invasive)</li>
+      <li>Spinal Surgery</li>
+      <li>Sports Injury Treatment</li>
+      <li>Physiotherapy and Rehabilitation</li>
     </ul>
-  </nav>
-
-  <section class="carousel">
-    Physiotherapy & Neuro Clinic in Pammal
   </section>
 
-  <section class="info-cards">
-    <div class="card">
-      <h3>24/7 Support</h3>
-      <p>Best Ortho and Neuro Physiotherapy Clinic in Chrompet Chennai.</p>
-    </div>
-    <div class="card">
-      <h3>Opening Hours</h3>
-      <p>Mon-Sat 6:00 am to 9:30 pm <br /> Sunday 6:00 am to 2:30 pm</p>
-    </div>
-    <div class="card">
-      <h3>Emergency Case</h3>
-      <p>+91 9047899157<br />Email: muruganortho@gmail.com</p>
-    </div>
-    <div class="card">
-      <h3>House Visits</h3>
-      <p>House Visit Undertaken for Children and Old Age People.</p>
-    </div>
+  <section id="facilities">
+    <h2>Modern Facilities for Best Care</h2>
+    <p>We use advanced digital X-ray machines, a fully equipped lab, and provide onsite physiotherapy to support your fast recovery.</p>
   </section>
 
-  <section class="highlight-section">
-    All Kind of Orthopedic Conditions and Neurological Conditions, Fracture Care, Respiratory & Cardio Care Postoperative Care, Rehabilitation Care.<br /><br />
-    advanced physiotherapy treatment with world class equipment’s with providing best quality of treatments with experience doctors and physiotherapist.
+  <section id="contact">
+    <h2>Book Your Consultation Today</h2>
+    <p>Call us at <strong>94442 61111</strong> or <a href="mailto:info@drmaniortho.com">email us</a> to schedule your appointment.</p>
+    <button onclick="window.location='tel:9444261111'">Call Now</button>
   </section>
-
-  <section class="main-content">
-    <div class="text-section">
-      <h2 style="color:#ffc107;">Murugan Ortho and Neuro Physiotherapy Clinic</h2>
-      <p>
-        We know that in this busy world, you might get pissed off by any of your body pain, but don’t worry we are here for you, whether your pain is due to your increasing age or any sought of injury, we can make sure after visiting our clinic you will be free from all your pains visit our clinic now near Anakaputhur Chennai.
-      </p>
-      <p>
-        Physiotherapy is a professional health care discipline that works closely with physicians and other health care professionals. One of the many different areas of physiotherapy is treatment of varying conditions by means such as stretching, strengthening, re-learning movement patterns, joint mobilization and deep tissue mobilization.
-      </p>
-      <p>
-        Our physiotherapy services aim at making your body strong and flexible so that diseases can be prevented and existing diseases can be cured. Keeping you moving is our goal so that your life keeps on moving smoothly.
-      </p>
-    </div>
-
-    <div class="form-section">
-      <h2>Book ON Appointment</h2>
-      <form>
-        <input type="text" placeholder="Name *" required />
-        <input type="email" placeholder="Email ID" />
-        <input type="tel" placeholder="Phone Number" />
-        <input type="date" />
-        <input type="text" placeholder="Timing" />
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <section class="services-section">
-    <h2>Our Services</h2>
-
-    <div class="service-cards">
-      <div class="service-card">
-        <h3>Orthopedic</h3>
-        <p>
-          Orthopaedic Physiotherapy concerned with the treatment of injuries or disorders of the skeletal system and associated muscles, joints and ligaments also includes pre and post operative rehabilitation of hip, shoulder and knee...
-        </p>
-        <img src="https://cdn.pixabay.com/photo/2017/06/12/18/05/runner-2393274_960_720.png" alt="Orthopedic" />
-      </div>
-
-      <div class="service-card">
-        <h3>Pediatric</h3>
-        <p>
-          Pediatric Physiotherapy can help with a wide range of conditions, motor development and acute illness and injury...
-        </p>
-        <img src="https://cdn.pixabay.com/photo/2016/12/07/10/31/baby-1894235_960_720.jpg" alt="Pediatric" />
-      </div>
-
-      <div class="service-card">
-        <h3>Rehabilitation</h3>
-        <p>
-          We Provide the following rehab programmes at our centre: Spinal Cord Injury Rehabilitation, Wheelchair Training, Hand Rehabilitation, Cardiac Rehabilitation...
-        </p>
-        <img src="https://cdn.pixabay.com/photo/2017/06/08/06/30/rehabilitation-2386828_960_720.jpg" alt="Rehabilitation" />
-      </div>
-
-      <div class="service-card">
-        <h3>Fitness/Sports Conditioning</h3>
-        <p>
-          “Exercise not only changes your body. It changes your mind, your attitude and your mood” Fitness is defined as being in good physical shape or being suitable for a specific task or purpose...
-        </p>
-        <img src="https://cdn.pixabay.com/photo/2016/03/09/09/30/fitness-1245952_960_720.jpg" alt="Fitness" />
-      </div>
-    </div>
-  </section>
-
-  <section class="branches-section">
-    <h2>Our Branches</h2>
-    <div class="branch-cards">
-      <div class="branch-card">
-        <p>📞 +91 72001 79141</p>
-        <p><a href="mailto:info@muruganortho.com">info@muruganortho.com</a></p>
-        <p>345/2, Grand southern trunk road, tea kadai stop, senthil nagar, urapakkam, Near Deepam urapakkam medic center, Chennai - 603210.</p>
-      </div>
-      <div class="branch-card">
-        <p>📞 +91 81227 70191</p>
-        <p><a href="mailto:info@muruganortho.com">info@muruganortho.com</a></p>
-        <p>No; 122 2nd main road Bharathi construction building Saibaba mallikal store balajinagar Anakaputhur Chennai 600070</p>
-      </div>
-      <div class="branch-card">
-        <p>📞 +91 89391 79540</p>
-        <p><a href="mailto:info@muruganortho.com">info@muruganortho.com</a></p>
-        <p>No :48, Pozhichalur main road, pammal opposite to Kumar diabetic clinic pammal, Chennai tamilnadu 600075</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-section">
-    <div class="contact-info">
-      <h2>Contact Us</h2>
-      <p>📞 +91 9047899157</p>
-      <p>✉ <a href="mailto:info@muruganortho.com">info@muruganortho.com</a></p>
-      <p>📍 107, GST Road, Sunnambu Colony, Chrompet Chennai.</p>
-    </div>
-    <div class="map">
-      <!-- Placeholder for map -->
-      Map Here
-    </div>
-  </section>
-
 </body>
 </html>

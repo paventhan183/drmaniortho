@@ -95,7 +95,7 @@
     .flex-row {
       display: flex;
       gap: 20px;
-      max-width: 1000px;
+      max-width: 1000px;  /* increased width */
       margin: 30px auto;
     }
     /* Each child in flex-row takes equal space */
@@ -108,7 +108,7 @@
     }
     /* Full width sections */
     section.full-row {
-      max-width: 1000px;
+      max-width: 1000px; /* increased width */
       margin: 30px auto;
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.9);
@@ -227,11 +227,11 @@
       left: 20px; /* final position */
     }
 
-    /* Services slider styling with fade effect */
+    /* Services slider with background images */
     #services-slider {
       max-width: 1000px;
       margin: 20px auto 0 auto;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 0.85);
       padding: 15px 20px;
       font-size: 1.25rem;
       font-weight: bold;
@@ -240,8 +240,14 @@
       text-align: center;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       opacity: 1;
-      transition: opacity 0.8s ease;
-      min-height: 40px;
+      transition: opacity 0.8s ease, background-image 0.8s ease;
+      min-height: 140px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
@@ -267,9 +273,6 @@
     </nav>
   </header>
 
-  <!-- Services slider with fade effect -->
-  <div id="services-slider">Loading services...</div>
-
   <!-- About Doctor full row -->
   <section id="doctor-profile" class="full-row">
     <h2>Meet Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho)</h2>
@@ -289,31 +292,26 @@
     <section style="padding: 20px; font-family: Arial, sans-serif;">
       <h2 style="text-align: center; color: #0074B7;">Our Orthopedic Services</h2>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-
         <!-- Joint Replacement Surgery -->
         <div style="width: 220px; text-align: center;">
           <img src="images/images (8).jpeg" alt="Joint Replacement" style="width:80px; height:80px;">
           <h4>Joint Replacement (Knee, Hip)</h4>
         </div>
-
         <!-- Fracture Fixation & Treatment -->
         <div style="width: 220px; text-align: center;">
           <img src="images/images (9).jpeg" alt="Fracture Treatment" style="width:80px; height:80px;">
           <h4>Fracture Fixation & Treatment</h4>
         </div>
-
         <!-- Arthroscopic Surgery -->
         <div style="width: 220px; text-align: center;">
           <img src="images/images (10).jpeg" alt="Arthroscopic Surgery" style="width:80px; height:80px;">
           <h4>Arthroscopic Surgery<br>(Minimally Invasive)</h4>
         </div>
-
         <!-- Physiotherapy & Sports Injury -->
         <div style="width: 220px; text-align: center;">
           <img src="images/images (11).jpeg" alt="Rehabilitation and Sports Injury" style="width:80px; height:80px;">
           <h4>Sports Injury Treatment<br> & Physiotherapy</h4>
         </div>
-
       </div>
     </section>
 
@@ -327,6 +325,9 @@
       </blockquote>
     </section>
   </div>
+
+  <!-- Services Sliding Text with Background -->
+  <div id="services-slider">Loading services...</div>
 
   <!-- Detailed Surgeries full row -->
   <section id="detailed-surgeries" class="full-row">
@@ -381,44 +382,63 @@
       }
     });
 
-    // Wait until page is fully loaded, then slide in the call button
+    // Floating Call Button show animation
     window.addEventListener('load', function() {
       document.getElementById('call-btn').classList.add('show');
     });
 
-    // Services to cycle through with fade effect
+    // Services slider with background images
     const services = [
-      "Joint Replacement Surgery (Knee, Hip)",
-      "Fracture Fixation and Treatment",
-      "Arthroscopic Surgery (Minimally Invasive)",
-      "Spinal Surgery",
-      "Sports Injury Treatment",
-      "Physiotherapy and Rehabilitation"
+      {
+        text: "Joint Replacement Surgery (Knee, Hip)",
+        image: "images/services/joint-replacement.jpg"
+      },
+      {
+        text: "Fracture Fixation and Treatment",
+        image: "images/services/fracture-fixation.jpg"
+      },
+      {
+        text: "Arthroscopic Surgery (Minimally Invasive)",
+        image: "images/services/arthroscopic.jpg"
+      },
+      {
+        text: "Spinal Surgery",
+        image: "images/services/spinal-surgery.jpg"
+      },
+      {
+        text: "Sports Injury Treatment",
+        image: "images/services/sports-injury.jpg"
+      },
+      {
+        text: "Physiotherapy and Rehabilitation",
+        image: "images/services/physiotherapy.jpg"
+      }
     ];
 
     const slider = document.getElementById('services-slider');
     let currentIndex = 0;
 
     function showNextService() {
-      // Fade out
       slider.style.opacity = 0;
 
       setTimeout(() => {
-        // Change text after fade out
-        slider.textContent = services[currentIndex];
-        // Fade in
+        // Update text
+        slider.textContent = services[currentIndex].text;
+        // Update background image
+        slider.style.backgroundImage = `url('${services[currentIndex].image}')`;
+
         slider.style.opacity = 1;
 
         currentIndex = (currentIndex + 1) % services.length;
-      }, 800); // match CSS transition duration
+      }, 800);
     }
 
     // Initial display
-    slider.textContent = services[0];
+    slider.textContent = services[0].text;
+    slider.style.backgroundImage = `url('${services[0].image}')`;
     currentIndex = 1;
 
-    // Change every 3 seconds
-    setInterval(showNextService, 4000);
+    setInterval(showNextService, 3000);
   </script>
 </body>
 </html>

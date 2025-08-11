@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr Mani's Ortho Speciality & General Clinic</title>
   <style>
-    /* Background gradient from blue to pink */
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
@@ -14,31 +13,63 @@
       background: linear-gradient(135deg, #2196F3 0%, #E91E63 100%);
       color: #333;
     }
-    /* Sections with light blue background and some transparency for better reading */
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    /* Navigation styling */
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover, nav a:focus {
+      background-color: rgba(255,255,255,0.2);
+    }
+    /* Responsive nav for small screens */
+    @media (max-width: 600px) {
+      nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+    /* Sections with light blue background */
     section {
       max-width: 700px;
       margin: 30px auto;
       padding: 20px;
-      background-color: rgba(173, 216, 230, 0.8); /* lightblue with transparency */
+      background-color: rgba(173, 216, 230, 0.8);
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 0;
-      text-align: center;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #0B3D91; /* darker blue for headings */
+    /* Headings all blue */
+    h2, h3 {
+      color: #064273; /* strong blue */
       margin-bottom: 15px;
-      text-align: center;
     }
     h3 {
-      color: #064273; /* darker blue shade */
-      margin-bottom: 8px;
       margin-top: 20px;
     }
     #doctor-profile img {
@@ -52,7 +83,7 @@
       list-style: inside disc;
     }
     blockquote {
-      border-left: 4px solid #0B3D91;
+      border-left: 4px solid #064273;
       padding-left: 15px;
       font-style: italic;
       margin-bottom: 20px;
@@ -105,7 +136,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
       cursor: pointer;
       z-index: 1000;
       transition: background-color 0.3s ease;
@@ -113,12 +143,20 @@
     #whatsapp-btn:hover {
       background-color: #1ebe57;
     }
+    #whatsapp-btn img {
+      width: 35px;
+      height: 35px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
-    <p>Trusted Orthopedic Care in Chromepet, Chennai</p>
+    <nav>
+      <a href="#doctor-profile">Home</a>
+      <a href="#about">About</a>
+      <a href="#detailed-surgeries">This Page</a>
+    </nav>
   </header>
 
   <section id="doctor-profile">
@@ -126,6 +164,11 @@
     <img src="doctor-photo.jpg" alt="Dr Mani Arumugam" />
     <p>Dr. Mani Arumugam is a highly experienced orthopedic surgeon with over 15 years of expertise in treating fractures, joint pain, and performing advanced orthopedic surgeries.</p>
     <p>He is committed to providing personalized care using the latest technology and techniques to help you recover quickly and safely.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Our Clinic</h2>
+    <p>Welcome to Dr Mani's Ortho Speciality & General Clinic located in Chromepet, Chennai. We specialize in comprehensive orthopedic care with modern facilities to support your recovery.</p>
   </section>
 
   <section id="testimonials">
@@ -196,8 +239,8 @@
   </section>
 
   <!-- WhatsApp Floating Button -->
-  <a id="whatsapp-btn" href="https://wa.me/919444261111" target="_blank" aria-label="Chat on WhatsApp">
-    &#x1F4AC;
+  <a id="whatsapp-btn" href="https://wa.me/919444261111" target="_blank" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
 </body>
 </html>

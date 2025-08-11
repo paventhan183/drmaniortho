@@ -14,7 +14,7 @@
       color: #333;
     }
     header {
-      background-color: #0066cc; /* changed */
+      background-color: #0066cc;
       color: white;
       padding: 15px 20px;
       display: flex;
@@ -72,7 +72,7 @@
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: #0066cc; /* changed */
+        background-color: #0066cc;
         margin-top: 10px;
         border-radius: 0 0 10px 10px;
       }
@@ -91,18 +91,41 @@
       }
     }
 
-    /* Sections with light background */
-    section {
+    /* Container for side-by-side sections */
+    .flex-row {
+      display: flex;
+      gap: 20px;
       max-width: 700px;
       margin: 30px auto;
+    }
+    /* Each child in flex-row takes equal space */
+    .flex-row > section {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9); /* changed */
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+    /* Full width sections */
+    section.full-row {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive stack for small screens */
+    @media (max-width: 700px) {
+      .flex-row {
+        flex-direction: column;
+      }
+    }
+
     /* Headings all blue */
     h2, h3 {
-      color: #0066cc; /* changed */
+      color: #0066cc;
       margin-bottom: 15px;
     }
     h3 {
@@ -113,28 +136,21 @@
       border-radius: 50%;
       display: block;
       margin: 15px auto;
-      border: 3px solid #0066cc; /* changed */
+      border: 3px solid #0066cc;
     }
     ul {
       list-style: inside disc;
     }
     blockquote {
-      border-left: 4px solid #0066cc; /* changed */
+      border-left: 4px solid #0066cc;
       padding-left: 15px;
       font-style: italic;
       margin-bottom: 20px;
       background: #dbefff;
       border-radius: 5px;
-      color: #0066cc; /* changed */
+      color: #0066cc;
     }
-    #facilities {
-      background-color: rgba(255, 255, 255, 0.9); /* changed */
-      text-align: center;
-      border-radius: 8px;
-    }
-    #contact {
-      text-align: center;
-    }
+    /* Other styles */
     button {
       background-color: #4CAF50;
       color: white;
@@ -151,7 +167,7 @@
       background-color: #45a049;
     }
     a {
-      color: #0066cc; /* changed */
+      color: #0066cc;
       text-decoration: none;
       font-weight: bold;
     }
@@ -202,84 +218,77 @@
     </nav>
   </header>
 
-  <section id="doctor-profile">
+  <!-- About Doctor full row -->
+  <section id="doctor-profile" class="full-row">
     <h2>Meet Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho)</h2>
     <img src="doctor-photo.jpg" alt="Dr Mani Arumugam" />
     <p>Dr. Mani Arumugam is a highly experienced orthopedic surgeon with over 15 years of expertise in treating fractures, joint pain, and performing advanced orthopedic surgeries.</p>
     <p>He is committed to providing personalized care using the latest technology and techniques to help you recover quickly and safely.</p>
   </section>
 
-  <section id="about">
+  <!-- About Clinic full row -->
+  <section id="about" class="full-row">
     <h2>About Our Clinic</h2>
     <p>Welcome to Dr Mani's Ortho Speciality & General Clinic located in Chromepet, Chennai. We specialize in comprehensive orthopedic care with modern facilities to support your recovery.</p>
   </section>
 
-  <section id="testimonials">
-    <h2>What Our Patients Say</h2>
-    <blockquote>
-      “Thanks to Dr. Mani, my knee pain is gone, and I can walk comfortably again. The care and attention were amazing!”<br />– R. Kumar
-    </blockquote>
-    <blockquote>
-      “The surgery was successful and the whole team was supportive throughout my recovery.”<br />– S. Meena
-    </blockquote>
-  </section>
+  <!-- Services and Testimonials side-by-side -->
+  <div class="flex-row">
+    <section id="services">
+      <h2>Our Orthopedic Services</h2>
+      <ul>
+        <li>Joint Replacement Surgery (Knee, Hip)</li>
+        <li>Fracture Fixation and Treatment</li>
+        <li>Arthroscopic Surgery (Minimally Invasive)</li>
+        <li>Spinal Surgery</li>
+        <li>Sports Injury Treatment</li>
+        <li>Physiotherapy and Rehabilitation</li>
+      </ul>
+    </section>
 
-  <section id="services">
-    <h2>Our Orthopedic Services</h2>
-    <ul>
-      <li>Joint Replacement Surgery (Knee, Hip)</li>
-      <li>Fracture Fixation and Treatment</li>
-      <li>Arthroscopic Surgery (Minimally Invasive)</li>
-      <li>Spinal Surgery</li>
-      <li>Sports Injury Treatment</li>
-      <li>Physiotherapy and Rehabilitation</li>
-    </ul>
-  </section>
+    <section id="testimonials">
+      <h2>What Our Patients Say</h2>
+      <blockquote>
+        “Thanks to Dr. Mani, my knee pain is gone, and I can walk comfortably again. The care and attention were amazing!”<br />– R. Kumar
+      </blockquote>
+      <blockquote>
+        “The surgery was successful and the whole team was supportive throughout my recovery.”<br />– S. Meena
+      </blockquote>
+    </section>
+  </div>
 
-  <section id="detailed-surgeries">
+  <!-- Detailed Surgeries full row -->
+  <section id="detailed-surgeries" class="full-row">
     <h2>Detailed Orthopedic Surgeries</h2>
-
     <h3>Joint Replacement Surgery</h3>
-    <p>
-      We perform knee and hip joint replacements for patients suffering from severe arthritis or joint damage.
-      This surgery replaces the damaged joint with an artificial one to reduce pain and improve mobility.
-    </p>
+    <p>We perform knee and hip joint replacements for patients suffering from severe arthritis or joint damage. This surgery replaces the damaged joint with an artificial one to reduce pain and improve mobility.</p>
 
     <h3>Fracture Fixation</h3>
-    <p>
-      For broken bones, we provide fracture fixation using plates, screws, or rods to properly align and heal the bones.
-      This ensures faster recovery and better function after injury.
-    </p>
+    <p>For broken bones, we provide fracture fixation using plates, screws, or rods to properly align and heal the bones. This ensures faster recovery and better function after injury.</p>
 
     <h3>Arthroscopic Surgery</h3>
-    <p>
-      This is a minimally invasive surgery using small cameras and instruments inserted through tiny cuts.
-      It is commonly used for joint repairs, such as meniscus tears or ligament reconstruction.
-    </p>
+    <p>This is a minimally invasive surgery using small cameras and instruments inserted through tiny cuts. It is commonly used for joint repairs, such as meniscus tears or ligament reconstruction.</p>
 
     <h3>Spinal Surgery</h3>
-    <p>
-      We offer surgeries to relieve back pain and nerve problems caused by spinal issues like herniated discs or spinal stenosis.
-      Our focus is on restoring spine health and reducing discomfort.
-    </p>
+    <p>We offer surgeries to relieve back pain and nerve problems caused by spinal issues like herniated discs or spinal stenosis. Our focus is on restoring spine health and reducing discomfort.</p>
 
     <h3>Sports Injury Treatment</h3>
-    <p>
-      Treatment and surgeries to repair sports injuries such as ligament tears, tendon damage, and joint instability,
-      helping athletes return to their activities quickly and safely.
-    </p>
+    <p>Treatment and surgeries to repair sports injuries such as ligament tears, tendon damage, and joint instability, helping athletes return to their activities quickly and safely.</p>
   </section>
 
-  <section id="facilities">
-    <h2>Modern Facilities for Best Care</h2>
-    <p>We use advanced digital X-ray machines, a fully equipped lab, and provide onsite physiotherapy to support your fast recovery.</p>
-  </section>
+  <!-- Facilities and Book Consultation side-by-side -->
+  <div class="flex-row">
+    <section id="facilities">
+      <h2>Modern Facilities for Best Care</h2>
+      <p>We use advanced digital X-ray machines, a fully equipped lab, and provide onsite physiotherapy to support your fast recovery.</p>
+    </section>
 
-  <section id="contact">
-    <h2>Book Your Consultation Today</h2>
-    <p>Call us at <strong>94442 61111</strong> or <a href="mailto:info@drmaniortho.com">email us</a> to schedule your appointment.</p>
-    <button onclick="window.location='tel:9444261111'">Call Now</button>
-  </section>
+    <section id="contact">
+      <h2>Book Your Consultation Today</h2>
+      <p>Call us at <strong>94442 61111</strong> or <a href="mailto:info@drmaniortho.com">email us</a> to schedule your appointment.</p>
+      <button onclick="window.location='tel:9444261111'">Call Now</button>
+    </section>
+  </div>
 
   <!-- WhatsApp Floating Button -->
   <a id="whatsapp-btn" href="https://wa.me/919444261111" target="_blank" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">

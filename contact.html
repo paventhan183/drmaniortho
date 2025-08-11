@@ -8,15 +8,17 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      max-width: 400px;
     }
     label {
       display: block;
       margin-top: 10px;
     }
     input[type="text"], input[type="number"], input[type="date"] {
-      width: 250px;
+      width: 100%;
       padding: 5px;
       margin-top: 5px;
+      box-sizing: border-box;
     }
     #bill {
       width: 350px;
@@ -26,11 +28,14 @@
       background: #fff;
       color: #000;
       margin-top: 20px;
-      display: none; /* hide initially */
+      display: none;
     }
-    #bill h2 {
+    #bill h2, #bill h3 {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+    }
+    #bill p {
+      margin: 4px 0;
     }
     #bill table {
       width: 100%;
@@ -57,10 +62,32 @@
 
 <h1>Enter Clinic Bill Details</h1>
 
+<!-- Clinic Details -->
+<label>Clinic Name:
+  <input type="text" id="clinicName" value="Dr Mani's Ortho Speciality & General Clinic" required>
+</label>
+<label>Clinic Address:
+  <input type="text" id="clinicAddress" value="68, Radha Nagar Main Road, opposite J2 Mahal, Chromepet, Chennai" required>
+</label>
+<label>Clinic Phone:
+  <input type="text" id="clinicPhone" value="+91 9876543210" required>
+</label>
+<label>Doctor Name:
+  <input type="text" id="doctorName" value="Dr Mani Arumugam, M.B.B.S., M.S., ORTHO" required>
+</label>
+<label>Registration Number:
+  <input type="text" id="registrationNo" value="MBBS123456" required>
+</label>
+<label>Invoice/Bill Number:
+  <input type="text" id="billNo" placeholder="e.g., INV20250811-001" required>
+</label>
+
+<hr>
+
+<!-- Patient & Date -->
 <label>Patient Name:
   <input type="text" id="patientName" placeholder="Enter patient name" required>
 </label>
-
 <label>Date:
   <input type="date" id="billDate" required>
 </label>
@@ -98,7 +125,13 @@
 
 <!-- Hidden bill template to convert to PDF -->
 <div id="bill">
-  <h2>Dr Mani's Ortho Clinic</h2>
+  <h2 id="billClinicName"></h2>
+  <p id="billClinicAddress"></p>
+  <p><b>Phone:</b> <span id="billClinicPhone"></span></p>
+  <p><b>Doctor:</b> <span id="billDoctorName"></span></p>
+  <p><b>Reg No:</b> <span id="billRegistrationNo"></span></p>
+  <p><b>Invoice No:</b> <span id="billNoText"></span></p>
+  <hr>
   <p><b>Patient:</b> <span id="billPatient"></span></p>
   <p><b>Date:</b> <span id="billDateText"></span></p>
 
@@ -120,9 +153,19 @@
   const generatePdfBtn = document.getElementById('generatePdfBtn');
 
   generatePdfBtn.addEventListener('click', () => {
-    // Read input values
+    // Read clinic details
+    const clinicName = document.getElementById('clinicName').value.trim();
+    const clinicAddress = document.getElementById('clinicAddress').value.trim();
+    const clinicPhone = document.getElementById('clinicPhone').value.trim();
+    const doctorName = document.getElementById('doctorName').value.trim();
+    const registrationNo = document.getElementById('registrationNo').value.trim();
+    const billNo = document.getElementById('billNo').value.trim();
+
+    // Read patient & date
     const patientName = document.getElementById('patientName').value.trim();
     const billDate = document.getElementById('billDate').value;
+
+    // Read services and costs
     const service1 = document.getElementById('service1').value.trim();
     const cost1 = Number(document.getElementById('cost1').value);
     const service2 = document.getElementById('service2').value.trim();
@@ -130,15 +173,22 @@
     const service3 = document.getElementById('service3').value.trim();
     const cost3 = Number(document.getElementById('cost3').value);
 
-    if (!patientName || !billDate || !service1 || !service2 || !service3) {
+    if (!clinicName || !clinicAddress || !clinicPhone || !doctorName || !registrationNo || !billNo ||
+        !patientName || !billDate || !service1 || !service2 || !service3) {
       alert('Please fill in all required fields');
       return;
     }
 
-    // Calculate total
     const total = cost1 + cost2 + cost3;
 
     // Fill bill content
+    document.getElementById('billClinicName').textContent = clinicName;
+    document.getElementById('billClinicAddress').textContent = clinicAddress;
+    document.getElementById('billClinicPhone').textContent = clinicPhone;
+    document.getElementById('billDoctorName').textContent = doctorName;
+    document.getElementById('billRegistrationNo').textContent = registrationNo;
+    document.getElementById('billNoText').textContent = billNo;
+
     document.getElementById('billPatient').textContent = patientName;
     document.getElementById('billDateText').textContent = new Date(billDate).toLocaleDateString();
     document.getElementById('billService1').textContent = service1;
@@ -149,11 +199,11 @@
     document.getElementById('billCost3').textContent = cost3.toFixed(2);
     document.getElementById('billTotal').textContent = total.toFixed(2);
 
-    // Show bill (needed to capture by html2canvas)
+    // Show bill to capture
     const billDiv = document.getElementById('bill');
     billDiv.style.display = 'block';
 
-    // Generate PDF from bill div
+    // Generate PDF
     html2canvas(billDiv, { scale: 2 }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jspdf.jsPDF({
@@ -164,7 +214,7 @@
       pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
       pdf.save('clinic-bill.pdf');
 
-      // Hide bill again after saving PDF
+      // Hide bill after download
       billDiv.style.display = 'none';
     });
   });

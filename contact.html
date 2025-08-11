@@ -1,121 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAQ - Dr Mani's Ortho Clinic</title>
+  <title>Clinic Bill PDF Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      color: #333;
-      background: #f9f9f9;
+      margin: 20px;
     }
-    h1 {
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .faq-item {
-      background: #fff;
-      border-radius: 6px;
-      padding: 15px 20px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .faq-item strong {
-      color: #007bff;
+    label {
       display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
+      margin-top: 10px;
     }
-    .faq-item p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.5;
+    input[type="text"], input[type="number"], input[type="date"] {
+      width: 250px;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    #bill {
+      width: 350px;
+      padding: 15px;
+      border: 2px solid #333;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
+      margin-top: 20px;
+      display: none; /* hide initially */
+    }
+    #bill h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    #bill table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    #bill th, #bill td {
+      border: 1px solid #666;
+      padding: 8px;
+      text-align: left;
+    }
+    #bill th {
+      background: #eee;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <h1>Frequently Asked Questions (FAQ)</h1>
+<h1>Enter Clinic Bill Details</h1>
 
-  <div class="faq-item">
-    <strong>Q1: What types of orthopedic treatments do you provide?</strong>
-    <p>A: We provide joint replacement, fracture fixation, arthroscopic surgery, spinal surgery, sports injury treatment, and physiotherapy.</p>
-  </div>
+<label>Patient Name:
+  <input type="text" id="patientName" placeholder="Enter patient name" required>
+</label>
 
-  <div class="faq-item">
-    <strong>Q2: How do I know if I need surgery or non-surgical treatment?</strong>
-    <p>A: The doctor will evaluate your condition with a physical exam and tests like X-rays or MRI before recommending the best treatment.</p>
-  </div>
+<label>Date:
+  <input type="date" id="billDate" required>
+</label>
 
-  <div class="faq-item">
-    <strong>Q3: How long is the recovery time after surgery?</strong>
-    <p>A: Recovery depends on the type of surgery. For example, joint replacement may take a few weeks to months, while arthroscopic surgery usually has a faster recovery.</p>
-  </div>
+<h3>Services</h3>
 
-  <div class="faq-item">
-    <strong>Q4: Do you accept walk-in patients or is appointment necessary?</strong>
-    <p>A: We recommend booking an appointment to avoid waiting, but walk-in patients are also welcome.</p>
-  </div>
+<div>
+  <label>Service 1:
+    <input type="text" id="service1" placeholder="Service description" required>
+  </label>
+  <label>Cost 1 (₹):
+    <input type="number" id="cost1" min="0" value="0" required>
+  </label>
+</div>
 
-  <div class="faq-item">
-    <strong>Q5: What are the clinic’s working hours?</strong>
-    <p>A: Our clinic is open Monday to Saturday from 9 AM to 6 PM. We are closed on Sundays.</p>
-  </div>
+<div>
+  <label>Service 2:
+    <input type="text" id="service2" placeholder="Service description" required>
+  </label>
+  <label>Cost 2 (₹):
+    <input type="number" id="cost2" min="0" value="0" required>
+  </label>
+</div>
 
-  <div class="faq-item">
-    <strong>Q6: Can I get a second opinion before surgery?</strong>
-    <p>A: Yes, we encourage patients to get a second opinion if they want before proceeding with surgery.</p>
-  </div>
+<div>
+  <label>Service 3:
+    <input type="text" id="service3" placeholder="Service description" required>
+  </label>
+  <label>Cost 3 (₹):
+    <input type="number" id="cost3" min="0" value="0" required>
+  </label>
+</div>
 
-  <div class="faq-item">
-    <strong>Q7: What insurance plans do you accept?</strong>
-    <p>A: Please contact us with your insurance details; we can guide you about coverage and cashless treatment options.</p>
-  </div>
+<button id="generatePdfBtn">Generate PDF</button>
 
-  <div class="faq-item">
-    <strong>Q8: How do I prepare for orthopedic surgery?</strong>
-    <p>A: The doctor will give you specific instructions before surgery, like fasting, medication adjustments, and necessary tests.</p>
-  </div>
+<!-- Hidden bill template to convert to PDF -->
+<div id="bill">
+  <h2>Dr Mani's Ortho Clinic</h2>
+  <p><b>Patient:</b> <span id="billPatient"></span></p>
+  <p><b>Date:</b> <span id="billDateText"></span></p>
 
-  <div class="faq-item">
-    <strong>Q9: Are there any risks or complications from surgery?</strong>
-    <p>A: Like any surgery, there are risks such as infection or blood clots, but we take all precautions to minimize them.</p>
-  </div>
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Cost (₹)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td id="billService1"></td><td id="billCost1"></td></tr>
+      <tr><td id="billService2"></td><td id="billCost2"></td></tr>
+      <tr><td id="billService3"></td><td id="billCost3"></td></tr>
+      <tr><td><b>Total</b></td><td id="billTotal"></td></tr>
+    </tbody>
+  </table>
+  <p>Thank you for choosing our clinic!</p>
+</div>
 
-  <div class="faq-item">
-    <strong>Q10: Do you provide physiotherapy after surgery?</strong>
-    <p>A: Yes, we offer physiotherapy and rehabilitation to help you recover faster and regain strength.</p>
-  </div>
+<script>
+  const generatePdfBtn = document.getElementById('generatePdfBtn');
 
-  <div class="faq-item">
-    <strong>Q11: Can I get a consultation online or by phone?</strong>
-    <p>A: Currently, consultations are in-person, but you can call us for any questions or preliminary advice.</p>
-  </div>
+  generatePdfBtn.addEventListener('click', () => {
+    // Read input values
+    const patientName = document.getElementById('patientName').value.trim();
+    const billDate = document.getElementById('billDate').value;
+    const service1 = document.getElementById('service1').value.trim();
+    const cost1 = Number(document.getElementById('cost1').value);
+    const service2 = document.getElementById('service2').value.trim();
+    const cost2 = Number(document.getElementById('cost2').value);
+    const service3 = document.getElementById('service3').value.trim();
+    const cost3 = Number(document.getElementById('cost3').value);
 
-  <div class="faq-item">
-    <strong>Q12: What should I do in case of a sports injury?</strong>
-    <p>A: Rest, ice the area, and contact our clinic as soon as possible for evaluation and treatment.</p>
-  </div>
+    if (!patientName || !billDate || !service1 || !service2 || !service3) {
+      alert('Please fill in all required fields');
+      return;
+    }
 
-  <div class="faq-item">
-    <strong>Q13: How soon can I return to work after surgery?</strong>
-    <p>A: It depends on your surgery type and job. The doctor will advise you during follow-up visits.</p>
-  </div>
+    // Calculate total
+    const total = cost1 + cost2 + cost3;
 
-  <div class="faq-item">
-    <strong>Q14: Do you treat both adults and children?</strong>
-    <p>A: Yes, we treat patients of all ages with orthopedic conditions.</p>
-  </div>
+    // Fill bill content
+    document.getElementById('billPatient').textContent = patientName;
+    document.getElementById('billDateText').textContent = new Date(billDate).toLocaleDateString();
+    document.getElementById('billService1').textContent = service1;
+    document.getElementById('billCost1').textContent = cost1.toFixed(2);
+    document.getElementById('billService2').textContent = service2;
+    document.getElementById('billCost2').textContent = cost2.toFixed(2);
+    document.getElementById('billService3').textContent = service3;
+    document.getElementById('billCost3').textContent = cost3.toFixed(2);
+    document.getElementById('billTotal').textContent = total.toFixed(2);
 
-  <div class="faq-item">
-    <strong>Q15: What payment methods do you accept?</strong>
-    <p>A: We accept cash, card payments, and insurance-based cashless treatments.</p>
-  </div>
+    // Show bill (needed to capture by html2canvas)
+    const billDiv = document.getElementById('bill');
+    billDiv.style.display = 'block';
+
+    // Generate PDF from bill div
+    html2canvas(billDiv, { scale: 2 }).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jspdf.jsPDF({
+        orientation: 'portrait',
+        unit: 'pt',
+        format: [canvas.width, canvas.height]
+      });
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save('clinic-bill.pdf');
+
+      // Hide bill again after saving PDF
+      billDiv.style.display = 'none';
+    });
+  });
+</script>
 
 </body>
 </html>

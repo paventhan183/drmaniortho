@@ -14,7 +14,7 @@
       color: #333;
     }
     header {
-      background-color: #4CAF50;
+      background-color: #064273; /* Changed header bg to blue */
       color: white;
       padding: 15px 20px;
       display: flex;
@@ -23,11 +23,13 @@
       border-radius: 0 0 10px 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       flex-wrap: wrap;
+      position: relative;
     }
     header h1 {
       margin: 0;
       font-size: 1.5rem;
     }
+
     /* Navigation styling */
     nav {
       display: flex;
@@ -45,16 +47,50 @@
     nav a:hover, nav a:focus {
       background-color: rgba(255,255,255,0.2);
     }
-    /* Responsive nav for small screens */
+
+    /* Hamburger button */
+    #menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+    #menu-toggle div {
+      width: 100%;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile nav - hide by default */
     @media (max-width: 600px) {
       nav {
+        display: none;
+        flex-direction: column;
         width: 100%;
-        justify-content: center;
+        background-color: #064273;
         margin-top: 10px;
-        flex-wrap: wrap;
-        gap: 15px;
+        border-radius: 0 0 10px 10px;
+      }
+      nav.show {
+        display: flex;
+      }
+      nav a {
+        padding: 12px 20px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+      nav a:first-child {
+        border-top: none;
+      }
+      #menu-toggle {
+        display: flex;
       }
     }
+
     /* Sections with light blue background */
     section {
       max-width: 700px;
@@ -152,7 +188,15 @@
 <body>
   <header>
     <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
-    <nav>
+
+    <!-- Hamburger menu toggle -->
+    <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav id="nav-menu">
       <a href="#doctor-profile">Home</a>
       <a href="#about">About</a>
       <a href="#detailed-surgeries">This Page</a>
@@ -242,5 +286,22 @@
   <a id="whatsapp-btn" href="https://wa.me/919444261111" target="_blank" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+
+    // Optional: keyboard accessibility for hamburger toggle
+    menuToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navMenu.classList.toggle('show');
+      }
+    });
+  </script>
 </body>
 </html>

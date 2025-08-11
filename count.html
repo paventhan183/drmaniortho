@@ -1,0 +1,88 @@
+<!-- Stats Section -->
+<section id="stats-section">
+  <div class="stat-item">
+    <img src="happy-clients.png" alt="Happy Clients">
+    <h2 class="counter" data-target="20000">0</h2>
+    <p>Happy Clients</p>
+  </div>
+  <div class="stat-item">
+    <img src="experience.png" alt="Years of Experience">
+    <h2 class="counter" data-target="20">0</h2>
+    <p>Years of Experience</p>
+  </div>
+  <div class="stat-item">
+    <img src="doctors.png" alt="Doctors & Staff">
+    <h2 class="counter" data-target="70">0</h2>
+    <p>Doctors & Staff</p>
+  </div>
+  <div class="stat-item">
+    <img src="appointments.png" alt="Online Appointments">
+    <h2 class="counter" data-target="340">0</h2>
+    <p>Online Appointments</p>
+  </div>
+</section>
+
+<style>
+  #stats-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: #fffbea;
+    padding: 40px 20px;
+  }
+  .stat-item {
+    flex: 1 1 200px;
+    margin: 20px;
+  }
+  .stat-item img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  .stat-item h2 {
+    font-size: 2rem;
+    color: #333;
+    margin: 10px 0 5px;
+  }
+  .stat-item p {
+    color: #777;
+    font-size: 1rem;
+  }
+</style>
+
+<script>
+  // Function to animate counting
+  function animateCounter(counter) {
+    const target = +counter.getAttribute('data-target');
+    const speed = 100; // smaller is faster
+    const increment = target / speed;
+
+    let count = 0;
+    function updateCount() {
+      count += increment;
+      if (count < target) {
+        counter.textContent = Math.floor(count);
+        requestAnimationFrame(updateCount);
+      } else {
+        counter.textContent = target.toLocaleString(); // format with commas
+      }
+    }
+    updateCount();
+  }
+
+  // Detect when section is visible
+  const counters = document.querySelectorAll('.counter');
+  let started = false;
+
+  window.addEventListener('scroll', () => {
+    const section = document.getElementById('stats-section');
+    const sectionTop = section.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (!started && sectionTop < screenHeight) {
+      counters.forEach(counter => animateCounter(counter));
+      started = true;
+    }
+  });
+</script>

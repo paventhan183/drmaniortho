@@ -5,32 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr Mani's Ortho Speciality & General Clinic</title>
   <style>
+    /* Background gradient from blue to pink */
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      background-color: #fefefe;
+      background: linear-gradient(135deg, #2196F3 0%, #E91E63 100%);
       color: #333;
+    }
+    /* Sections with light blue background and some transparency for better reading */
+    section {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(173, 216, 230, 0.8); /* lightblue with transparency */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     header {
       background-color: #4CAF50;
       color: white;
       padding: 15px 0;
       text-align: center;
-    }
-    section {
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     h2 {
-      color: #4CAF50;
+      color: #0B3D91; /* darker blue for headings */
       margin-bottom: 15px;
       text-align: center;
     }
     h3 {
-      color: #388E3C;
+      color: #064273; /* darker blue shade */
       margin-bottom: 8px;
       margin-top: 20px;
     }
@@ -39,20 +46,22 @@
       border-radius: 50%;
       display: block;
       margin: 15px auto;
+      border: 3px solid #064273;
     }
     ul {
       list-style: inside disc;
     }
     blockquote {
-      border-left: 4px solid #4CAF50;
+      border-left: 4px solid #0B3D91;
       padding-left: 15px;
       font-style: italic;
       margin-bottom: 20px;
-      background: #f0f9f0;
+      background: #dbefff;
       border-radius: 5px;
+      color: #064273;
     }
     #facilities {
-      background-color: #e8f5e9;
+      background-color: rgba(173, 216, 230, 0.9);
       text-align: center;
       border-radius: 8px;
     }
@@ -68,16 +77,41 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #45a049;
     }
     a {
-      color: #4CAF50;
+      color: #064273;
       text-decoration: none;
+      font-weight: bold;
     }
     a:hover {
       text-decoration: underline;
+    }
+    /* WhatsApp fixed button */
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+    #whatsapp-btn:hover {
+      background-color: #1ebe57;
     }
   </style>
 </head>
@@ -94,7 +128,7 @@
     <p>He is committed to providing personalized care using the latest technology and techniques to help you recover quickly and safely.</p>
   </section>
 
-  <section id="testimonials" style="background-color: #f9f9f9; border-radius: 8px;">
+  <section id="testimonials">
     <h2>What Our Patients Say</h2>
     <blockquote>
       “Thanks to Dr. Mani, my knee pain is gone, and I can walk comfortably again. The care and attention were amazing!”<br />– R. Kumar
@@ -160,5 +194,10 @@
     <p>Call us at <strong>94442 61111</strong> or <a href="mailto:info@drmaniortho.com">email us</a> to schedule your appointment.</p>
     <button onclick="window.location='tel:9444261111'">Call Now</button>
   </section>
+
+  <!-- WhatsApp Floating Button -->
+  <a id="whatsapp-btn" href="https://wa.me/919444261111" target="_blank" aria-label="Chat on WhatsApp">
+    &#x1F4AC;
+  </a>
 </body>
 </html>

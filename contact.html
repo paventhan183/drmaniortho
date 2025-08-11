@@ -62,29 +62,7 @@
 
 <h1>Enter Clinic Bill Details</h1>
 
-<!-- Clinic Details -->
-<label>Clinic Name:
-  <input type="text" id="clinicName" value="Dr Mani's Ortho Speciality & General Clinic" required>
-</label>
-<label>Clinic Address:
-  <input type="text" id="clinicAddress" value="68, Radha Nagar Main Road, opposite J2 Mahal, Chromepet, Chennai" required>
-</label>
-<label>Clinic Phone:
-  <input type="text" id="clinicPhone" value="+91 9876543210" required>
-</label>
-<label>Doctor Name:
-  <input type="text" id="doctorName" value="Dr Mani Arumugam, M.B.B.S., M.S., ORTHO" required>
-</label>
-<label>Registration Number:
-  <input type="text" id="registrationNo" value="MBBS123456" required>
-</label>
-<label>Invoice/Bill Number:
-  <input type="text" id="billNo" placeholder="e.g., INV20250811-001" required>
-</label>
-
-<hr>
-
-<!-- Patient & Date -->
+<!-- Only patient and services inputs visible -->
 <label>Patient Name:
   <input type="text" id="patientName" placeholder="Enter patient name" required>
 </label>
@@ -123,14 +101,13 @@
 
 <button id="generatePdfBtn">Generate PDF</button>
 
-<!-- Hidden bill template to convert to PDF -->
+<!-- Hidden bill template with fixed clinic details -->
 <div id="bill">
-  <h2 id="billClinicName"></h2>
-  <p id="billClinicAddress"></p>
-  <p><b>Phone:</b> <span id="billClinicPhone"></span></p>
-  <p><b>Doctor:</b> <span id="billDoctorName"></span></p>
-  <p><b>Reg No:</b> <span id="billRegistrationNo"></span></p>
-  <p><b>Invoice No:</b> <span id="billNoText"></span></p>
+  <h2>Dr Mani's Ortho Speciality & General Clinic</h2>
+  <p>68, Radha Nagar Main Road, opposite J2 Mahal, Chromepet, Chennai</p>
+  <p><b>Phone:</b> +91 9876543210</p>
+  <p><b>Doctor:</b> Dr Mani Arumugam, M.B.B.S., M.S., ORTHO</p>
+  <p><b>Reg No:</b> MBBS123456</p>
   <hr>
   <p><b>Patient:</b> <span id="billPatient"></span></p>
   <p><b>Date:</b> <span id="billDateText"></span></p>
@@ -153,13 +130,7 @@
   const generatePdfBtn = document.getElementById('generatePdfBtn');
 
   generatePdfBtn.addEventListener('click', () => {
-    // Read clinic details
-    const clinicName = document.getElementById('clinicName').value.trim();
-    const clinicAddress = document.getElementById('clinicAddress').value.trim();
-    const clinicPhone = document.getElementById('clinicPhone').value.trim();
-    const doctorName = document.getElementById('doctorName').value.trim();
-    const registrationNo = document.getElementById('registrationNo').value.trim();
-    const billNo = document.getElementById('billNo').value.trim();
+    // Fixed clinic details are hardcoded in the bill div, no input needed
 
     // Read patient & date
     const patientName = document.getElementById('patientName').value.trim();
@@ -173,22 +144,14 @@
     const service3 = document.getElementById('service3').value.trim();
     const cost3 = Number(document.getElementById('cost3').value);
 
-    if (!clinicName || !clinicAddress || !clinicPhone || !doctorName || !registrationNo || !billNo ||
-        !patientName || !billDate || !service1 || !service2 || !service3) {
+    if (!patientName || !billDate || !service1 || !service2 || !service3) {
       alert('Please fill in all required fields');
       return;
     }
 
     const total = cost1 + cost2 + cost3;
 
-    // Fill bill content
-    document.getElementById('billClinicName').textContent = clinicName;
-    document.getElementById('billClinicAddress').textContent = clinicAddress;
-    document.getElementById('billClinicPhone').textContent = clinicPhone;
-    document.getElementById('billDoctorName').textContent = doctorName;
-    document.getElementById('billRegistrationNo').textContent = registrationNo;
-    document.getElementById('billNoText').textContent = billNo;
-
+    // Fill bill patient and services details
     document.getElementById('billPatient').textContent = patientName;
     document.getElementById('billDateText').textContent = new Date(billDate).toLocaleDateString();
     document.getElementById('billService1').textContent = service1;
@@ -199,7 +162,7 @@
     document.getElementById('billCost3').textContent = cost3.toFixed(2);
     document.getElementById('billTotal').textContent = total.toFixed(2);
 
-    // Show bill to capture
+    // Show bill div to capture
     const billDiv = document.getElementById('bill');
     billDiv.style.display = 'block';
 

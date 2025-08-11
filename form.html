@@ -95,7 +95,7 @@
     .flex-row {
       display: flex;
       gap: 20px;
-      max-width: 700px;
+      max-width: 1000px;  /* increased width */
       margin: 30px auto;
     }
     /* Each child in flex-row takes equal space */
@@ -108,7 +108,7 @@
     }
     /* Full width sections */
     section.full-row {
-      max-width: 700px;
+      max-width: 1000px; /* increased width */
       margin: 30px auto;
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.9);
@@ -303,7 +303,6 @@
       navMenu.classList.toggle('show');
     });
 
-    // Optional: keyboard accessibility for hamburger toggle
     menuToggle.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();

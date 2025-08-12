@@ -21,7 +21,19 @@
       var input = document.getElementById('input');
       var output = document.getElementById('output');
 
-      // On every input change, update the Tamil output text
+      // Listen for the 'transliteration' event to get updated Tamil text
+      control.addEventListener(
+        google.elements.transliteration.TransliterationControl.EventType.TRANSLITERATION,
+        function(event) {
+          if (event.transliteratedText.length > 0) {
+            // event.transliteratedText is an array of all possible transliterations for the last word
+            // But input.value now contains the updated Tamil text, so just copy input.value:
+            output.textContent = input.value;
+          }
+        }
+      );
+
+      // Also update output on normal input (to catch initial typing)
       input.addEventListener('input', () => {
         output.textContent = input.value;
       });

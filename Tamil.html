@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>English to Tamil Transliteration with Output</title>
+  <title>English to Tamil Transliteration on Input Box</title>
   <script src="https://www.google.com/jsapi"></script>
   <script>
     google.load("elements", "1", {
@@ -16,23 +16,20 @@
       };
 
       var control = new google.elements.transliteration.TransliterationControl(options);
+      
+      // Enable transliteration on input with id 'inputBox'
+      control.makeTransliteratable(['inputBox']);
 
-      // Enable transliteration on textarea with id 'input'
-      control.makeTransliteratable(['input']);
-
-      var input = document.getElementById('input');
+      var input = document.getElementById('inputBox');
       var output = document.getElementById('output');
 
-      // Update output text whenever transliteration happens
       control.addEventListener(
         google.elements.transliteration.TransliterationControl.EventType.TRANSLITERATION,
         function(event) {
-          // Update output with current Tamil text from textarea
           output.textContent = input.value;
         }
       );
 
-      // Also update on normal input (in case typing without transliteration)
       input.addEventListener('input', function() {
         output.textContent = input.value;
       });
@@ -44,7 +41,7 @@
 <body>
 
 <h2>Type in English and see Tamil text below</h2>
-<textarea id="input" rows="6" cols="50" placeholder="Type here..."></textarea>
+<input id="inputBox" type="text" size="50" placeholder="Type here..." />
 
 <h3>Tamil Output:</h3>
 <p id="output" style="font-size: 24px; color: darkgreen; border: 1px solid #ccc; padding: 10px;"></p>

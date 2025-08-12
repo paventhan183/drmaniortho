@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>English to Tamil Transliteration with Output1</title>
+  <title>English to Tamil Transliteration with Output</title>
   <script src="https://www.google.com/jsapi"></script>
   <script>
     google.load("elements", "1", {
@@ -16,25 +16,24 @@
       };
 
       var control = new google.elements.transliteration.TransliterationControl(options);
+
+      // Enable transliteration on textarea with id 'input'
       control.makeTransliteratable(['input']);
 
       var input = document.getElementById('input');
       var output = document.getElementById('output');
 
-      // Listen for the 'transliteration' event to get updated Tamil text
+      // Update output text whenever transliteration happens
       control.addEventListener(
         google.elements.transliteration.TransliterationControl.EventType.TRANSLITERATION,
         function(event) {
-          if (event.transliteratedText.length > 0) {
-            // event.transliteratedText is an array of all possible transliterations for the last word
-            // But input.value now contains the updated Tamil text, so just copy input.value:
-            output.textContent = input.value;
-          }
+          // Update output with current Tamil text from textarea
+          output.textContent = input.value;
         }
       );
 
-      // Also update output on normal input (to catch initial typing)
-      input.addEventListener('input', () => {
+      // Also update on normal input (in case typing without transliteration)
+      input.addEventListener('input', function() {
         output.textContent = input.value;
       });
     }
@@ -44,11 +43,11 @@
 </head>
 <body>
 
-<h2>Type in English and see Tamil text below1</h2>
+<h2>Type in English and see Tamil text below</h2>
 <textarea id="input" rows="6" cols="50" placeholder="Type here..."></textarea>
 
 <h3>Tamil Output:</h3>
-<p id="output" style="font-size: 24px; color: darkgreen;"></p>
+<p id="output" style="font-size: 24px; color: darkgreen; border: 1px solid #ccc; padding: 10px;"></p>
 
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Extract RSA Numbers from Image</title>
+</head>
+<body style="font-family: Arial; padding: 20px;">
+  <h2>RSA Number Extractor</h2>
+  
+  <input type="file" id="imageInput" accept="image/*">
+  <p id="status">Please select an image...</p>
+  <pre id="output" style="background:#f0f0f0; padding:10px;"></pre>
+  
+  <!-- Load Tesseract.js -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const status = document.getElementById('status');
+    const output = document.getElementById('output');
+
+    imageInput.addEventListener('change', () => {
+      const file = imageInput.files[0];
+      if (!file) return;
+      
+      status.textContent = "Processing OCR... please wait.";
+
+      Tesseract.recognize(file, 'eng', { logger: info => console.log(info) })
+        .then(({ data: { text } }) => {
+          // Extract RSA numbers that end with a space
+          let rsaNumbers = text.match(/RSA\s\d+\s/g) || [];
+          rsaNumbers = rsaNumbers.map(num => num.trim());
+
+          if (rsaNumbers.length > 0) {
+            status.textContent = "Extraction complete:";
+            output.textContent = rsaNumbers.join("\n");
+          } else {
+            status.textContent = "No RSA numbers found.";
+            output.textContent = "";
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          status.textContent = "Error processing image.";
+        });
+    });
+  </script>
+</body>
+</html>

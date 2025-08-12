@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Send Form Data to WhatsApp</title>
+  <title>Dynamic Rows with Units & Quantity</title>
   <style>
     .row {
       display: flex;
@@ -34,10 +34,10 @@
 </head>
 <body>
 
-<h2>Dynamic Row Input Form</h2>
+<h2>Order Form with Units and Quantity</h2>
 
 <div id="container">
-  <!-- Rows will be appended here -->
+  <!-- Rows will be added here -->
 </div>
 
 <button id="addRowBtn">Add Row</button>
@@ -48,40 +48,58 @@
   const addRowBtn = document.getElementById('addRowBtn');
   const submitBtn = document.getElementById('submitBtn');
 
-  // Function to create a new row of controls
+  // Default quantity per unit
+  const unitDefaults = {
+    'Gram': 200,
+    'Kg': 1,
+    'Packet': 1
+    // Add more units and defaults here if needed
+  };
+
   function createRow() {
     const row = document.createElement('div');
     row.className = 'row';
 
-    // Label
+    // Label for product/item name
     const label = document.createElement('label');
-    label.textContent = 'Name:';
+    label.textContent = 'Item Name:';
     row.appendChild(label);
 
-    // Textbox 1
-    const input1 = document.createElement('input');
-    input1.type = 'text';
-    input1.placeholder = 'Enter name';
-    row.appendChild(input1);
+    // Textbox for item name
+    const inputName = document.createElement('input');
+    inputName.type = 'text';
+    inputName.placeholder = 'Enter item name';
+    row.appendChild(inputName);
 
-    // Select box
-    const select = document.createElement('select');
-    const option1 = new Option('Select gender', '');
-    const option2 = new Option('Male', 'Male');
-    const option3 = new Option('Female', 'Female');
-    select.add(option1);
-    select.add(option2);
-    select.add(option3);
-    row.appendChild(select);
+    // Select box for unit
+    const selectUnit = document.createElement('select');
+    const defaultOption = new Option('Select unit', '');
+    selectUnit.add(defaultOption);
 
-    // Textbox 2
-    const input2 = document.createElement('input');
-    input2.type = 'text';
-    input2.placeholder = 'Enter age';
-    input2.pattern = "\\d*"; // only numbers
-    row.appendChild(input2);
+    // Add units dynamically
+    for (const unit in unitDefaults) {
+      selectUnit.add(new Option(unit, unit));
+    }
+    row.appendChild(selectUnit);
 
-    // Close button
+    // Textbox for quantity
+    const inputQty = document.createElement('input');
+    inputQty.type = 'number';
+    inputQty.min = '0';
+    inputQty.placeholder = 'Quantity';
+    row.appendChild(inputQty);
+
+    // When unit changes, set quantity default
+    selectUnit.addEventListener('change', () => {
+      const selectedUnit = selectUnit.value;
+      if (selectedUnit && unitDefaults[selectedUnit] !== undefined) {
+        inputQty.value = unitDefaults[selectedUnit];
+      } else {
+        inputQty.value = '';
+      }
+    });
+
+    // Close button to remove row
     const closeBtn = document.createElement('button');
     closeBtn.type = 'button';
     closeBtn.textContent = 'X';
@@ -95,7 +113,7 @@
   // Add initial row
   container.appendChild(createRow());
 
-  // Add row button click handler
+  // Add Row button handler
   addRowBtn.addEventListener('click', () => {
     const rows = container.querySelectorAll('.row');
     const lastRow = rows[rows.length - 1];
@@ -105,7 +123,7 @@
       return;
     }
 
-    // Check if all inputs/selects in last row are filled
+    // Validate last row inputs
     const inputs = lastRow.querySelectorAll('input');
     const select = lastRow.querySelector('select');
 
@@ -129,7 +147,7 @@
     container.appendChild(createRow());
   });
 
-  // Submit button click handler
+  // Submit button handler
   submitBtn.addEventListener('click', () => {
     const rows = container.querySelectorAll('.row');
     if (rows.length === 0) {
@@ -140,7 +158,7 @@
     let allFilled = true;
     const data = [];
 
-    rows.forEach((row, index) => {
+    rows.forEach((row, i) => {
       const inputs = row.querySelectorAll('input');
       const select = row.querySelector('select');
 
@@ -149,15 +167,16 @@
           allFilled = false;
         }
       });
+
       if (!select.value) {
         allFilled = false;
       }
 
       if (allFilled) {
         data.push({
-          name: inputs[0].value.trim(),
-          gender: select.value,
-          age: inputs[1].value.trim()
+          item: inputs[0].value.trim(),
+          unit: select.value,
+          quantity: inputs[1].value.trim()
         });
       }
     });
@@ -167,19 +186,16 @@
       return;
     }
 
-    let message = 'Form Details:\n';
-    data.forEach((item, i) => {
-      message += `\nRow ${i + 1}:\n`;
-      message += `Name: ${item.name}\n`;
-      message += `Gender: ${item.gender}\n`;
-      message += `Age: ${item.age}\n`;
+    // Format message for WhatsApp
+    let message = 'Order Details:\n';
+    data.forEach((item, idx) => {
+      message += `\nItem ${idx + 1}:\n`;
+      message += `Name: ${item.item}\n`;
+      message += `Quantity: ${item.quantity} ${item.unit}\n`;
     });
 
     const encodedMessage = encodeURIComponent(message);
-
-    // Send directly to 8015241869 with country code 91
     const whatsappURL = `https://wa.me/918015241869?text=${encodedMessage}`;
-
     window.open(whatsappURL, '_blank');
   });
 </script>

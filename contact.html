@@ -4,63 +4,6 @@
   <title>Clinic Bill PDF Generator2</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      max-width: 400px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input[type="text"], input[type="number"], input[type="date"] {
-      width: 100%;
-      padding: 5px;
-      margin-top: 5px;
-      box-sizing: border-box;
-    }
-    #bill {
-  width: 350px;
-  padding: 15px;
-  border: 2px solid #333;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #3a8dde, #f48fb1); /* Blue to pink gradient */
-  color: white;  /* White text for contrast */
-  margin-top: 20px;
-  display: none;
-}
-    #bill h2, #bill h3 {
-      text-align: center;
-      margin-bottom: 5px;
-    }
-    #bill p {
-      margin: 4px 0;
-    }
-    #bill table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 10px;
-    }
-    #bill th {
-      background: rgba(255, 255, 255, 0.3);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      padding: 8px;
-      text-align: left;
-    }
-    #bill td {
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      padding: 8px;
-      text-align: left;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
 
@@ -70,9 +13,11 @@
 <label>Patient Name:
   <input type="text" id="patientName" placeholder="Enter patient name" required>
 </label>
+<br><br>
 <label>Date:
   <input type="date" id="billDate" required>
 </label>
+<br><br>
 
 <h3>Services</h3>
 
@@ -80,33 +25,37 @@
   <label>Service 1:
     <input type="text" id="service1" placeholder="Service description" required>
   </label>
+  <br>
   <label>Cost 1 (₹):
     <input type="number" id="cost1" min="0" value="0" required>
   </label>
 </div>
-
+<br>
 <div>
   <label>Service 2:
     <input type="text" id="service2" placeholder="Service description" required>
   </label>
+  <br>
   <label>Cost 2 (₹):
     <input type="number" id="cost2" min="0" value="0" required>
   </label>
 </div>
-
+<br>
 <div>
   <label>Service 3:
     <input type="text" id="service3" placeholder="Service description" required>
   </label>
+  <br>
   <label>Cost 3 (₹):
     <input type="number" id="cost3" min="0" value="0" required>
   </label>
 </div>
+<br>
 
 <button id="generatePdfBtn">Generate PDF</button>
 
 <!-- Hidden bill template with fixed clinic details -->
-<div id="bill">
+<div id="bill" style="display:none;">
   <h2>Dr Mani's Ortho Speciality & General Clinic</h2>
   <p>68, Radha Nagar Main Road, opposite J2 Mahal, Chromepet, Chennai</p>
   <p><b>Phone:</b> +91 9876543210</p>
@@ -116,7 +65,7 @@
   <p><b>Patient:</b> <span id="billPatient"></span></p>
   <p><b>Date:</b> <span id="billDateText"></span></p>
 
-  <table>
+  <table border="1" cellspacing="0" cellpadding="5">
     <thead>
       <tr><th>Service</th><th>Cost (₹)</th></tr>
     </thead>
@@ -134,13 +83,9 @@
   const generatePdfBtn = document.getElementById('generatePdfBtn');
 
   generatePdfBtn.addEventListener('click', () => {
-    // Fixed clinic details are hardcoded in the bill div, no input needed
-
-    // Read patient & date
     const patientName = document.getElementById('patientName').value.trim();
     const billDate = document.getElementById('billDate').value;
 
-    // Read services and costs
     const service1 = document.getElementById('service1').value.trim();
     const cost1 = Number(document.getElementById('cost1').value);
     const service2 = document.getElementById('service2').value.trim();
@@ -155,7 +100,6 @@
 
     const total = cost1 + cost2 + cost3;
 
-    // Fill bill patient and services details
     document.getElementById('billPatient').textContent = patientName;
     document.getElementById('billDateText').textContent = new Date(billDate).toLocaleDateString();
     document.getElementById('billService1').textContent = service1;
@@ -166,11 +110,9 @@
     document.getElementById('billCost3').textContent = cost3.toFixed(2);
     document.getElementById('billTotal').textContent = total.toFixed(2);
 
-    // Show bill div to capture
     const billDiv = document.getElementById('bill');
     billDiv.style.display = 'block';
 
-    // Generate PDF
     html2canvas(billDiv, { scale: 2 }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jspdf.jsPDF({
@@ -189,7 +131,6 @@
 
       pdf.save(`clinic-bill_${timestamp}.pdf`);
 
-      // Hide bill after download
       billDiv.style.display = 'none';
     });
   });

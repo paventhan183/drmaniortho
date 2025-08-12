@@ -1,41 +1,188 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>English to Tamil Transliteration with Button</title>
-  <script src="https://www.google.com/jsapi"></script>
-  <script>
-    google.load("elements", "1", { packages: "transliteration" });
-
-    var control;
-    function onLoad() {
-      var options = {
-        sourceLanguage: 'en',
-        destinationLanguage: ['ta'],
-        transliterationEnabled: true
-      };
-
-      control = new google.elements.transliteration.TransliterationControl(options);
-      control.makeTransliteratable(['inputBox']);
+  <title>Send Form Data to WhatsApp</title>
+  <style>
+    .row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 10px;
     }
-
-    google.setOnLoadCallback(onLoad);
-
-    function showTamilText() {
-      const input = document.getElementById('inputBox');
-      const output = document.getElementById('output');
-      output.textContent = input.value;  // The textarea already contains Tamil text
+    .row label {
+      min-width: 80px;
     }
-  </script>
+    .row input, .row select {
+      padding: 4px 6px;
+      font-size: 14px;
+    }
+    .row button.close-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #addRowBtn, #submitBtn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
 
-<h2>Type English and click button to see Tamil</h2>
-<textarea id="inputBox" rows="6" cols="60" placeholder="Type here..."></textarea>
-<br><br>
-<button onclick="showTamilText()">Show Tamil Text</button>
+<h2>Dynamic Row Input Form</h2>
 
-<h3>Tamil Output:</h3>
-<p id="output" style="font-size: 24px; color: darkgreen; border: 1px solid #ccc; padding: 10px; min-height: 40px;"></p>
+<div id="container">
+  <!-- Rows will be appended here -->
+</div>
+
+<button id="addRowBtn">Add Row</button>
+<button id="submitBtn">Submit to WhatsApp</button>
+
+<script>
+  const container = document.getElementById('container');
+  const addRowBtn = document.getElementById('addRowBtn');
+  const submitBtn = document.getElementById('submitBtn');
+
+  // Function to create a new row of controls
+  function createRow() {
+    const row = document.createElement('div');
+    row.className = 'row';
+
+    // Label
+    const label = document.createElement('label');
+    label.textContent = 'Name:';
+    row.appendChild(label);
+
+    // Textbox 1
+    const input1 = document.createElement('input');
+    input1.type = 'text';
+    input1.placeholder = 'Enter name';
+    row.appendChild(input1);
+
+    // Select box
+    const select = document.createElement('select');
+    const option1 = new Option('Select gender', '');
+    const option2 = new Option('Male', 'Male');
+    const option3 = new Option('Female', 'Female');
+    select.add(option1);
+    select.add(option2);
+    select.add(option3);
+    row.appendChild(select);
+
+    // Textbox 2
+    const input2 = document.createElement('input');
+    input2.type = 'text';
+    input2.placeholder = 'Enter age';
+    input2.pattern = "\\d*"; // only numbers
+    row.appendChild(input2);
+
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.textContent = 'X';
+    closeBtn.className = 'close-btn';
+    closeBtn.onclick = () => container.removeChild(row);
+    row.appendChild(closeBtn);
+
+    return row;
+  }
+
+  // Add initial row
+  container.appendChild(createRow());
+
+  // Add row button click handler
+  addRowBtn.addEventListener('click', () => {
+    const rows = container.querySelectorAll('.row');
+    const lastRow = rows[rows.length - 1];
+
+    if (!lastRow) {
+      container.appendChild(createRow());
+      return;
+    }
+
+    // Check if all inputs/selects in last row are filled
+    const inputs = lastRow.querySelectorAll('input');
+    const select = lastRow.querySelector('select');
+
+    let allFilled = true;
+
+    inputs.forEach(input => {
+      if (input.value.trim() === '') {
+        allFilled = false;
+      }
+    });
+
+    if (!select.value) {
+      allFilled = false;
+    }
+
+    if (!allFilled) {
+      alert('Please fill all fields in the current row before adding a new one.');
+      return;
+    }
+
+    container.appendChild(createRow());
+  });
+
+  // Submit button click handler
+  submitBtn.addEventListener('click', () => {
+    const rows = container.querySelectorAll('.row');
+    if (rows.length === 0) {
+      alert('Please add at least one row.');
+      return;
+    }
+
+    let allFilled = true;
+    const data = [];
+
+    rows.forEach((row, index) => {
+      const inputs = row.querySelectorAll('input');
+      const select = row.querySelector('select');
+
+      inputs.forEach(input => {
+        if (input.value.trim() === '') {
+          allFilled = false;
+        }
+      });
+      if (!select.value) {
+        allFilled = false;
+      }
+
+      if (allFilled) {
+        data.push({
+          name: inputs[0].value.trim(),
+          gender: select.value,
+          age: inputs[1].value.trim()
+        });
+      }
+    });
+
+    if (!allFilled) {
+      alert('Please fill all fields in every row before submitting.');
+      return;
+    }
+
+    let message = 'Form Details:\n';
+    data.forEach((item, i) => {
+      message += `\nRow ${i + 1}:\n`;
+      message += `Name: ${item.name}\n`;
+      message += `Gender: ${item.gender}\n`;
+      message += `Age: ${item.age}\n`;
+    });
+
+    const encodedMessage = encodeURIComponent(message);
+
+    // Send directly to 8015241869 with country code 91
+    const whatsappURL = `https://wa.me/918015241869?text=${encodedMessage}`;
+
+    window.open(whatsappURL, '_blank');
+  });
+</script>
 
 </body>
 </html>

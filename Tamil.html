@@ -1,87 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mobile Friendly Order Form with Selectable Items</title>
+  <title>Order Form with Datalist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 10px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-    }
-    .row label {
-      flex-basis: 100%;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-    .row input, .row select {
-      flex: 1 1 45%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    .row button.close-btn {
-      flex-basis: 100%;
-      background: #e74c3c;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 4px;
-      max-width: 100px;
-      margin-top: 8px;
-      align-self: flex-start;
-    }
-    #addRowBtn, #submitBtn {
-      padding: 12px 20px;
-      font-size: 18px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-      margin-top: 15px;
-      background-color: #2ecc71;
-      color: white;
-      transition: background-color 0.3s;
-    }
-    #addRowBtn:hover, #submitBtn:hover {
-      background-color: #27ae60;
-    }
+    /* Same styles as before - omitted here for brevity */
+    body { font-family: Arial; padding:10px; max-width:600px; margin:auto;}
+    .row { display:flex; flex-wrap:wrap; align-items:center; margin-bottom:12px; gap:10px; border-bottom:1px solid #ddd; padding-bottom:10px;}
+    .row label { flex-basis:100%; font-weight:bold; margin-bottom:6px;}
+    .row input, .row select { flex:1 1 45%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;}
+    .row button.close-btn { flex-basis:100%; background:#e74c3c; color:white; border:none; padding:10px; cursor:pointer; font-weight:bold; border-radius:4px; max-width:100px; margin-top:8px; align-self:flex-start;}
+    #addRowBtn, #submitBtn { padding:12px 20px; font-size:18px; border-radius:6px; border:none; cursor:pointer; margin-right:10px; margin-top:15px; background-color:#2ecc71; color:white; transition:background-color 0.3s;}
+    #addRowBtn:hover, #submitBtn:hover { background-color:#27ae60;}
     @media (min-width: 480px) {
-      .row label {
-        flex-basis: auto;
-        margin-right: 10px;
-        margin-bottom: 0;
-        width: 80px;
-      }
-      .row input, .row select {
-        flex: 1 1 auto;
-      }
-      .row button.close-btn {
-        flex-basis: auto;
-        margin-top: 0;
-        max-width: 40px;
-        padding: 6px 10px;
-      }
+      .row label { flex-basis:auto; margin-right:10px; margin-bottom:0; width:80px;}
+      .row input, .row select { flex:1 1 auto;}
+      .row button.close-btn { flex-basis:auto; margin-top:0; max-width:40px; padding:6px 10px;}
     }
   </style>
 </head>
 <body>
 
-<h2>Order Form with Selectable Items</h2>
+<h2>Order Form with Datalist</h2>
+
+<!-- Put datalist here in HTML -->
+<datalist id="itemsList">
+  <option value="Apple"></option>
+  <option value="Banana"></option>
+  <option value="Orange"></option>
+  <option value="Sugar"></option>
+  <option value="Rice"></option>
+</datalist>
 
 <div id="container"></div>
 
@@ -99,15 +48,6 @@
     'Packet': 1
   };
 
-  // List of items (you can add more)
-  const itemsList = [
-    'Apple',
-    'Banana',
-    'Orange',
-    'Sugar',
-    'Rice'
-  ];
-
   function updateLabels() {
     const rows = container.querySelectorAll('.row');
     rows.forEach((row, i) => {
@@ -123,25 +63,11 @@
     const label = document.createElement('label');
     row.appendChild(label);
 
-    // Create input with datalist for item selection
     const inputItem = document.createElement('input');
     inputItem.type = 'text';
     inputItem.setAttribute('list', 'itemsList');
     inputItem.placeholder = 'Enter or select item';
     row.appendChild(inputItem);
-
-    // Create datalist element if not exists
-    let datalist = document.getElementById('itemsList');
-    if (!datalist) {
-      datalist = document.createElement('datalist');
-      datalist.id = 'itemsList';
-      itemsList.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item;
-        datalist.appendChild(option);
-      });
-      document.body.appendChild(datalist);
-    }
 
     const selectUnit = document.createElement('select');
     const defaultOption = new Option('Select unit', '');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mobile Friendly Order Form</title>
+  <title>Mobile Friendly Order Form with Selectable Items</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -81,7 +81,7 @@
 </head>
 <body>
 
-<h2>Mobile Friendly Order Form</h2>
+<h2>Order Form with Selectable Items</h2>
 
 <div id="container"></div>
 
@@ -99,6 +99,15 @@
     'Packet': 1
   };
 
+  // List of items (you can add more)
+  const itemsList = [
+    'Apple',
+    'Banana',
+    'Orange',
+    'Sugar',
+    'Rice'
+  ];
+
   function updateLabels() {
     const rows = container.querySelectorAll('.row');
     rows.forEach((row, i) => {
@@ -114,10 +123,25 @@
     const label = document.createElement('label');
     row.appendChild(label);
 
-    const inputName = document.createElement('input');
-    inputName.type = 'text';
-    inputName.placeholder = 'Enter item name';
-    row.appendChild(inputName);
+    // Create input with datalist for item selection
+    const inputItem = document.createElement('input');
+    inputItem.type = 'text';
+    inputItem.setAttribute('list', 'itemsList');
+    inputItem.placeholder = 'Enter or select item';
+    row.appendChild(inputItem);
+
+    // Create datalist element if not exists
+    let datalist = document.getElementById('itemsList');
+    if (!datalist) {
+      datalist = document.createElement('datalist');
+      datalist.id = 'itemsList';
+      itemsList.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item;
+        datalist.appendChild(option);
+      });
+      document.body.appendChild(datalist);
+    }
 
     const selectUnit = document.createElement('select');
     const defaultOption = new Option('Select unit', '');

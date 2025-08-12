@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Order Form with Textbox Item Name</title>
+  <title>Order Form with Compact Message</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -45,7 +45,7 @@
       margin-top: 8px;
       align-self: flex-start;
     }
-    #addRowBtn, #submitBtn {
+    #addRowBtn, #submitBtn, #viewOrdersBtn {
       padding: 12px 20px;
       font-size: 18px;
       border-radius: 6px;
@@ -57,8 +57,20 @@
       color: white;
       transition: background-color 0.3s;
     }
-    #addRowBtn:hover, #submitBtn:hover {
+    #addRowBtn:hover, #submitBtn:hover, #viewOrdersBtn:hover {
       background-color: #27ae60;
+    }
+    #ordersList {
+      margin-top: 20px;
+      border-top: 2px solid #333;
+      padding-top: 10px;
+    }
+    .orderItem {
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0;
+    }
+    .orderItem h4 {
+      margin: 0 0 5px 0;
     }
     @media (min-width: 480px) {
       .row label {
@@ -81,23 +93,44 @@
 </head>
 <body>
 
-<h2>Order Form with Textbox Item Name</h2>
+<h2>Order Form with Compact Message</h2>
 
 <div id="container"></div>
 
 <button id="addRowBtn">Add Row</button>
 <button id="submitBtn">Submit to WhatsApp</button>
+<button id="viewOrdersBtn">View Past Orders</button>
+
+<div id="ordersList" style="display:none;">
+  <h3>Past Orders:</h3>
+  <div id="ordersContainer"></div>
+</div>
 
 <script>
   const container = document.getElementById('container');
   const addRowBtn = document.getElementById('addRowBtn');
   const submitBtn = document.getElementById('submitBtn');
+  const viewOrdersBtn = document.getElementById('viewOrdersBtn');
+  const ordersListDiv = document.getElementById('ordersList');
+  const ordersContainer = document.getElementById('ordersContainer');
 
   const unitDefaults = {
     'Gram': 200,
     'Kg': 1,
     'Packet': 1
   };
+
+  function generateOrderNumber() {
+    const now = new Date();
+    const dateStr = now.getFullYear().toString() +
+                    String(now.getMonth()+1).padStart(2, '0') +
+                    String(now.getDate()).padStart(2, '0') +
+                    String(now.getHours()).padStart(2, '0') +
+                    String(now.getMinutes()).padStart(2, '0') +
+                    String(now.getSeconds()).padStart(2, '0');
+    const randomStr = Math.floor(Math.random() * 900 + 100);
+    return 'ORD' + dateStr + randomStr;
+  }
 
   function updateLabels() {
     const rows = container.querySelectorAll('.row');
@@ -114,7 +147,6 @@
     const label = document.createElement('label');
     row.appendChild(label);
 
-    // Item name textbox
     const inputItem = document.createElement('input');
     inputItem.type = 'text';
     inputItem.placeholder = 'Enter item name';
@@ -160,6 +192,34 @@
     container.innerHTML = '';
     container.appendChild(createRow());
     updateLabels();
+  }
+
+  function saveOrder(orderNumber, orderData) {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push({ orderNumber, orderData, date: new Date().toISOString() });
+    localStorage.setItem('orders', JSON.stringify(orders));
+  }
+
+  function showPastOrders() {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    ordersContainer.innerHTML = '';
+    if (orders.length === 0) {
+      ordersContainer.innerHTML = '<p>No past orders found.</p>';
+      return;
+    }
+    orders.slice().reverse().forEach(order => {
+      const div = document.createElement('div');
+      div.className = 'orderItem';
+
+      const dateStr = new Date(order.date).toLocaleString();
+      div.innerHTML = `<h4>${order.orderNumber} - ${dateStr}</h4>`;
+      let details = '';
+      order.orderData.forEach((item, i) => {
+        details += `<b>${i + 1}.</b> ${item.item} - ${item.quantity}${item.unit.toLowerCase()}<br>`;
+      });
+      div.innerHTML += details;
+      ordersContainer.appendChild(div);
+    });
   }
 
   resetForm();
@@ -225,18 +285,33 @@
       return;
     }
 
-    let message = 'Order Details:\n';
+    const orderNumber = generateOrderNumber();
+
+    let message = `Order No: ${orderNumber}\n\n`;
     data.forEach((item, idx) => {
-      message += `\nItem ${idx + 1}:\n`;
-      message += `Name: ${item.item}\n`;
-      message += `Quantity: ${item.quantity} ${item.unit}\n`;
+      message += `${idx + 1}. ${item.item} - ${item.quantity}${item.unit.toLowerCase()}\n`;
     });
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/918015241869?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 
+    saveOrder(orderNumber, data);
+
+    alert(`Order submitted!\nOrder No: ${orderNumber}\nPlease save it.`);
+
     resetForm();
+  });
+
+  viewOrdersBtn.addEventListener('click', () => {
+    if (ordersListDiv.style.display === 'none') {
+      showPastOrders();
+      ordersListDiv.style.display = 'block';
+      viewOrdersBtn.textContent = 'Hide Past Orders';
+    } else {
+      ordersListDiv.style.display = 'none';
+      viewOrdersBtn.textContent = 'View Past Orders';
+    }
   });
 </script>
 

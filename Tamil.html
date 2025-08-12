@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tamil Transliteration Input Box</title>
+  <title>English to Tamil Transliteration with Button</title>
   <script src="https://www.google.com/jsapi"></script>
   <script>
-    google.load("elements", "1", {
-      packages: "transliteration"
-    });
+    google.load("elements", "1", { packages: "transliteration" });
 
+    var control;
     function onLoad() {
       var options = {
         sourceLanguage: 'en',
@@ -15,46 +14,28 @@
         transliterationEnabled: true
       };
 
-      var control = new google.elements.transliteration.TransliterationControl(options);
-      control.makeTransliteratable(['input']);
-
-      var input = document.getElementById('input');
-      var output = document.getElementById('output');
-
-      control.addEventListener(
-        google.elements.transliteration.TransliterationControl.EventType.TRANSLITERATION,
-        function(event) {
-          output.textContent = input.value;
-        }
-      );
-
-      input.addEventListener('input', function() {
-        output.textContent = input.value;
-      });
+      control = new google.elements.transliteration.TransliterationControl(options);
+      control.makeTransliteratable(['inputBox']);
     }
 
     google.setOnLoadCallback(onLoad);
-  </script>
 
-  <style>
-    #input {
-      height: 30px;       /* same height as input */
-      width: 300px;
-      resize: none;       /* disable resizing */
-      font-size: 16px;
-      font-family: Arial, sans-serif;
-      padding: 5px;
-      box-sizing: border-box;
+    function showTamilText() {
+      const input = document.getElementById('inputBox');
+      const output = document.getElementById('output');
+      output.textContent = input.value;  // The textarea already contains Tamil text
     }
-  </style>
+  </script>
 </head>
 <body>
 
-<h2>Type in English and see Tamil below</h2>
-<textarea id="input" placeholder="Type here..."></textarea>
+<h2>Type English and click button to see Tamil</h2>
+<textarea id="inputBox" rows="6" cols="60" placeholder="Type here..."></textarea>
+<br><br>
+<button onclick="showTamilText()">Show Tamil Text</button>
 
 <h3>Tamil Output:</h3>
-<p id="output" style="font-size: 24px; color: darkgreen; border: 1px solid #ccc; padding: 10px;"></p>
+<p id="output" style="font-size: 24px; color: darkgreen; border: 1px solid #ccc; padding: 10px; min-height: 40px;"></p>
 
 </body>
 </html>

@@ -1,1 +1,37 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>English to Tamil Transliteration</title>
+  <script src="https://www.google.com/jsapi"></script>
+  <script>
+    google.load("elements", "1", {
+      packages: "transliteration"
+    });
+
+    function onLoad() {
+      var options = {
+        sourceLanguage: 'en',
+        destinationLanguage: ['ta'],
+        transliterationEnabled: true
+      };
+
+      // Create transliteration control using the options
+      var control = new google.elements.transliteration.TransliterationControl(options);
+
+      // Enable transliteration on the textarea with id 'input'
+      control.makeTransliteratable(['input']);
+
+      // Optional: You can add event handlers here if needed
+    }
+
+    google.setOnLoadCallback(onLoad);
+  </script>
+</head>
+<body>
+
+<h2>Type in English and it will convert to Tamil</h2>
+<textarea id="input" rows="6" cols="50" placeholder="Type here..."></textarea>
+
+</body>
+</html>

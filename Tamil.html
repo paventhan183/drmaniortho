@@ -60,7 +60,7 @@
       margin-top: 8px;
       align-self: flex-start;
     }
-    #addRowBtn, #submitBtn, #viewOrdersBtn {
+    #addRowBtn, #submitBtn {
       padding: 12px 20px;
       font-size: 18px;
       border-radius: 6px;
@@ -72,20 +72,8 @@
       color: white;
       transition: background-color 0.3s;
     }
-    #addRowBtn:hover, #submitBtn:hover, #viewOrdersBtn:hover {
+    #addRowBtn:hover, #submitBtn:hover {
       background-color: #27ae60;
-    }
-    #ordersList {
-      margin-top: 20px;
-      border-top: 2px solid #333;
-      padding-top: 10px;
-    }
-    .orderItem {
-      border-bottom: 1px solid #ccc;
-      padding: 8px 0;
-    }
-    .orderItem h4 {
-      margin: 0 0 5px 0;
     }
     @media (min-width: 480px) {
       .row label {
@@ -124,20 +112,11 @@
 
 <button id="addRowBtn">Add Row</button>
 <button id="submitBtn">Submit to WhatsApp</button>
-<button id="viewOrdersBtn">View Past Orders</button>
-
-<div id="ordersList" style="display:none;">
-  <h3>Past Orders:</h3>
-  <div id="ordersContainer"></div>
-</div>
 
 <script>
   const container = document.getElementById('container');
   const addRowBtn = document.getElementById('addRowBtn');
   const submitBtn = document.getElementById('submitBtn');
-  const viewOrdersBtn = document.getElementById('viewOrdersBtn');
-  const ordersListDiv = document.getElementById('ordersList');
-  const ordersContainer = document.getElementById('ordersContainer');
 
   const custNameInput = document.getElementById('custName');
   const custAddressInput = document.getElementById('custAddress');
@@ -146,7 +125,8 @@
   const unitDefaults = {
     'Gram': 200,
     'Kg': 1,
-    'Packet': 1
+    'Packet': 1,
+    'Litre': 1
   };
 
   function generateOrderNumber() {
@@ -226,38 +206,6 @@
     updateLabels();
   }
 
-  function saveOrder(orderNumber, orderData, customerInfo) {
-    let orders = JSON.parse(localStorage.getItem('orders')) || [];
-    orders.push({ orderNumber, orderData, customerInfo, date: new Date().toISOString() });
-    localStorage.setItem('orders', JSON.stringify(orders));
-  }
-
-  function showPastOrders() {
-    let orders = JSON.parse(localStorage.getItem('orders')) || [];
-    ordersContainer.innerHTML = '';
-    if (orders.length === 0) {
-      ordersContainer.innerHTML = '<p>No past orders found.</p>';
-      return;
-    }
-    orders.slice().reverse().forEach(order => {
-      const div = document.createElement('div');
-      div.className = 'orderItem';
-
-      const dateStr = new Date(order.date).toLocaleString();
-      div.innerHTML = `<h4>${order.orderNumber} - ${dateStr}</h4>`;
-      div.innerHTML += `<b>Name:</b> ${order.customerInfo.name}<br>`;
-      div.innerHTML += `<b>Address:</b> ${order.customerInfo.address}<br>`;
-      div.innerHTML += `<b>Mobile:</b> ${order.customerInfo.mobile}<br><br>`;
-
-      let details = '';
-      order.orderData.forEach((item, i) => {
-        details += `<b>${i + 1}.</b> ${item.item} - ${item.quantity}${item.unit.toLowerCase()}<br>`;
-      });
-      div.innerHTML += details;
-      ordersContainer.appendChild(div);
-    });
-  }
-
   resetForm();
 
   addRowBtn.addEventListener('click', () => {
@@ -289,7 +237,6 @@
   });
 
   submitBtn.addEventListener('click', () => {
-    // Validate customer info
     if (custNameInput.value.trim() === '') {
       alert('Please enter customer name.');
       custNameInput.focus();
@@ -340,7 +287,6 @@
 
     const orderNumber = generateOrderNumber();
 
-    // Build WhatsApp message with delivery info + order items
     let message = `Order No: ${orderNumber}\n\n`;
     message += `Name: ${custNameInput.value.trim()}\n`;
     message += `Address: ${custAddressInput.value.trim()}\n`;
@@ -353,27 +299,9 @@
     const whatsappURL = `https://wa.me/918015241869?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 
-    // Save order with delivery info
-    saveOrder(orderNumber, data, {
-      name: custNameInput.value.trim(),
-      address: custAddressInput.value.trim(),
-      mobile: custMobileInput.value.trim()
-    });
-
     alert(`Order submitted!\nOrder No: ${orderNumber}\nPlease save it.`);
 
     resetForm();
-  });
-
-  viewOrdersBtn.addEventListener('click', () => {
-    if (ordersListDiv.style.display === 'none') {
-      showPastOrders();
-      ordersListDiv.style.display = 'block';
-      viewOrdersBtn.textContent = 'Hide Past Orders';
-    } else {
-      ordersListDiv.style.display = 'none';
-      viewOrdersBtn.textContent = 'View Past Orders';
-    }
   });
 </script>
 

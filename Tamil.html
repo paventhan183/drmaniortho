@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Order Form with Compact Message</title>
+  <title>Order Form with Delivery Info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -9,6 +9,21 @@
       padding: 10px;
       max-width: 600px;
       margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input[type=text], input[type=number], textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      margin-top: 4px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
     }
     .row {
       display: flex;
@@ -93,7 +108,17 @@
 </head>
 <body>
 
-<h2>Order Form with Compact Message</h2>
+<h2>Order Form with Delivery Info</h2>
+
+<!-- Delivery Info Section -->
+<label for="custName">Customer Name:</label>
+<input type="text" id="custName" placeholder="Enter customer name" />
+
+<label for="custAddress">Address:</label>
+<textarea id="custAddress" rows="3" placeholder="Enter delivery address"></textarea>
+
+<label for="custMobile">Mobile Number:</label>
+<input type="text" id="custMobile" placeholder="Enter mobile number" />
 
 <div id="container"></div>
 
@@ -113,6 +138,10 @@
   const viewOrdersBtn = document.getElementById('viewOrdersBtn');
   const ordersListDiv = document.getElementById('ordersList');
   const ordersContainer = document.getElementById('ordersContainer');
+
+  const custNameInput = document.getElementById('custName');
+  const custAddressInput = document.getElementById('custAddress');
+  const custMobileInput = document.getElementById('custMobile');
 
   const unitDefaults = {
     'Gram': 200,
@@ -189,14 +218,17 @@
   }
 
   function resetForm() {
+    custNameInput.value = '';
+    custAddressInput.value = '';
+    custMobileInput.value = '';
     container.innerHTML = '';
     container.appendChild(createRow());
     updateLabels();
   }
 
-  function saveOrder(orderNumber, orderData) {
+  function saveOrder(orderNumber, orderData, customerInfo) {
     let orders = JSON.parse(localStorage.getItem('orders')) || [];
-    orders.push({ orderNumber, orderData, date: new Date().toISOString() });
+    orders.push({ orderNumber, orderData, customerInfo, date: new Date().toISOString() });
     localStorage.setItem('orders', JSON.stringify(orders));
   }
 
@@ -213,6 +245,10 @@
 
       const dateStr = new Date(order.date).toLocaleString();
       div.innerHTML = `<h4>${order.orderNumber} - ${dateStr}</h4>`;
+      div.innerHTML += `<b>Name:</b> ${order.customerInfo.name}<br>`;
+      div.innerHTML += `<b>Address:</b> ${order.customerInfo.address}<br>`;
+      div.innerHTML += `<b>Mobile:</b> ${order.customerInfo.mobile}<br><br>`;
+
       let details = '';
       order.orderData.forEach((item, i) => {
         details += `<b>${i + 1}.</b> ${item.item} - ${item.quantity}${item.unit.toLowerCase()}<br>`;
@@ -253,9 +289,26 @@
   });
 
   submitBtn.addEventListener('click', () => {
+    // Validate customer info
+    if (custNameInput.value.trim() === '') {
+      alert('Please enter customer name.');
+      custNameInput.focus();
+      return;
+    }
+    if (custAddressInput.value.trim() === '') {
+      alert('Please enter delivery address.');
+      custAddressInput.focus();
+      return;
+    }
+    if (custMobileInput.value.trim() === '') {
+      alert('Please enter mobile number.');
+      custMobileInput.focus();
+      return;
+    }
+
     const rows = container.querySelectorAll('.row');
     if (rows.length === 0) {
-      alert('Please add at least one row.');
+      alert('Please add at least one item.');
       return;
     }
 
@@ -281,13 +334,17 @@
     });
 
     if (!allFilled) {
-      alert('Please fill all fields in every row before submitting.');
+      alert('Please fill all fields in every item row before submitting.');
       return;
     }
 
     const orderNumber = generateOrderNumber();
 
+    // Build WhatsApp message with delivery info + order items
     let message = `Order No: ${orderNumber}\n\n`;
+    message += `Name: ${custNameInput.value.trim()}\n`;
+    message += `Address: ${custAddressInput.value.trim()}\n`;
+    message += `Mobile: ${custMobileInput.value.trim()}\n\n`;
     data.forEach((item, idx) => {
       message += `${idx + 1}. ${item.item} - ${item.quantity}${item.unit.toLowerCase()}\n`;
     });
@@ -296,7 +353,12 @@
     const whatsappURL = `https://wa.me/918015241869?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 
-    saveOrder(orderNumber, data);
+    // Save order with delivery info
+    saveOrder(orderNumber, data, {
+      name: custNameInput.value.trim(),
+      address: custAddressInput.value.trim(),
+      mobile: custMobileInput.value.trim()
+    });
 
     alert(`Order submitted!\nOrder No: ${orderNumber}\nPlease save it.`);
 

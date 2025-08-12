@@ -1,125 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Clinic Visit</title>
-<style>
+  <title>Book Appointment</title>
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #d8b4fe, #a78bfa);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(90deg, #d4a1ff, #a1c4fd);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .container {
-        background: white;
-        max-width: 400px;
-        width: 100%;
-        margin: 20px;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h2 {
-        text-align: center;
-        color: #222;
-    }
-    label {
-        font-weight: bold;
-        margin-top: 10px;
-        display: block;
+      text-align: center;
     }
     input, select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 14px;
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
     }
-    input[type="radio"], input[type="checkbox"] {
-        width: auto;
-        margin-right: 5px;
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      margin: 6px 0;
     }
-    .radio-group, .checkbox-group {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 15px;
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    button {
-        background: #25d366;
-        color: white;
-        padding: 10px;
-        width: 100%;
-        border: none;
-        font-size: 16px;
-        border-radius: 6px;
-        cursor: pointer;
+    .submit-btn:hover {
+      background: #1ebe5d;
     }
-    button:hover {
-        background: #1ebd5b;
+    #onlineInstructions {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 5px;
+      font-size: 14px;
     }
-</style>
+    /* Calendar icon styling */
+    .date-wrapper {
+      position: relative;
+    }
+    .date-wrapper input[type="date"] {
+      padding-right: 35px; /* space for the icon */
+    }
+    .date-wrapper::after {
+      content: "\1F4C5"; /* 📅 emoji as icon */
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 18px;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Book Clinic Visit</h2>
-    <form id="clinicForm">
-        <label>Name *</label>
-        <input type="text" id="name" required>
+<div class="form-container">
+  <h2>Book Appointment</h2>
+  
+  <label>Name *</label>
+  <input type="text" id="name" required>
 
-        <label>Age *</label>
-        <input type="number" id="age" min="0" required>
+  <label>Age *</label>
+  <input type="number" id="age" required>
 
-        <label>Gender</label>
-        <div class="radio-group">
-            <label><input type="radio" name="gender" value="Male"> Male</label>
-            <label><input type="radio" name="gender" value="Female"> Female</label>
-        </div>
+  <label>Gender</label>
+  <div class="radio-group">
+    <label><input type="radio" name="gender" value="Male" checked> Male</label>
+    <label><input type="radio" name="gender" value="Female"> Female</label>
+  </div>
 
-        <label>Mobile Number *</label>
-        <input type="tel" id="mobile" placeholder="+91" required>
+  <label>Mobile Number *</label>
+  <input type="tel" id="mobile" required>
 
-        <label>Clinic Visit *</label>
-        <input type="date" id="date" required>
+  <label>Appointment Type *</label>
+  <select id="appointmentType" required>
+    <option value="">-- Select --</option>
+    <option value="Clinic Visit">Clinic Visit</option>
+    <option value="Online Consultation">Online Consultation</option>
+  </select>
 
-        <label>Reason for visit *</label>
-        <div class="radio-group">
-            <label><input type="radio" name="reason" value="Ortho" required> Ortho</label>
-            <label><input type="radio" name="reason" value="General problem (Fever, Cold, Others)" required> General problem</label>
-        </div>
+  <div id="onlineInstructions">
+    <strong>Online Consultation Instructions:</strong>
+    <ul>
+      <li>Pay the consultation fee via GPay to 94442 61111.</li>
+      <li>Share your payment screenshot on WhatsApp.</li>
+      <li>You will receive a video call link before your appointment.</li>
+    </ul>
+  </div>
 
-        <button type="submit">Submit on WhatsApp</button>
-    </form>
+  <label>Appointment Date *</label>
+  <div class="date-wrapper">
+    <input type="date" id="date" required>
+  </div>
+
+  <label>Reason for visit *</label>
+  <div class="radio-group">
+    <label><input type="radio" name="reason" value="Ortho" checked> Ortho</label>
+    <label><input type="radio" name="reason" value="General problem"> General problem</label>
+  </div>
+
+  <button class="submit-btn" onclick="sendWhatsApp()">Submit on WhatsApp</button>
 </div>
 
 <script>
-document.getElementById("clinicForm").addEventListener("submit", function(e){
-    e.preventDefault();
+  const appointmentType = document.getElementById("appointmentType");
+  const onlineInstructions = document.getElementById("onlineInstructions");
 
-    const name = document.getElementById("name").value;
-    const age = document.getElementById("age").value;
-    const gender = document.querySelector('input[name="gender"]:checked')?.value || "";
-    const mobile = document.getElementById("mobile").value;
-    const date = document.getElementById("date").value;
-    const reason = document.querySelector('input[name="reason"]:checked')?.value;
+  appointmentType.addEventListener("change", function () {
+    if (this.value === "Online Consultation") {
+      onlineInstructions.style.display = "block";
+    } else {
+      onlineInstructions.style.display = "none";
+    }
+  });
 
-    let message = `*Clinic Visit Booking*%0A` +
+  function sendWhatsApp() {
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let gender = document.querySelector('input[name="gender"]:checked').value;
+    let mobile = document.getElementById("mobile").value;
+    let appointment = document.getElementById("appointmentType").value;
+    let date = document.getElementById("date").value;
+    let reason = document.querySelector('input[name="reason"]:checked').value;
+
+    if (!name || !age || !mobile || !appointment || !date) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    let message = `*New Appointment Booking*%0A` +
                   `Name: ${name}%0A` +
                   `Age: ${age}%0A` +
                   `Gender: ${gender}%0A` +
                   `Mobile: ${mobile}%0A` +
-                  `Clinic Visit Date: ${date}%0A` +
+                  `Appointment Type: ${appointment}%0A` +
+                  `Date: ${date}%0A` +
                   `Reason: ${reason}`;
 
-    let phoneNumber = "919444261111"; // WhatsApp format (country code + number)
+    if (appointment === "Online Consultation") {
+      message += `%0A(Note: Follow payment & video link instructions.)`;
+    }
 
+    let phoneNumber = "9444261111"; // your WhatsApp number
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
-});
+  }
 </script>
 
 </body>

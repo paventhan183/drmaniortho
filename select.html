@@ -64,6 +64,17 @@
           font-family: Arial, sans-serif;
         " /><br/>
 
+        <label for="modalPhone" style="font-weight: 600; font-family: Arial, sans-serif;">Phone Number (without country code):</label><br/>
+        <input type="tel" id="modalPhone" placeholder="Enter phone number" pattern="[0-9]{7,15}" title="Enter 7 to 15 digits" required style="
+          width: 100%;
+          padding: 10px 12px;
+          margin: 8px 0 16px 0;
+          border: 1.8px solid #ccc;
+          border-radius: 6px;
+          font-size: 14px;
+          font-family: Arial, sans-serif;
+        " /><br/>
+
         <label for="modalMessage" style="font-weight: 600; font-family: Arial, sans-serif;">Describe Your Ortho Problem:</label><br/>
         <textarea id="modalMessage" placeholder="Type your ortho problem here..." required rows="5" style="
           width: 100%;
@@ -112,37 +123,41 @@
     const closeModalBtn = document.getElementById('closeModal');
     const modalForm = document.getElementById('modalForm');
 
-    // Open modal on button click
     askDoctorBtn.addEventListener('click', () => {
       modal.style.display = 'flex';
     });
 
-    // Close modal on close button click
     closeModalBtn.addEventListener('click', () => {
       modal.style.display = 'none';
     });
 
-    // Close modal if user clicks outside modal content
     window.addEventListener('click', (event) => {
       if (event.target === modal) {
         modal.style.display = 'none';
       }
     });
 
-    // Handle form submission
     modalForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
       const name = document.getElementById('modalName').value.trim();
+      const phone = document.getElementById('modalPhone').value.trim();
       const message = document.getElementById('modalMessage').value.trim();
 
-      if (!name || !message) {
-        alert("Please enter your name and describe your ortho problem.");
+      if (!name || !phone || !message) {
+        alert("Please enter your name, phone number, and describe your ortho problem.");
         return;
       }
 
-      const whatsappMessage = `Patient Name: ${name}\nOrtho Problem: ${message}`;
-      const doctorNumber = '9444261111';  // Your doctor's WhatsApp number
+      // Validate phone number pattern (7 to 15 digits)
+      const phonePattern = /^[0-9]{7,15}$/;
+      if (!phonePattern.test(phone)) {
+        alert("Please enter a valid phone number with 7 to 15 digits, without country code.");
+        return;
+      }
+
+      const whatsappMessage = `Patient Name: ${name}\nPhone: ${phone}\nOrtho Problem: ${message}`;
+      const doctorNumber = '9444261111';
       const whatsappUrl = `https://wa.me/${doctorNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
       window.open(whatsappUrl, '_blank');
@@ -150,7 +165,7 @@
       alert("Your ortho problem has been sent to the doctor. He will contact you with the next steps soon.");
 
       modalForm.reset();
-      modal.style.display = 'none';  // Close modal after submit
+      modal.style.display = 'none';
     });
   </script>
 </body>

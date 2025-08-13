@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Searchable Select Example</title>
+  <style>
+    select {
+      width: 200px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h3>Choose Item</h3>
+<input type="text" id="searchInput" placeholder="Type to search...">
+<select id="mySelect" size="5"></select>
+
+<p>Selected: <span id="selectedValue"></span></p>
+
+<script>
+  // Local JSON data
+  const items = [
+    { id: 1, name: "Apple" },
+    { id: 2, name: "Banana" },
+    { id: 3, name: "Mango" },
+    { id: 4, name: "Orange" },
+    { id: 5, name: "Pineapple" },
+    { id: 6, name: "Grapes" },
+    { id: 7, name: "Watermelon" }
+  ];
+
+  const selectBox = document.getElementById("mySelect");
+  const searchInput = document.getElementById("searchInput");
+  const selectedValue = document.getElementById("selectedValue");
+
+  // Function to load data into select box
+  function loadOptions(data) {
+    selectBox.innerHTML = "";
+    data.forEach(item => {
+      let option = document.createElement("option");
+      option.value = item.id;
+      option.textContent = item.name;
+      selectBox.appendChild(option);
+    });
+  }
+
+  // Load all options initially
+  loadOptions(items);
+
+  // Search functionality
+  searchInput.addEventListener("input", function() {
+    const keyword = this.value.toLowerCase();
+    const filtered = items.filter(item => item.name.toLowerCase().includes(keyword));
+    loadOptions(filtered);
+  });
+
+  // When selecting an item
+  selectBox.addEventListener("change", function() {
+    const selectedOption = selectBox.options[selectBox.selectedIndex];
+    selectedValue.textContent = selectedOption.text;
+  });
+</script>
+
+</body>
+</html>

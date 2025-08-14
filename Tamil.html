@@ -128,56 +128,40 @@
     'Packet': 1,
     'Litre': 1
   };
-
-  function generateOrderNumber() {
-    const now = new Date();
-    const dateStr = now.getFullYear().toString() +
-                    String(now.getMonth()+1).padStart(2, '0') +
-                    String(now.getDate()).padStart(2, '0') +
-                    String(now.getHours()).padStart(2, '0') +
-                    String(now.getMinutes()).padStart(2, '0') +
-                    String(now.getSeconds()).padStart(2, '0');
-    const randomStr = Math.floor(Math.random() * 900 + 100);
-    return 'ORD' + dateStr + randomStr;
-  }
-
-  function updateLabels() {
-    const rows = container.querySelectorAll('.row');
-    rows.forEach((row, i) => {
-      const label = row.querySelector('label');
-      label.textContent = `Item ${i + 1}:`;
-    });
-  }
-
-  function createRow() {
+function createRow() {
   const row = document.createElement('div');
   row.className = 'row';
 
   const label = document.createElement('label');
   row.appendChild(label);
 
-  // Editable dropdown (input + select merged)
+  // Wrapper for input + suggestion dropdown
   const wrapper = document.createElement('div');
-  wrapper.style.flex = '1 1 45%';
   wrapper.style.position = 'relative';
+  wrapper.style.flex = '1 1 45%';
 
+  // Input field
   const inputItem = document.createElement('input');
   inputItem.type = 'text';
-  inputItem.placeholder = 'Enter or select item name';
-  inputItem.style.width = '100%';
+  inputItem.placeholder = 'Enter or search item name';
   wrapper.appendChild(inputItem);
 
-  const selectItem = document.createElement('select');
-  selectItem.style.position = 'absolute';
-  selectItem.style.top = '0';
-  selectItem.style.left = '0';
-  selectItem.style.width = '100%';
-  selectItem.style.height = '100%';
-  selectItem.style.opacity = '0'; // Invisible but clickable
-  selectItem.style.cursor = 'pointer';
+  // Suggestions box
+  const suggestionsBox = document.createElement('div');
+  suggestionsBox.style.position = 'absolute';
+  suggestionsBox.style.top = '100%';
+  suggestionsBox.style.left = '0';
+  suggestionsBox.style.right = '0';
+  suggestionsBox.style.border = '1px solid #ccc';
+  suggestionsBox.style.background = '#fff';
+  suggestionsBox.style.maxHeight = '150px';
+  suggestionsBox.style.overflowY = 'auto';
+  suggestionsBox.style.zIndex = '1000';
+  suggestionsBox.style.display = 'none';
+  wrapper.appendChild(suggestionsBox);
 
+  // Product list
   const products = [
-    '',
     'Apple iPhone',
     'Samsung Galaxy',
     'Sony Headphones',
@@ -187,19 +171,47 @@
     'USB Cable',
     'Bluetooth Speaker'
   ];
-  products.forEach(product => {
-    const option = document.createElement('option');
-    option.value = product;
-    option.textContent = product;
-    selectItem.appendChild(option);
+
+  // Filter suggestions on typing
+  inputItem.addEventListener('input', () => {
+    const query = inputItem.value.toLowerCase();
+    suggestionsBox.innerHTML = '';
+    if (!query) {
+      suggestionsBox.style.display = 'none';
+      return;
+    }
+    const filtered = products.filter(p => p.toLowerCase().includes(query));
+    if (filtered.length) {
+      filtered.forEach(p => {
+        const optionDiv = document.createElement('div');
+        optionDiv.textContent = p;
+        optionDiv.style.padding = '8px';
+        optionDiv.style.cursor = 'pointer';
+        optionDiv.addEventListener('click', () => {
+          inputItem.value = p;
+          suggestionsBox.style.display = 'none';
+        });
+        optionDiv.addEventListener('mouseover', () => {
+          optionDiv.style.background = '#f0f0f0';
+        });
+        optionDiv.addEventListener('mouseout', () => {
+          optionDiv.style.background = '#fff';
+        });
+        suggestionsBox.appendChild(optionDiv);
+      });
+      suggestionsBox.style.display = 'block';
+    } else {
+      suggestionsBox.style.display = 'none';
+    }
   });
 
-  // When user selects from dropdown, put value in input
-  selectItem.addEventListener('change', () => {
-    inputItem.value = selectItem.value;
+  // Hide suggestions when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!wrapper.contains(e.target)) {
+      suggestionsBox.style.display = 'none';
+    }
   });
 
-  wrapper.appendChild(selectItem);
   row.appendChild(wrapper);
 
   // Unit select box
@@ -240,6 +252,28 @@
 
   return row;
 }
+  function generateOrderNumber() {
+    const now = new Date();
+    const dateStr = now.getFullYear().toString() +
+                    String(now.getMonth()+1).padStart(2, '0') +
+                    String(now.getDate()).padStart(2, '0') +
+                    String(now.getHours()).padStart(2, '0') +
+                    String(now.getMinutes()).padStart(2, '0') +
+                    String(now.getSeconds()).padStart(2, '0');
+    const randomStr = Math.floor(Math.random() * 900 + 100);
+    return 'ORD' + dateStr + randomStr;
+  }
+
+  function updateLabels() {
+    const rows = container.querySelectorAll('.row');
+    rows.forEach((row, i) => {
+      const label = row.querySelector('label');
+      label.textContent = `Item ${i + 1}:`;
+    });
+  }
+
+  
+  
   function resetForm() {
     custNameInput.value = '';
     custAddressInput.value = '';

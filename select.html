@@ -4,23 +4,12 @@
 <meta charset="UTF-8">
 <title>Product Search Dropdown</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-  .dropdown-container {
-    position: relative;
-    width: 250px;
-  }
-  #productSearch {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
+  body { font-family: Arial, sans-serif; }
+  .dropdown-container { position: relative; width: 250px; }
+  #productSearch { width: 100%; padding: 8px; box-sizing: border-box; }
   .suggestions {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: 100%; left: 0; right: 0;
     border: 1px solid #ccc;
     border-top: none;
     background: white;
@@ -29,23 +18,10 @@
     z-index: 1000;
     display: none;
   }
-  .suggestions div {
-    padding: 8px;
-    cursor: pointer;
-  }
-  .suggestions div:hover {
-    background: #f0f0f0;
-  }
-  #productImage {
-    max-width: 200px;
-    margin-top: 10px;
-    display: none;
-  }
-  #priceLabel {
-    font-weight: bold;
-    margin-top: 5px;
-    display: block;
-  }
+  .suggestions div { padding: 8px; cursor: pointer; }
+  .suggestions div:hover { background: #f0f0f0; }
+  #productImage { max-width: 200px; margin-top: 10px; display: none; }
+  #priceLabel { font-weight: bold; margin-top: 5px; display: block; }
 </style>
 </head>
 <body>
@@ -58,23 +34,23 @@
 </div>
 
 <label id="priceLabel"></label>
-
 <div id="imageContainer">
   <img id="productImage" alt="Product Image">
 </div>
 
 <script>
-  const products = [
-    { name: "Apple iPhone", price: 75000, img: "https://via.placeholder.com/200x150?text=iPhone" },
-    { name: "Samsung Galaxy", price: 65000, img: "https://via.placeholder.com/200x150?text=Galaxy" },
-    { name: "Sony Headphones", price: 5000, img: "https://via.placeholder.com/200x150?text=Sony+Headphones" },
-    { name: "Dell Laptop", price: 55000, img: "https://via.placeholder.com/200x150?text=Dell+Laptop" }
-  ];
+  let products = []; // Will be loaded from JSON
 
   const searchInput = document.getElementById('productSearch');
   const suggestionsBox = document.getElementById('suggestions');
   const priceLabel = document.getElementById('priceLabel');
   const productImage = document.getElementById('productImage');
+
+  // Load products from JSON file
+  fetch('products.json')
+    .then(response => response.json())
+    .then(data => products = data)
+    .catch(error => console.error("Error loading products:", error));
 
   searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase();
@@ -105,7 +81,6 @@
     productImage.style.display = "block";
   }
 
-  // Hide dropdown when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.dropdown-container')) {
       suggestionsBox.style.display = 'none';

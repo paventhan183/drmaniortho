@@ -1,6 +1,12 @@
 [
-  { "name": "Apple iPhone", "price": 75000, "img": "https://via.placeholder.com/200x150?text=iPhone" },
-  { "name": "Samsung Galaxy", "price": 65000, "img": "https://via.placeholder.com/200x150?text=Galaxy" },
-  { "name": "Sony Headphones", "price": 5000, "img": "https://via.placeholder.com/200x150?text=Sony+Headphones" },
-  { "name": "Dell Laptop", "price": 55000, "img": "https://via.placeholder.com/200x150?text=Dell+Laptop" }
+  { "name": "Tata Salt 1kg", "price": 25, "img": "https://via.placeholder.com/200x150?text=Tata+Salt" },
+  { "name": "Aashirvaad Atta 5kg", "price": 250, "img": "https://via.placeholder.com/200x150?text=Aashirvaad+Atta" },
+  { "name": "Surf Excel 1kg", "price": 110, "img": "https://via.placeholder.com/200x150?text=Surf+Excel" },
+  { "name": "Colgate Toothpaste 200g", "price": 85, "img": "https://via.placeholder.com/200x150?text=Colgate" },
+  { "name": "Nescafe Coffee 200g", "price": 320, "img": "https://via.placeholder.com/200x150?text=Nescafe" },
+  { "name": "Amul Butter 500g", "price": 270, "img": "https://via.placeholder.com/200x150?text=Amul+Butter" },
+  { "name": "Parle-G Biscuit 1 pack", "price": 10, "img": "https://via.placeholder.com/200x150?text=Parle-G" },
+  { "name": "Dettol Handwash 200ml", "price": 99, "img": "https://via.placeholder.com/200x150?text=Dettol" },
+  { "name": "Coca-Cola 2L", "price": 90, "img": "https://via.placeholder.com/200x150?text=Coca-Cola" },
+  { "name": "LG LED TV 32 inch", "price": 15999, "img": "https://via.placeholder.com/200x150?text=LG+TV" }
 ]

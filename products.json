@@ -1,0 +1,6 @@
+[
+  { "name": "Apple iPhone", "price": 75000, "img": "https://via.placeholder.com/200x150?text=iPhone" },
+  { "name": "Samsung Galaxy", "price": 65000, "img": "https://via.placeholder.com/200x150?text=Galaxy" },
+  { "name": "Sony Headphones", "price": 5000, "img": "https://via.placeholder.com/200x150?text=Sony+Headphones" },
+  { "name": "Dell Laptop", "price": 55000, "img": "https://via.placeholder.com/200x150?text=Dell+Laptop" }
+]

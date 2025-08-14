@@ -1,343 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Order Form with Delivery Info</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-    }
-    input[type=text], input[type=number], textarea {
-      width: 100%;
-      padding: 8px;
-      font-size: 16px;
-      margin-top: 4px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      resize: vertical;
-    }
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 10px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-    }
-    .row label {
-      flex-basis: 100%;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-    .row input, .row select {
-      flex: 1 1 45%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    .row button.close-btn {
-      flex-basis: 100%;
-      background: #e74c3c;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 4px;
-      max-width: 100px;
-      margin-top: 8px;
-      align-self: flex-start;
-    }
-    #addRowBtn, #submitBtn {
-      padding: 12px 20px;
-      font-size: 18px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-      margin-top: 15px;
-      background-color: #2ecc71;
-      color: white;
-      transition: background-color 0.3s;
-    }
-    #addRowBtn:hover, #submitBtn:hover {
-      background-color: #27ae60;
-    }
-    @media (min-width: 480px) {
-      .row label {
-        flex-basis: auto;
-        margin-right: 10px;
-        margin-bottom: 0;
-        width: 80px;
-      }
-      .row input, .row select {
-        flex: 1 1 auto;
-      }
-      .row button.close-btn {
-        flex-basis: auto;
-        margin-top: 0;
-        max-width: 40px;
-        padding: 6px 10px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Product Search Dropdown</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .dropdown-container { position: relative; width: 250px; }
+  #productSearch { width: 100%; padding: 8px; box-sizing: border-box; }
+  .suggestions {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+  }
+  .suggestions div { padding: 8px; cursor: pointer; }
+  .suggestions div:hover { background: #f0f0f0; }
+  #productImage { max-width: 200px; margin-top: 10px; display: none; }
+  #priceLabel { font-weight: bold; margin-top: 5px; display: block; }
+</style>
 </head>
 <body>
 
-<h2>Order Form with Delivery Info</h2>
+<h2>Search and Select Product
+  
+</h2>
+  
 
-<!-- Delivery Info Section -->
-<label for="custName">Customer Name:</label>
-<input type="text" id="custName" placeholder="Enter customer name" />
+<div class="dropdown-container">
+  <input type="text" id="productSearch" placeholder="Type product name...">
+  <div id="suggestions" class="suggestions"></div>
+</div>
 
-<label for="custAddress">Address:</label>
-<textarea id="custAddress" rows="3" placeholder="Enter delivery address"></textarea>
-
-<label for="custMobile">Mobile Number:</label>
-<input type="text" id="custMobile" placeholder="Enter mobile number" />
-
-<div id="container"></div>
-
-<button id="addRowBtn">Add Row</button>
-<button id="submitBtn">Submit to WhatsApp</button>
+<label id="priceLabel"></label>
+<div id="imageContainer">
+  <img" id="productImage" alt="Product Image">
+</div>
 
 <script>
-  const container = document.getElementById('container');
-  const addRowBtn = document.getElementById('addRowBtn');
-  const submitBtn = document.getElementById('submitBtn');
+  let products = []; // Will be loaded from JSON
 
-  const custNameInput = document.getElementById('custName');
-  const custAddressInput = document.getElementById('custAddress');
-  const custMobileInput = document.getElementById('custMobile');
+  const searchInput = document.getElementById('productSearch');
+  const suggestionsBox = document.getElementById('suggestions');
+  const priceLabel = document.getElementById('priceLabel');
+  const productImage = document.getElementById('productImage');
 
-  const unitDefaults = {
-    'Gram': 200,
-    'Kg': 1,
-    'Packet': 1,
-    'Litre': 1
-  };
-let products = [];
+  // Load products from JSON file
+  fetch('products.json')
+    .then(response => response.json())
+    .then(data => products = data)
+    .catch(error => console.error("Error loading products:", error));
 
-// Load product list from JSON
-fetch('products.json')
-  .then(response => response.json())
-  .then(data => {
-    products = data.map(item => item.name); // store names in array
-  })
-  .catch(err => console.error("Error loading products:", err));
-
-function createRow() {
-  const row = document.createElement('div');
-  row.className = 'row';
-
-  const label = document.createElement('label');
-  row.appendChild(label);
-
-  const wrapper = document.createElement('div');
-  wrapper.style.position = 'relative';
-  wrapper.style.flex = '1 1 45%';
-
-  const inputItem = document.createElement('input');
-  inputItem.type = 'text';
-  inputItem.placeholder = 'Enter or search item name';
-  wrapper.appendChild(inputItem);
-
-  const suggestionsBox = document.createElement('div');
-  suggestionsBox.style.position = 'absolute';
-  suggestionsBox.style.top = '100%';
-  suggestionsBox.style.left = '0';
-  suggestionsBox.style.right = '0';
-  suggestionsBox.style.border = '1px solid #ccc';
-  suggestionsBox.style.background = '#fff';
-  suggestionsBox.style.maxHeight = '150px';
-  suggestionsBox.style.overflowY = 'auto';
-  suggestionsBox.style.zIndex = '1000';
-  suggestionsBox.style.display = 'none';
-  wrapper.appendChild(suggestionsBox);
-
-  // Filter & show suggestions
-  inputItem.addEventListener('input', () => {
-    const query = inputItem.value.toLowerCase();
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
     suggestionsBox.innerHTML = '';
-    if (!query) {
-      suggestionsBox.style.display = 'none';
-      return;
-    }
-
-    const filtered = products.filter(p => p.toLowerCase().includes(query));
-    if (filtered.length) {
-      filtered.forEach(p => {
-        const optionDiv = document.createElement('div');
-        optionDiv.textContent = p;
-        optionDiv.style.padding = '8px';
-        optionDiv.style.cursor = 'pointer';
-        optionDiv.addEventListener('click', () => {
-          inputItem.value = p;
-          suggestionsBox.style.display = 'none';
+    if (query) {
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      if (filtered.length) {
+        filtered.forEach(product => {
+          const option = document.createElement('div');
+          option.textContent = product.name;
+          option.addEventListener('click', () => selectProduct(product));
+          suggestionsBox.appendChild(option);
         });
-        optionDiv.addEventListener('mouseover', () => {
-          optionDiv.style.background = '#f0f0f0';
-        });
-        optionDiv.addEventListener('mouseout', () => {
-          optionDiv.style.background = '#fff';
-        });
-        suggestionsBox.appendChild(optionDiv);
-      });
-      suggestionsBox.style.display = 'block';
+        suggestionsBox.style.display = 'block';
+      } else {
+        suggestionsBox.style.display = 'none';
+      }
     } else {
       suggestionsBox.style.display = 'none';
     }
   });
 
+  function selectProduct(product) {
+    searchInput.value = product.name;
+    suggestionsBox.style.display = 'none';
+    priceLabel.textContent = "Price: ₹" + product.price;
+    productImage.src = product.img;
+    productImage.style.display = "block";
+  }
+
   document.addEventListener('click', (e) => {
-    if (!wrapper.contains(e.target)) {
+    if (!e.target.closest('.dropdown-container')) {
       suggestionsBox.style.display = 'none';
     }
-  });
-
-  row.appendChild(wrapper);
-
-  return row;
-}
-  function generateOrderNumber() {
-    const now = new Date();
-    const dateStr = now.getFullYear().toString() +
-                    String(now.getMonth()+1).padStart(2, '0') +
-                    String(now.getDate()).padStart(2, '0') +
-                    String(now.getHours()).padStart(2, '0') +
-                    String(now.getMinutes()).padStart(2, '0') +
-                    String(now.getSeconds()).padStart(2, '0');
-    const randomStr = Math.floor(Math.random() * 900 + 100);
-    return 'ORD' + dateStr + randomStr;
-  }
-
-  function updateLabels() {
-    const rows = container.querySelectorAll('.row');
-    rows.forEach((row, i) => {
-      const label = row.querySelector('label');
-      label.textContent = `Item ${i + 1}:`;
-    });
-  }
-
-  
-  
-  function resetForm() {
-    custNameInput.value = '';
-    custAddressInput.value = '';
-    custMobileInput.value = '';
-    container.innerHTML = '';
-    container.appendChild(createRow());
-    updateLabels();
-  }
-
-  resetForm();
-
-  addRowBtn.addEventListener('click', () => {
-    const rows = container.querySelectorAll('.row');
-    const lastRow = rows[rows.length - 1];
-
-    if (!lastRow) {
-      container.appendChild(createRow());
-      updateLabels();
-      return;
-    }
-
-    const inputs = lastRow.querySelectorAll('input');
-    const select = lastRow.querySelector('select');
-
-    let allFilled = true;
-    inputs.forEach(input => {
-      if (input.value.trim() === '') allFilled = false;
-    });
-    if (!select.value) allFilled = false;
-
-    if (!allFilled) {
-      alert('Please fill all fields in the current row before adding a new one.');
-      return;
-    }
-
-    container.appendChild(createRow());
-    updateLabels();
-  });
-
-  submitBtn.addEventListener('click', () => {
-    if (custNameInput.value.trim() === '') {
-      alert('Please enter customer name.');
-      custNameInput.focus();
-      return;
-    }
-    if (custAddressInput.value.trim() === '') {
-      alert('Please enter delivery address.');
-      custAddressInput.focus();
-      return;
-    }
-    if (custMobileInput.value.trim() === '') {
-      alert('Please enter mobile number.');
-      custMobileInput.focus();
-      return;
-    }
-
-    const rows = container.querySelectorAll('.row');
-    if (rows.length === 0) {
-      alert('Please add at least one item.');
-      return;
-    }
-
-    let allFilled = true;
-    const data = [];
-
-    rows.forEach(row => {
-      const inputs = row.querySelectorAll('input');
-      const select = row.querySelector('select');
-
-      inputs.forEach(input => {
-        if (input.value.trim() === '') allFilled = false;
-      });
-      if (!select.value) allFilled = false;
-
-      if (allFilled) {
-        data.push({
-          item: inputs[0].value.trim(),
-          unit: select.value,
-          quantity: inputs[1].value.trim()
-        });
-      }
-    });
-
-    if (!allFilled) {
-      alert('Please fill all fields in every item row before submitting.');
-      return;
-    }
-
-    const orderNumber = generateOrderNumber();
-
-    let message = `Order No: ${orderNumber}\n\n`;
-    message += `Name: ${custNameInput.value.trim()}\n`;
-    message += `Address: ${custAddressInput.value.trim()}\n`;
-    message += `Mobile: ${custMobileInput.value.trim()}\n\n`;
-    data.forEach((item, idx) => {
-      message += `${idx + 1}. ${item.item} - ${item.quantity}${item.unit.toLowerCase()}\n`;
-    });
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/918015241869?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
-
-    alert(`Order submitted!\nOrder No: ${orderNumber}\nPlease save it.`);
-
-    resetForm();
   });
 </script>
 

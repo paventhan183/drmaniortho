@@ -128,6 +128,16 @@
     'Packet': 1,
     'Litre': 1
   };
+let products = [];
+
+// Load product list from JSON
+fetch('products.json')
+  .then(response => response.json())
+  .then(data => {
+    products = data.map(item => item.name); // store names in array
+  })
+  .catch(err => console.error("Error loading products:", err));
+
 function createRow() {
   const row = document.createElement('div');
   row.className = 'row';
@@ -135,18 +145,15 @@ function createRow() {
   const label = document.createElement('label');
   row.appendChild(label);
 
-  // Wrapper for input + suggestion dropdown
   const wrapper = document.createElement('div');
   wrapper.style.position = 'relative';
   wrapper.style.flex = '1 1 45%';
 
-  // Input field
   const inputItem = document.createElement('input');
   inputItem.type = 'text';
   inputItem.placeholder = 'Enter or search item name';
   wrapper.appendChild(inputItem);
 
-  // Suggestions box
   const suggestionsBox = document.createElement('div');
   suggestionsBox.style.position = 'absolute';
   suggestionsBox.style.top = '100%';
@@ -160,19 +167,7 @@ function createRow() {
   suggestionsBox.style.display = 'none';
   wrapper.appendChild(suggestionsBox);
 
-  // Product list
-  const products = [
-    'Apple iPhone',
-    'Samsung Galaxy',
-    'Sony Headphones',
-    'Dell Laptop',
-    'HP Printer',
-    'Logitech Mouse',
-    'USB Cable',
-    'Bluetooth Speaker'
-  ];
-
-  // Filter suggestions on typing
+  // Filter & show suggestions
   inputItem.addEventListener('input', () => {
     const query = inputItem.value.toLowerCase();
     suggestionsBox.innerHTML = '';
@@ -180,6 +175,7 @@ function createRow() {
       suggestionsBox.style.display = 'none';
       return;
     }
+
     const filtered = products.filter(p => p.toLowerCase().includes(query));
     if (filtered.length) {
       filtered.forEach(p => {
@@ -205,7 +201,6 @@ function createRow() {
     }
   });
 
-  // Hide suggestions when clicking outside
   document.addEventListener('click', (e) => {
     if (!wrapper.contains(e.target)) {
       suggestionsBox.style.display = 'none';
@@ -213,42 +208,6 @@ function createRow() {
   });
 
   row.appendChild(wrapper);
-
-  // Unit select box
-  const selectUnit = document.createElement('select');
-  const defaultOption = new Option('Select unit', '');
-  selectUnit.add(defaultOption);
-  for (const unit in unitDefaults) {
-    selectUnit.add(new Option(unit, unit));
-  }
-  row.appendChild(selectUnit);
-
-  // Quantity input
-  const inputQty = document.createElement('input');
-  inputQty.type = 'number';
-  inputQty.min = '0';
-  inputQty.placeholder = 'Quantity';
-  row.appendChild(inputQty);
-
-  selectUnit.addEventListener('change', () => {
-    const selectedUnit = selectUnit.value;
-    if (selectedUnit && unitDefaults[selectedUnit] !== undefined) {
-      inputQty.value = unitDefaults[selectedUnit];
-    } else {
-      inputQty.value = '';
-    }
-  });
-
-  // Close button
-  const closeBtn = document.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.textContent = 'X';
-  closeBtn.className = 'close-btn';
-  closeBtn.onclick = () => {
-    container.removeChild(row);
-    updateLabels();
-  };
-  row.appendChild(closeBtn);
 
   return row;
 }

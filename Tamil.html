@@ -150,53 +150,96 @@
   }
 
   function createRow() {
-    const row = document.createElement('div');
-    row.className = 'row';
+  const row = document.createElement('div');
+  row.className = 'row';
 
-    const label = document.createElement('label');
-    row.appendChild(label);
+  const label = document.createElement('label');
+  row.appendChild(label);
 
-    const inputItem = document.createElement('input');
-    inputItem.type = 'text';
-    inputItem.placeholder = 'Enter item name';
-    row.appendChild(inputItem);
+  // Editable dropdown (input + select merged)
+  const wrapper = document.createElement('div');
+  wrapper.style.flex = '1 1 45%';
+  wrapper.style.position = 'relative';
 
-    const selectUnit = document.createElement('select');
-    const defaultOption = new Option('Select unit', '');
-    selectUnit.add(defaultOption);
-    for (const unit in unitDefaults) {
-      selectUnit.add(new Option(unit, unit));
-    }
-    row.appendChild(selectUnit);
+  const inputItem = document.createElement('input');
+  inputItem.type = 'text';
+  inputItem.placeholder = 'Enter or select item name';
+  inputItem.style.width = '100%';
+  wrapper.appendChild(inputItem);
 
-    const inputQty = document.createElement('input');
-    inputQty.type = 'number';
-    inputQty.min = '0';
-    inputQty.placeholder = 'Quantity';
-    row.appendChild(inputQty);
+  const selectItem = document.createElement('select');
+  selectItem.style.position = 'absolute';
+  selectItem.style.top = '0';
+  selectItem.style.left = '0';
+  selectItem.style.width = '100%';
+  selectItem.style.height = '100%';
+  selectItem.style.opacity = '0'; // Invisible but clickable
+  selectItem.style.cursor = 'pointer';
 
-    selectUnit.addEventListener('change', () => {
-      const selectedUnit = selectUnit.value;
-      if (selectedUnit && unitDefaults[selectedUnit] !== undefined) {
-        inputQty.value = unitDefaults[selectedUnit];
-      } else {
-        inputQty.value = '';
-      }
-    });
+  const products = [
+    '',
+    'Apple iPhone',
+    'Samsung Galaxy',
+    'Sony Headphones',
+    'Dell Laptop',
+    'HP Printer',
+    'Logitech Mouse',
+    'USB Cable',
+    'Bluetooth Speaker'
+  ];
+  products.forEach(product => {
+    const option = document.createElement('option');
+    option.value = product;
+    option.textContent = product;
+    selectItem.appendChild(option);
+  });
 
-    const closeBtn = document.createElement('button');
-    closeBtn.type = 'button';
-    closeBtn.textContent = 'X';
-    closeBtn.className = 'close-btn';
-    closeBtn.onclick = () => {
-      container.removeChild(row);
-      updateLabels();
-    };
-    row.appendChild(closeBtn);
+  // When user selects from dropdown, put value in input
+  selectItem.addEventListener('change', () => {
+    inputItem.value = selectItem.value;
+  });
 
-    return row;
+  wrapper.appendChild(selectItem);
+  row.appendChild(wrapper);
+
+  // Unit select box
+  const selectUnit = document.createElement('select');
+  const defaultOption = new Option('Select unit', '');
+  selectUnit.add(defaultOption);
+  for (const unit in unitDefaults) {
+    selectUnit.add(new Option(unit, unit));
   }
+  row.appendChild(selectUnit);
 
+  // Quantity input
+  const inputQty = document.createElement('input');
+  inputQty.type = 'number';
+  inputQty.min = '0';
+  inputQty.placeholder = 'Quantity';
+  row.appendChild(inputQty);
+
+  selectUnit.addEventListener('change', () => {
+    const selectedUnit = selectUnit.value;
+    if (selectedUnit && unitDefaults[selectedUnit] !== undefined) {
+      inputQty.value = unitDefaults[selectedUnit];
+    } else {
+      inputQty.value = '';
+    }
+  });
+
+  // Close button
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.textContent = 'X';
+  closeBtn.className = 'close-btn';
+  closeBtn.onclick = () => {
+    container.removeChild(row);
+    updateLabels();
+  };
+  row.appendChild(closeBtn);
+
+  return row;
+}
   function resetForm() {
     custNameInput.value = '';
     custAddressInput.value = '';

@@ -1,39 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Product Search Dropdown</title>
-  <style>
-    #productImage {
-      max-width: 200px;
-      margin-top: 10px;
-      display: none;
-    }
-    #priceLabel {
-      font-weight: bold;
-      margin-top: 5px;
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Product Search Dropdown</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .dropdown-container {
+    position: relative;
+    width: 250px;
+  }
+  #productSearch {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+  }
+  .suggestions div {
+    padding: 8px;
+    cursor: pointer;
+  }
+  .suggestions div:hover {
+    background: #f0f0f0;
+  }
+  #productImage {
+    max-width: 200px;
+    margin-top: 10px;
+    display: none;
+  }
+  #priceLabel {
+    font-weight: bold;
+    margin-top: 5px;
+    display: block;
+  }
+</style>
 </head>
 <body>
 
 <h2>Search and Select Product</h2>
 
-<!-- Search Input -->
-<input type="text" id="productSearch" list="productList" placeholder="Type product name...">
-<datalist id="productList"></datalist>
+<div class="dropdown-container">
+  <input type="text" id="productSearch" placeholder="Type product name...">
+  <div id="suggestions" class="suggestions"></div>
+</div>
 
-<!-- Price -->
 <label id="priceLabel"></label>
 
-<!-- Image Display -->
 <div id="imageContainer">
   <img id="productImage" alt="Product Image">
 </div>
 
 <script>
-  // Product data
   const products = [
     { name: "Apple iPhone", price: 75000, img: "https://via.placeholder.com/200x150?text=iPhone" },
     { name: "Samsung Galaxy", price: 65000, img: "https://via.placeholder.com/200x150?text=Galaxy" },
@@ -42,31 +72,43 @@
   ];
 
   const searchInput = document.getElementById('productSearch');
-  const dataList = document.getElementById('productList');
+  const suggestionsBox = document.getElementById('suggestions');
   const priceLabel = document.getElementById('priceLabel');
   const productImage = document.getElementById('productImage');
 
-  // Populate datalist
-  function populateDatalist() {
-    dataList.innerHTML = '';
-    products.forEach(p => {
-      const option = document.createElement('option');
-      option.value = p.name;
-      dataList.appendChild(option);
-    });
-  }
-  populateDatalist();
-
-  // Show product details when selected
-  searchInput.addEventListener('change', () => {
-    const product = products.find(p => p.name.toLowerCase() === searchInput.value.toLowerCase());
-    if (product) {
-      priceLabel.textContent = "Price: ₹" + product.price;
-      productImage.src = product.img;
-      productImage.style.display = "block";
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    suggestionsBox.innerHTML = '';
+    if (query) {
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      if (filtered.length) {
+        filtered.forEach(product => {
+          const option = document.createElement('div');
+          option.textContent = product.name;
+          option.addEventListener('click', () => selectProduct(product));
+          suggestionsBox.appendChild(option);
+        });
+        suggestionsBox.style.display = 'block';
+      } else {
+        suggestionsBox.style.display = 'none';
+      }
     } else {
-      priceLabel.textContent = "";
-      productImage.style.display = "none";
+      suggestionsBox.style.display = 'none';
+    }
+  });
+
+  function selectProduct(product) {
+    searchInput.value = product.name;
+    suggestionsBox.style.display = 'none';
+    priceLabel.textContent = "Price: ₹" + product.price;
+    productImage.src = product.img;
+    productImage.style.display = "block";
+  }
+
+  // Hide dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown-container')) {
+      suggestionsBox.style.display = 'none';
     }
   });
 </script>

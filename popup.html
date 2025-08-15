@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Google Review Popup</title>
+<style>
+/* Button style */
+.review-btn {
+  background: #4285F4;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+/* Modal content */
+.modal-content {
+  position: relative;
+  margin: 5% auto;
+  background: white;
+  padding: 0;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  height: 80%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Iframe style */
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Review Button -->
+<button class="review-btn" onclick="openModal()">Leave a Google Review</button>
+
+<!-- Modal -->
+<div id="reviewModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <iframe src="YOUR_GOOGLE_REVIEW_LINK_HERE"></iframe>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById("reviewModal").style.display = "block";
+}
+function closeModal() {
+  document.getElementById("reviewModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

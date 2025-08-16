@@ -128,17 +128,23 @@
       padding: 0;
       background: linear-gradient(135deg, #0066cc, #ff66cc);
     }
+    
     header {
       background-color: #0066cc;
       color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: relative;
-      z-index: 10;
+      z-index: 1000; /* Important so nav stays clickable */
+      flex-wrap: wrap;
     }
     header h1 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      flex: 1 1 auto;
+      min-width: 200px;
     }
     header p {
       margin: 5px 0;

@@ -157,6 +157,25 @@
     header p.phone-number a {
       color: white;
       text-decoration: none;
+    }nav#nav-menu {
+      display: flex;
+      gap: 20px;
+      flex: 1 1 auto;
+      justify-content: flex-end;
+    }
+    nav#nav-menu a {
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+    nav#nav-menu a:hover,
+    nav#nav-menu a:focus {
+      background-color: #004a99;
+      outline: none;
     }
 
     /* Banner carousel styles */
@@ -323,6 +342,25 @@
         max-width: 100%;
         flex-basis: 100%;
       }
+      nav#nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #0066cc;
+        margin-top: 10px;
+        order: 3;
+        border-radius: 0 0 10px 10px;
+      }
+      nav#nav-menu.show {
+        display: flex;
+      }
+      nav#nav-menu a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #005bb5;
+      }
+      nav#nav-menu a:last-child {
+        border-bottom: none;
+      }
       .appointment-container {
         max-width: 100%;
         margin: 20px 10px 50px 10px;
@@ -426,7 +464,11 @@
 <header>
   <h1>🏥 Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
   <p>Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) – Orthopedic Specialist & General Physician</p>
-  
+  <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </header>
 
 <div class="about-us">

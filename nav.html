@@ -177,6 +177,19 @@
       background-color: #004a99;
       outline: none;
     }
+        #menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+    #menu-toggle div {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
 
     /* Banner carousel styles */
     .banner-slider {
@@ -334,6 +347,10 @@
       }
     }
     @media (max-width: 768px) {
+      #menu-toggle {
+        display: flex;
+        order: 2;
+      }
       .services-row, .timing-contact-row {
         flex-direction: column;
         padding: 0 10px;

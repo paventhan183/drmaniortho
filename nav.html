@@ -640,6 +640,18 @@
 
 
 <script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navMenu.classList.toggle('show');
+    }
+  });
   const slides = document.querySelectorAll('.banner-slider .slide');
   let currentIndex = 0;
 

@@ -291,7 +291,52 @@
       padding: 0 15px;
     }
 
-    
+    .about-us {
+      max-width:1200px;
+      margin: 10px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-size:1rem;
+    }
+    .services-row {
+      max-width:1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .service-section {
+      flex: 1 1 45%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .timing-contact-row {
+      max-width:1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .timing-contact-section {
+      flex: 1 1 45%;
+      max-width: 600px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+    }
     h2 {
       color: #0066cc;
       border-bottom: 2px solid #eee;
@@ -320,7 +365,15 @@
       height: 300px;
       margin-top: 10px;
     }
-    
+    .appointment-container {
+      max-width:1200px;
+      margin: 20px auto 50px auto;
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -362,7 +415,14 @@
         display: flex;
         order: 2;
       }
-      
+      .services-row, .timing-contact-row {
+        flex-direction: column;
+        padding: 0 10px;
+      }
+      .service-section, .timing-contact-section {
+        max-width: 100%;
+        flex-basis: 100%;
+      }
       nav#nav-menu {
         display: none;
         flex-direction: column;
@@ -382,11 +442,32 @@
       nav#nav-menu a:last-child {
         border-bottom: none;
       }
-      
+      .appointment-container {
+        max-width: 100%;
+        margin: 20px 10px 50px 10px;
+      }
+      .about-us {
+        margin: 10px 10px;
+      }
     }
 
     /* Testimonials styles */
-    
+    .testimonials-container {
+      max-width:1200px;
+      margin: 40px auto 60px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-style: italic;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+    }
+    .testimonials-container p {
+      margin-bottom: 20px;
+    }
       #call-btn {
     position: fixed;
     bottom: 20px;
@@ -495,35 +576,28 @@
 
 
 
-    
-    
 
+
+<!-- Widget div (hidden initially) -->
+
+  <!-- Paste your widget code here -->
   
 
 
 
-
-
-
   
+
 
 
 <a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
 
-
+<!-- Patient Testimonials Section -->
 
 
 <script>
-  document.getElementById("showWidgetBtn").addEventListener("click", function() {
-    const widget = document.getElementById("widget");
-    if(widget.style.display === "none") {
-      widget.style.display = "block";  // Show widget
-    } else {
-      widget.style.display = "none";   // Optional: toggle hide if clicked again
-    }
-  });
+  
   const menuToggle = document.getElementById('menu-toggle');
   const navMenu = document.getElementById('nav-menu');
 

@@ -156,9 +156,15 @@
     }
     .container-header {
   display: flex;
-  flex-direction: column;
-  height: 300px; /* example */
+  align-items: flex-end; /* pushes items to bottom */
+  gap: 20px; /* space between */
+  height: 150px; /* example height */
   border: 1px solid #ccc;
+}
+
+.box {
+  background: lightblue;
+  padding: 10px;
 }
 
 .bottom-element {

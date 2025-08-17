@@ -154,6 +154,16 @@
       color: inherit;
       text-decoration: none;
     }
+    .container-header {
+  display: flex;
+  flex-direction: column;
+  height: 300px; /* example */
+  border: 1px solid #ccc;
+}
+
+.bottom-element {
+  margin-top: auto; /* pushes it to bottom */
+}
     header {
       background-color: #0066cc;
       color: white;
@@ -466,22 +476,21 @@
 </head>
 <body>
   <header>
-    <div style="display: flex;"
-      style="display: flex; justify-content: space-around; align-items: center;">
-  <div style="margin-right:20px">
+
+    <div class="container">
+  <div class="content">
+
     <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
     <div></div>
     <div></div>
     <div></div>
   </div>
-
-
-  </div>
-  <div>
+  <div class="bottom-element">
     <h1>Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
-    </div>
-      
-    </div>
+    
+  </div>
+</div>
+
   
   <nav id="nav-menu">
     <a href="/">Home</a>

@@ -154,22 +154,6 @@
       color: inherit;
       text-decoration: none;
     }
-    .container-header {
-  display: flex;
-  align-items: flex-end; /* pushes items to bottom */
-  gap: 20px; /* space between */
-  height: 150px; /* example height */
-  border: 1px solid #ccc;
-}
-
-.box {
-  background: lightblue;
-  padding: 10px;
-}
-
-.bottom-element {
-  margin-top: auto; /* pushes it to bottom */
-}
     header {
       background-color: #0066cc;
       color: white;
@@ -232,41 +216,39 @@
       height: 20px;
       cursor: pointer;
     }
-
-    /* Fullscreen overlay */
-#loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: white; /* change to your site bg color */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* stay above everything */
-}
-
-/* Spinner circle */
-.spinner {
-  border: 8px solid #f3f3f3; /* Light gray */
-  border-top: 8px solid #1976d2; /* Blue color */
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-}
-
-/* Rotation animation */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
     #menu-toggle div {
       height: 3px;
       background: white;
       border-radius: 2px;
     }
+    #loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+}
+
+.loading-text {
+  font-size: 24px;
+  color: #1976d2;
+}
+
+.loading-text span {
+  animation: blink 1.5s infinite;
+}
+
+.loading-text span:nth-child(2) { animation-delay: 0.3s; }
+.loading-text span:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
 
     /* Banner carousel styles */
     .banner-slider {
@@ -512,24 +494,25 @@
 </head>
 <body>
   <div id="loader">
-  <div class="spinner"></div>
-</div>
+  <img src="your-logo.png" alt="Clinic Logo" class="logo-loader">
+  </div>
   <header>
-
-    <div class="container-header">
-  <div class="content">
-
+    <div style="display: flex;"
+      style="display: flex; justify-content: space-around; align-items: center;">
+  <div style="margin-right:20px">
     <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
     <div></div>
     <div></div>
     <div></div>
   </div>
-  <div class="bottom-element">
-    <h1>Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
-    
-  </div>
-</div>
 
+
+  </div>
+  <div>
+    <h1>Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
+    </div>
+      
+    </div>
   
   <nav id="nav-menu">
     <a href="/">Home</a>

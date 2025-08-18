@@ -1,25 +1,30 @@
 /* ================== Variables ================== */
-:root {
-  /* Colors */
-  --primary-color: #0066cc;
-  --secondary-color: #004080;
-  --hover-color: #004a99;
-  --text-color: white;
-  --success-color: #25d366;
-  --call-btn-color: #4CAF50;
-  --call-btn-hover: #45a049;
-  --background-gradient: linear-gradient(135deg, #0066cc, #ff66cc);
-  --section-bg: rgba(255, 255, 255, 0.85);
-  --section-shadow: 0 0 10px rgba(0,0,0,0.1);
 
-  /* Font */
-  --font-family: sans-serif;
+ :root {
+  /* Primary Colors */
+  --primary-color: #2a9df4;      /* Calming blue for headers, nav */
+  --secondary-color: #1e6fa3;    /* Slightly darker blue for buttons, highlights */
+  --hover-color: #1b5ea8;        /* Hover effects */
+  --text-color: #ffffff;          /* White text on buttons/nav */
+  
+  /* Success / Action Colors */
+  --success-color: #28a745;       /* Green for check marks, success highlights */
+  --call-btn-color: #198754;      /* Softer green for call button */
+  --call-btn-hover: #146c43;      /* Darker green hover for call button */
+  
+  /* Backgrounds */
+  --background-gradient: linear-gradient(135deg, #e0f0ff, #f0fcf8); /* light, soft gradient */
+  --section-bg: rgba(255, 255, 255, 0.95); /* clean, soft white for sections */
+  --section-shadow: 0 0 15px rgba(0,0,0,0.08); /* subtle shadow for cards */
+  
+  /* Fonts & Sizes */
+  --font-family: 'Segoe UI', sans-serif;
   --header-font-size: 1.4rem;
   --subheader-font-size: 1rem;
   --slide-font-size: 2.5rem;
   --text-font-size: 1rem;
 
-  /* Spacing & sizes */
+  /* Spacing & radius */
   --header-padding: 15px 20px;
   --border-radius: 10px;
   --btn-padding: 10px 20px;

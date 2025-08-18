@@ -1,9 +1,8 @@
-
 body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
+      font-family:  sans-serif;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(135deg, #0066cc, #ff66cc);
-      color: #333;
     }
     a {
       color: inherit;
@@ -26,7 +25,24 @@ body {
       flex: 1 1 auto;
       min-width: 200px;
     }
-    nav#nav-menu {
+    header p {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+    header p.phone-number {
+      background-color: #004080;
+      color: white;
+      padding: 8px;
+      border-radius: 5px;
+      font-weight: bold;
+      max-width: 220px;
+      margin: 10px auto 0 auto;
+      cursor: pointer;
+    }
+    header p.phone-number a {
+      color: white;
+      text-decoration: none;
+    }nav#nav-menu {
       display: flex;
       gap: 20px;
       flex: 1 1 auto;
@@ -46,7 +62,7 @@ body {
       background-color: #004a99;
       outline: none;
     }
-    #menu-toggle {
+        #menu-toggle {
       display: none;
       flex-direction: column;
       justify-content: space-between;
@@ -59,33 +75,36 @@ body {
       background: white;
       border-radius: 2px;
     }
-    @media (max-width: 768px) {
-      #menu-toggle {
-        display: flex;
-        order: 2;
-      }
-      nav#nav-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #0066cc;
-        margin-top: 10px;
-        order: 3;
-        border-radius: 0 0 10px 10px;
-      }
-      nav#nav-menu.show {
-        display: flex;
-      }
-      nav#nav-menu a {
-        padding: 12px 20px;
-        border-bottom: 1px solid #005bb5;
-      }
-      nav#nav-menu a:last-child {
-        border-bottom: none;
-      }
-    }
+    
+#loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-size: 24px;
+  color: #1976d2;
+  font-family: Arial, sans-serif;
+}
 
-    /* Banner Slider */
+.ortho-loader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fade 1.2s infinite;
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+    
+
+
+    /* Banner carousel styles */
     .banner-slider {
       position: relative;
       width: 100%;
@@ -94,7 +113,6 @@ body {
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       margin-bottom: 20px;
-      z-index: 1;
     }
     .banner-slider .slide {
       position: absolute;
@@ -110,12 +128,10 @@ body {
       align-items: center;
       justify-content: center;
       border-radius: 0 0 15px 15px;
-      z-index: 0;
     }
     .banner-slider .slide.active {
       opacity: 1;
       position: relative;
-      z-index: 1;
     }
     .banner-slider .slide h2 {
       color: white;
@@ -125,32 +141,47 @@ body {
       padding: 0 15px;
     }
 
-    /* Content Sections */
-    .about-us,
-    .services-row,
-    .timing-contact-row,
-    .appointment-container,
-    .testimonials-container {
-      max-width: 1200px;
-      margin: 10px auto 30px auto;
+    .about-us {
+      max-width:1200px;
+      margin: 10px auto;
       padding: 20px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       box-sizing: border-box;
+      font-size:1rem;
     }
-    .services-row,
-    .timing-contact-row {
+    .services-row {
+      max-width:1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
-    .service-section,
+    .service-section {
+      flex: 1 1 45%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .timing-contact-row {
+      max-width:1200px;
+      margin: 10px auto 30px auto;
+      padding: 0 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     .timing-contact-section {
       flex: 1 1 45%;
-      max-width: 550px;
-      background: rgba(255, 255, 255, 0.85);
+      max-width: 600px;
+      background: rgba(255,255,255,0.85);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
@@ -179,15 +210,20 @@ body {
       color: #25d366;
       font-weight: bold;
     }
-
-    /* Map */
     .map-container {
       width: 100%;
       height: 300px;
       margin-top: 10px;
     }
-
-    /* WhatsApp Button */
+    .appointment-container {
+      max-width:1200px;
+      margin: 20px auto 50px auto;
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -217,21 +253,44 @@ body {
       pointer-events: none;
     }
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .services-row,
-      .timing-contact-row {
+      #menu-toggle {
+        display: flex;
+        order: 2;
+      }
+      .services-row, .timing-contact-row {
         flex-direction: column;
         padding: 0 10px;
       }
-      .service-section,
-      .timing-contact-section {
+      .service-section, .timing-contact-section {
         max-width: 100%;
         flex-basis: 100%;
+      }
+      nav#nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #0066cc;
+        margin-top: 10px;
+        order: 3;
+        border-radius: 0 0 10px 10px;
+      }
+      nav#nav-menu.show {
+        display: flex;
+      }
+      nav#nav-menu a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #005bb5;
+      }
+      nav#nav-menu a:last-child {
+        border-bottom: none;
       }
       .appointment-container {
         max-width: 100%;
@@ -242,8 +301,15 @@ body {
       }
     }
 
-    /* Testimonials */
+    /* Testimonials styles */
     .testimonials-container {
+      max-width:1200px;
+      margin: 40px auto 60px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
       font-style: italic;
       font-size: 1rem;
       color: #333;
@@ -252,8 +318,7 @@ body {
     .testimonials-container p {
       margin-bottom: 20px;
     }
-    /* Floating Call Button with number */
-  #call-btn {
+      #call-btn {
     position: fixed;
     bottom: 20px;
     left: -250px; /* start off-screen */
@@ -278,4 +343,4 @@ body {
   /* When loaded */
   #call-btn.show {
     left: 20px; /* final position */
-    }
+  }

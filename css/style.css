@@ -1,35 +1,34 @@
 /* ================== Variables ================== */
-
- :root {
+:root {
   /* Primary Colors */
-  --primary-color: #2a9df4;      /* Calming blue for headers, nav */
-  --secondary-color: #1e6fa3;    /* Slightly darker blue for buttons, highlights */
-  --hover-color: #1b5ea8;        /* Hover effects */
-  --text-color: #ffffff;          /* White text on buttons/nav */
-  
+  --primary-color: #1e88e5;       /* Blue for header, nav */
+  --secondary-color: #1565c0;     /* Darker blue for buttons, highlights */
+  --hover-color: #0d47a1;         /* Hover effect */
+  --text-color: #ffffff;           /* White text on buttons/nav */
+
   /* Success / Action Colors */
-  --success-color: #28a745;       /* Green for check marks, success highlights */
-  --call-btn-color: #198754;      /* Softer green for call button */
-  --call-btn-hover: #146c43;      /* Darker green hover for call button */
-  
+  --success-color: #43a047;        /* Green for check marks, highlights */
+  --call-btn-color: #43a047;       /* Green call button */
+  --call-btn-hover: #2e7d32;       /* Darker green hover */
+
   /* Backgrounds */
-  --background-gradient: linear-gradient(135deg, #e0f0ff, #f0fcf8); /* light, soft gradient */
-  --section-bg: rgba(255, 255, 255, 0.95); /* clean, soft white for sections */
-  --section-shadow: 0 0 15px rgba(0,0,0,0.08); /* subtle shadow for cards */
-  
+  --background-gradient: linear-gradient(135deg, #f5f9ff, #e3f2fd);
+  --section-bg: rgba(255, 255, 255, 0.97);
+  --section-shadow: 0 0 15px rgba(0,0,0,0.08);
+
   /* Fonts & Sizes */
-  --font-family: 'Segoe UI', sans-serif;
-  --header-font-size: 1.4rem;
-  --subheader-font-size: 1rem;
-  --slide-font-size: 2.5rem;
-  --text-font-size: 1rem;
+  --font-family: 'Roboto', sans-serif;
+  --header-font-size: 1.5rem;
+  --subheader-font-size: 1.1rem;
+  --slide-font-size: 2.2rem;
+  --text-font-size: 1.05rem;
 
   /* Spacing & radius */
-  --header-padding: 15px 20px;
+  --header-padding: 18px 25px;
   --border-radius: 10px;
-  --btn-padding: 10px 20px;
+  --btn-padding: 12px 22px;
   --gap-small: 8px;
-  --gap-medium: 10px;
+  --gap-medium: 12px;
   --gap-large: 20px;
 }
 
@@ -39,6 +38,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--background-gradient);
+  color: #333;
 }
 
 a {
@@ -110,7 +110,7 @@ nav#nav-menu a:focus {
   outline: none;
 }
 
-/* Menu toggle (for mobile) */
+/* Menu toggle (mobile) */
 #menu-toggle {
   display: none;
   flex-direction: column;
@@ -201,7 +201,7 @@ nav#nav-menu a:focus {
 .testimonials-container {
   max-width: 1200px;
   margin: 10px auto;
-  padding: 20px;
+  padding: 25px;
   background: var(--section-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--section-shadow);
@@ -209,6 +209,7 @@ nav#nav-menu a:focus {
   font-size: var(--text-font-size);
 }
 
+/* Rows */
 .services-row,
 .timing-contact-row {
   max-width: 1200px;
@@ -226,14 +227,14 @@ nav#nav-menu a:focus {
   max-width: 600px;
 }
 
-/* ================== Headings ================== */
+/* Headings */
 h2 {
   color: var(--primary-color);
   border-bottom: 2px solid #eee;
   padding-bottom: 5px;
 }
 
-/* ================== Lists ================== */
+/* Lists */
 ul {
   list-style: none;
   padding: 0;
@@ -255,14 +256,14 @@ ul li::before {
   font-weight: bold;
 }
 
-/* ================== Map ================== */
+/* Map */
 .map-container {
   width: 100%;
   height: 300px;
   margin-top: 10px;
 }
 
-/* ================== Floating Buttons ================== */
+/* Floating Buttons */
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
@@ -284,7 +285,7 @@ ul li::before {
 }
 
 .whatsapp-button:hover {
-  background-color: #20b358;
+  background-color: #388e3c;
 }
 
 .whatsapp-button img {
@@ -328,7 +329,7 @@ ul li::before {
   left: 20px;
 }
 
-/* ================== Media Queries ================== */
+/* Media Queries */
 @media (max-width: 768px) {
   #menu-toggle {
     display: flex;
@@ -363,7 +364,7 @@ ul li::before {
 
   nav#nav-menu a {
     padding: 12px 20px;
-    border-bottom: 1px solid #005bb5;
+    border-bottom: 1px solid #0d47a1;
   }
 
   nav#nav-menu a:last-child {

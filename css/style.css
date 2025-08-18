@@ -1,99 +1,145 @@
+/* ================== Variables ================== */
+:root {
+  /* Colors */
+  --primary-color: #0066cc;
+  --secondary-color: #004080;
+  --hover-color: #004a99;
+  --text-color: white;
+  --success-color: #25d366;
+  --call-btn-color: #4CAF50;
+  --call-btn-hover: #45a049;
+  --background-gradient: linear-gradient(135deg, #0066cc, #ff66cc);
+  --section-bg: rgba(255, 255, 255, 0.85);
+  --section-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+  /* Font */
+  --font-family: sans-serif;
+  --header-font-size: 1.4rem;
+  --subheader-font-size: 1rem;
+  --slide-font-size: 2.5rem;
+  --text-font-size: 1rem;
+
+  /* Spacing & sizes */
+  --header-padding: 15px 20px;
+  --border-radius: 10px;
+  --btn-padding: 10px 20px;
+  --gap-small: 8px;
+  --gap-medium: 10px;
+  --gap-large: 20px;
+}
+
+/* ================== Global Styles ================== */
 body {
-      font-family:  sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0066cc, #ff66cc);
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    header {
-      background-color: #0066cc;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1000; /* Important so nav stays clickable */
-      flex-wrap: wrap;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.4rem;
-      flex: 1 1 auto;
-      min-width: 200px;
-    }
-    header p {
-      margin: 5px 0;
-      font-size: 1rem;
-    }
-    header p.phone-number {
-      background-color: #004080;
-      color: white;
-      padding: 8px;
-      border-radius: 5px;
-      font-weight: bold;
-      max-width: 220px;
-      margin: 10px auto 0 auto;
-      cursor: pointer;
-    }
-    header p.phone-number a {
-      color: white;
-      text-decoration: none;
-    }nav#nav-menu {
-      display: flex;
-      gap: 20px;
-      flex: 1 1 auto;
-      justify-content: flex-end;
-    }
-    nav#nav-menu a {
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      cursor: pointer;
-    }
-    nav#nav-menu a:hover,
-    nav#nav-menu a:focus {
-      background-color: #004a99;
-      outline: none;
-    }
-        #menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 25px;
-      height: 20px;
-      cursor: pointer;
-    }
-    #menu-toggle div {
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-    }
-    
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  background: var(--background-gradient);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ================== Header ================== */
+header {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: var(--header-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin: 0;
+  font-size: var(--header-font-size);
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+header p {
+  margin: 5px 0;
+  font-size: var(--subheader-font-size);
+}
+
+header p.phone-number {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 8px;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  max-width: 220px;
+  margin: 10px auto 0 auto;
+  cursor: pointer;
+}
+
+header p.phone-number a {
+  color: var(--text-color);
+}
+
+/* ================== Navigation ================== */
+nav#nav-menu {
+  display: flex;
+  gap: var(--gap-large);
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+nav#nav-menu a {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: var(--text-font-size);
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+nav#nav-menu a:hover,
+nav#nav-menu a:focus {
+  background-color: var(--hover-color);
+  outline: none;
+}
+
+/* Menu toggle (for mobile) */
+#menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#menu-toggle div {
+  height: 3px;
+  background: var(--text-color);
+  border-radius: 2px;
+}
+
+/* ================== Loader ================== */
 #loader {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: white;
+  background: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   font-size: 24px;
-  color: #1976d2;
+  color: var(--primary-color);
   font-family: Arial, sans-serif;
 }
 
 .ortho-loader {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--gap-medium);
   animation: fade 1.2s infinite;
 }
 
@@ -101,246 +147,221 @@ body {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
-    
 
+/* ================== Banner Slider ================== */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
 
-    /* Banner carousel styles */
-    .banner-slider {
-      position: relative;
-      width: 100%;
-      height: 250px;
-      border-radius: 0 0 15px 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
-    .banner-slider .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0 0 15px 15px;
-    }
-    .banner-slider .slide.active {
-      opacity: 1;
-      position: relative;
-    }
-    .banner-slider .slide h2 {
-      color: white;
-      font-size: 2.5rem;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-      text-align: center;
-      padding: 0 15px;
-    }
+.banner-slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 15px 15px;
+}
 
-    .about-us {
-      max-width:1200px;
-      margin: 10px auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      font-size:1rem;
-    }
-    .services-row {
-      max-width:1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .service-section {
-      flex: 1 1 45%;
-      max-width: 600px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .timing-contact-row {
-      max-width:1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .timing-contact-section {
-      flex: 1 1 45%;
-      max-width: 600px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    h2 {
-      color: #0066cc;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin-bottom: 8px;
-      padding-left: 25px;
-      position: relative;
-      font-size: 1rem;
-      color: #333;
-    }
-    ul li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #25d366;
-      font-weight: bold;
-    }
-    .map-container {
-      width: 100%;
-      height: 300px;
-      margin-top: 10px;
-    }
-    .appointment-container {
-      max-width:1200px;
-      margin: 20px auto 50px auto;
-      background: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
-      text-decoration: none;
-      z-index: 1000;
-      animation: bounce 2s infinite;
-      cursor: pointer;
-    }
-    .whatsapp-button:hover {
-      background-color: #20b358;
-    }
-    .whatsapp-button img {
-      width: 36px;
-      height: 36px;
-      user-select: none;
-      pointer-events: none;
-    }
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-    @media (max-width: 768px) {
-      #menu-toggle {
-        display: flex;
-        order: 2;
-      }
-      .services-row, .timing-contact-row {
-        flex-direction: column;
-        padding: 0 10px;
-      }
-      .service-section, .timing-contact-section {
-        max-width: 100%;
-        flex-basis: 100%;
-      }
-      nav#nav-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #0066cc;
-        margin-top: 10px;
-        order: 3;
-        border-radius: 0 0 10px 10px;
-      }
-      nav#nav-menu.show {
-        display: flex;
-      }
-      nav#nav-menu a {
-        padding: 12px 20px;
-        border-bottom: 1px solid #005bb5;
-      }
-      nav#nav-menu a:last-child {
-        border-bottom: none;
-      }
-      .appointment-container {
-        max-width: 100%;
-        margin: 20px 10px 50px 10px;
-      }
-      .about-us {
-        margin: 10px 10px;
-      }
-    }
+.banner-slider .slide.active {
+  opacity: 1;
+  position: relative;
+}
 
-    /* Testimonials styles */
-    .testimonials-container {
-      max-width:1200px;
-      margin: 40px auto 60px auto;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      font-style: italic;
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.5;
-    }
-    .testimonials-container p {
-      margin-bottom: 20px;
-    }
-      #call-btn {
-    position: fixed;
-    bottom: 20px;
-    left: -250px; /* start off-screen */
-    background-color: #4CAF50;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 30px;
+.banner-slider .slide h2 {
+  color: var(--text-color);
+  font-size: var(--slide-font-size);
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  text-align: center;
+  padding: 0 15px;
+}
+
+/* ================== Sections ================== */
+.about-us,
+.service-section,
+.timing-contact-section,
+.appointment-container,
+.testimonials-container {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 20px;
+  background: var(--section-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--section-shadow);
+  box-sizing: border-box;
+  font-size: var(--text-font-size);
+}
+
+.services-row,
+.timing-contact-row {
+  max-width: 1200px;
+  margin: 10px auto 30px auto;
+  padding: 0 10px;
+  display: flex;
+  gap: var(--gap-large);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.service-section,
+.timing-contact-section {
+  flex: 1 1 45%;
+  max-width: 600px;
+}
+
+/* ================== Headings ================== */
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* ================== Lists ================== */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+  padding-left: 25px;
+  position: relative;
+  font-size: var(--text-font-size);
+  color: #333;
+}
+
+ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+/* ================== Map ================== */
+.map-container {
+  width: 100%;
+  height: 300px;
+  margin-top: 10px;
+}
+
+/* ================== Floating Buttons ================== */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--success-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  z-index: 1000;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+.whatsapp-button:hover {
+  background-color: #20b358;
+}
+
+.whatsapp-button img {
+  width: 36px;
+  height: 36px;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Call Button */
+#call-btn {
+  position: fixed;
+  bottom: 20px;
+  left: -250px;
+  background-color: var(--call-btn-color);
+  color: var(--text-color);
+  font-size: 18px;
+  padding: var(--btn-padding);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: background-color 0.3s ease, left 0.6s ease;
+  white-space: nowrap;
+}
+
+#call-btn:hover {
+  background-color: var(--call-btn-hover);
+}
+
+#call-btn.show {
+  left: 20px;
+}
+
+/* ================== Media Queries ================== */
+@media (max-width: 768px) {
+  #menu-toggle {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: background-color 0.3s ease, left 0.6s ease;
-    white-space: nowrap;
+    order: 2;
   }
-  #call-btn:hover {
-    background-color: #45a049;
+
+  .services-row, .timing-contact-row {
+    flex-direction: column;
+    padding: 0 10px;
   }
-  /* When loaded */
-  #call-btn.show {
-    left: 20px; /* final position */
+
+  .service-section, .timing-contact-section,
+  .appointment-container, .about-us {
+    max-width: 100%;
+    flex-basis: 100%;
+    margin: 10px;
   }
+
+  nav#nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--primary-color);
+    margin-top: 10px;
+    order: 3;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+
+  nav#nav-menu.show {
+    display: flex;
+  }
+
+  nav#nav-menu a {
+    padding: 12px 20px;
+    border-bottom: 1px solid #005bb5;
+  }
+
+  nav#nav-menu a:last-child {
+    border-bottom: none;
+  }
+}

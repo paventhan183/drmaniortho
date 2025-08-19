@@ -358,7 +358,35 @@ ul li::before {
     order: 3;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
   }
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  background: #fffbea;
+  padding: 30px 10px;
+  text-align: center;
+}
 
+.stat-card {
+  flex: 1;
+  margin: 10px;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.stat-card h2 {
+  font-size: 24px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.stat-card p {
+  font-size: 14px;
+  color: #666;
+}
   nav#nav-menu.show {
     display: flex;
   }

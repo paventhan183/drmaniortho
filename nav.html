@@ -3,52 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr Mani's Ortho Clinic</title>
+  <title>Left Sidebar Menu</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
 
+    /* Header */
     header {
       background-color: #0066cc;
       color: white;
       padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1000;
+      justify-content: flex-start; /* align left */
     }
 
     header h1 {
-      margin: 0;
+      margin: 0 0 0 15px; /* space after menu button */
       font-size: 20px;
-    }
-
-    nav#nav-menu {
-      display: flex;
-      gap: 15px;
-    }
-
-    nav#nav-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
     }
 
     /* Hamburger button */
     #menu-toggle {
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       width: 30px;
       height: 22px;
       cursor: pointer;
-      z-index: 2300;
+      z-index: 2001;
     }
     #menu-toggle div {
       height: 3px;
@@ -56,7 +41,6 @@
       border-radius: 2px;
       transition: all 0.3s ease;
     }
-
     /* Hamburger → X animation */
     #menu-toggle.active div:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
@@ -66,6 +50,30 @@
     }
     #menu-toggle.active div:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Sidebar (LEFT side) */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* hidden off-screen */
+      width: 250px;
+      height: 100%;
+      background-color: #0066cc;
+      color: white;
+      padding-top: 60px;
+      transition: left 0.3s ease-in-out;
+      z-index: 2000;
+    }
+    #sidebar.show {
+      left: 0;
+    }
+    #sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #005bb5;
     }
 
     /* Overlay */
@@ -81,114 +89,51 @@
       display: block;
     }
 
-    /* Mobile sidebar */
-    @media (max-width: 768px) {
-      nav#nav-menu {
-        position: fixed;
-        top: 0;
-        left: -250px; /* hidden off-screen */
-        width: 250px;
-        height: 100%;
-        background-color: #0066cc;
-        flex-direction: column;
-        padding-top: 60px;
-        transition: left 0.3s ease-in-out;
-        z-index: 2000;
-      }
-      nav#nav-menu.show {
-        left: 0;
-      }
-      nav#nav-menu a {
-        padding: 15px 20px;
-        border-bottom: 1px solid #005bb5;
-        font-size: 1.1rem;
-      }
-      #menu-toggle {
-        display: flex;
-        order: 2;
-      }
-    }
-
     main {
-      padding: 100px 20px 20px 20px;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
       padding: 20px;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Dr Mani's Ortho Clinic</h1>
-    <nav id="nav-menu">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <!-- Hamburger button LEFT -->
     <div id="menu-toggle">
       <div></div>
       <div></div>
       <div></div>
     </div>
+    <h1>My Website</h1>
   </header>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
 
   <!-- Overlay -->
   <div id="overlay"></div>
 
   <main>
-    <section id="home">
-      <h2>Welcome</h2>
-      <p>Best Ortho Clinic in Chromepet. Expert treatment by Dr. Mani.</p>
-    </section>
-
-    <section id="services">
-      <h2>Services</h2>
-      <ul>
-        <li>Fracture & Trauma Care</li>
-        <li>Knee & Hip Replacement</li>
-        <li>Sports Injuries</li>
-        <li>Spine & Back Pain Treatment</li>
-      </ul>
-    </section>
-
-    <section id="about">
-      <h2>About</h2>
-      <p>Dr. Mani has 12+ years of experience treating orthopedic conditions with advanced facilities.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Address: 68, Radha Nagar Main Road, opposite J2 Mahal, Chromepet, Chennai</p>
-      <p>Phone: +91 9876543210</p>
-    </section>
+    <h2>Welcome</h2>
+    <p>This is the page content. Click the hamburger menu (top left) to open sidebar.</p>
   </main>
-
-  <footer>
-    <p>&copy; 2025 Dr Mani's Ortho Clinic</p>
-  </footer>
 
   <script>
     const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
+    const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
     menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('show');
+      sidebar.classList.toggle('show');
       overlay.classList.toggle('show');
       menuToggle.classList.toggle('active');
     });
 
     overlay.addEventListener('click', () => {
-      navMenu.classList.remove('show');
+      sidebar.classList.remove('show');
       overlay.classList.remove('show');
       menuToggle.classList.remove('active');
     });

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Left Sidebar Menu</title>
+  <title>Responsive Sidebar + Desktop Nav</title>
   <style>
     body {
       margin: 0;
@@ -17,17 +17,29 @@
       padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* align left */
+      justify-content: space-between;
+      position: relative;
     }
 
     header h1 {
-      margin: 0 0 0 15px; /* space after menu button */
+      margin: 0;
       font-size: 20px;
     }
 
-    /* Hamburger button */
-    #menu-toggle {
+    /* Desktop navigation */
+    nav.desktop-nav {
       display: flex;
+      gap: 20px;
+    }
+    nav.desktop-nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    /* Hamburger button (hidden on desktop) */
+    #menu-toggle {
+      display: none; /* hidden by default */
       flex-direction: column;
       justify-content: space-between;
       width: 30px;
@@ -56,7 +68,7 @@
     #sidebar {
       position: fixed;
       top: 0;
-      left: -250px; /* hidden off-screen */
+      left: -250px; /* hidden */
       width: 250px;
       height: 100%;
       background-color: #0066cc;
@@ -92,20 +104,40 @@
     main {
       padding: 20px;
     }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      nav.desktop-nav {
+        display: none; /* hide desktop nav */
+      }
+      #menu-toggle {
+        display: flex; /* show hamburger */
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <!-- Hamburger button LEFT -->
-    <div id="menu-toggle">
-      <div></div>
-      <div></div>
-      <div></div>
+    <!-- Left side: hamburger (mobile only) + site title -->
+    <div style="display:flex; align-items:center; gap:15px;">
+      <div id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h1>My Website</h1>
     </div>
-    <h1>My Website</h1>
+
+    <!-- Right side: desktop nav -->
+    <nav class="desktop-nav">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <!-- Sidebar -->
+  <!-- Sidebar (for mobile) -->
   <div id="sidebar">
     <a href="#home">Home</a>
     <a href="#services">Services</a>
@@ -118,7 +150,7 @@
 
   <main>
     <h2>Welcome</h2>
-    <p>This is the page content. Click the hamburger menu (top left) to open sidebar.</p>
+    <p>This is the page content. Try resizing the browser → on desktop you see nav in top right, on mobile you see hamburger in top left.</p>
   </main>
 
   <script>

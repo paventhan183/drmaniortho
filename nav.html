@@ -530,15 +530,28 @@
       height: 100%;
       object-fit: cover;
     }
-    
+    .content {
+      width: 80%;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div id="loader">
-  <div class="ortho-loader">
+  <div id="loading" class="ortho-loader">
     🦴 <span>Loading Ortho Care...</span>
   </div>
 </div>
+
   <header>
     
      <div
@@ -1022,6 +1035,34 @@ fetch('gallery.json')
         });
       })
       .catch(error => console.error("Error loading gallery JSON:", error));
+let counter = 1;
+    const container = document.getElementById("loader");
+    const loading = document.getElementById("loading");
+
+    // Function to load new content
+    function loadContent() {
+      loading.style.display = "block"; // Show loading text
+
+      setTimeout(() => {
+        for (let i = 0; i < 5; i++) {
+          let div = document.createElement("div");
+          div.className = "content";
+          div.textContent = "Content Block " + (counter++);
+          container.appendChild(div);
+        }
+        loading.style.display = "none"; // Hide loading text
+      }, 1000); // Fake delay
+    }
+
+    // Load initial content
+    loadContent();
+
+    // Detect scroll to bottom
+    window.addEventListener("scroll", () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        loadContent();
+      }
+    });
 </script>
 
 </body>

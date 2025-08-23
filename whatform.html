@@ -146,70 +146,103 @@
 
   <style>
     
-    /* Add space so content not hidden under header */
     
-    body {
-      font-family:  sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0066cc, #ff66cc);
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    header {
-      background-color: #0066cc;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      
-      position: fixed;   /* makes it stick */
-      top: 0;  
-      z-index: 1000; 
-    }
-.main {
-      margin-top: 200px;  /* push content down so it's not hidden under header */
-      padding: 20px;
-      line-height: 1.6;
+    :root {
+  /* Colors */
+  --primary-color: #0066cc;
+  --primary-dark: #004080;
+  --primary-hover: #005bb5;
+  --secondary-color: #ff66cc;
+  --white: #ffffff;
+  --text-dark: #333;
+  --success-color: #4CAF50;
+  --success-hover: #45a049;
+  --whatsapp-color: #25d366;
+  --whatsapp-hover: #20b358;
+
+  /* Background overlays */
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg-strong: rgba(255, 255, 255, 0.9);
+
+  /* Shadows & radius */
+  --box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  --btn-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  --radius: 10px;
+
+  /* Fonts */
+  --font-main: sans-serif;
+  --font-alt: Arial, sans-serif;
 }
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-    header p {
-      margin: 5px 0;
-      font-size: 1rem;
-    }
-    header p.phone-number {
-      background-color: #004080;
-      color: white;
-      padding: 8px;
-      border-radius: 5px;
-      font-weight: bold;
-      max-width: 220px;
-      margin: 10px auto 0 auto;
-      cursor: pointer;
-    }
-    header p.phone-number a {
-      color: white;
-      text-decoration: none;
-    }
-    
+
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.main {
+  margin-top: 200px;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+header p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+header p.phone-number {
+  background-color: var(--primary-dark);
+  color: var(--white);
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  max-width: 220px;
+  margin: 10px auto 0 auto;
+  cursor: pointer;
+}
+
+header p.phone-number a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Loader */
 #loader {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: white;
+  background: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   font-size: 24px;
-  color: #1976d2;
-  font-family: Arial, sans-serif;
+  color: var(--primary-color);
+  font-family: var(--font-alt);
 }
 
 .ortho-loader {
@@ -223,314 +256,302 @@
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
-    
 
+/* Banner carousel */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+.banner-slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.banner-slider .slide.active {
+  opacity: 1;
+  position: relative;
+}
+.banner-slider .slide h2 {
+  color: var(--white);
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  text-align: center;
+  padding: 0 15px;
+}
 
-    /* Banner carousel styles */
-    .banner-slider {
-      position: relative;
-      width: 100%;
-      height: 250px;
-      border-radius: 0 0 15px 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
-    .banner-slider .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0 0 15px 15px;
-    }
-    .banner-slider .slide.active {
-      opacity: 1;
-      position: relative;
-    }
-    .banner-slider .slide h2 {
-      color: white;
-      font-size: 2.5rem;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-      text-align: center;
-      padding: 0 15px;
-    }
+/* About section */
+.about-us {
+  max-width:1200px;
+  margin: 10px auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  font-size:1rem;
+}
 
-    .about-us {
-      max-width:1200px;
-      margin: 10px auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      font-size:1rem;
-    }
-    .services-row {
-      max-width:1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .service-section {
-      flex: 1 1 45%;
-      max-width: 600px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .timing-contact-row {
-      max-width:1200px;
-      margin: 10px auto 30px auto;
-      padding: 0 10px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .timing-contact-section {
-      flex: 1 1 45%;
-      max-width: 600px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    h2 {
-      color: #0066cc;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin-bottom: 8px;
-      padding-left: 25px;
-      position: relative;
-      font-size: 1rem;
-      color: #333;
-    }
-    ul li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #25d366;
-      font-weight: bold;
-    }
-    .map-container {
-      width: 100%;
-      height: 300px;
-      margin-top: 10px;
-    }
-    .appointment-container {
-      max-width:1200px;
-      margin: 20px auto 50px auto;
-      background: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
-      text-decoration: none;
-      z-index: 1000;
-      animation: bounce 2s infinite;
-      cursor: pointer;
-    }
-    .whatsapp-button:hover {
-      background-color: #20b358;
-    }
-    .whatsapp-button img {
-      width: 36px;
-      height: 36px;
-      user-select: none;
-      pointer-events: none;
-    }
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-    @media (max-width: 768px) {
-      
-      .services-row, .timing-contact-row {
-        flex-direction: column;
-        padding: 0 10px;
-      }
-      .service-section, .timing-contact-section {
-        max-width: 100%;
-        flex-basis: 100%;
-      }
-      
-      .appointment-container {
-        max-width: 100%;
-        margin: 20px 10px 50px 10px;
-      }
-      .about-us {
-        margin: 10px 10px;
-      }
-    }
+.services-row, .timing-contact-row {
+  max-width:1200px;
+  margin: 10px auto 30px auto;
+  padding: 0 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    /* Testimonials styles */
-    .testimonials-container {
-      max-width:1200px;
-      margin: 40px auto 60px auto;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      font-style: italic;
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.5;
-    }
-    .testimonials-container p {
-      margin-bottom: 20px;
-    }
-      #call-btn {
-    position: fixed;
-    bottom: 20px;
-    left: -250px; /* start off-screen */
-    background-color: #4CAF50;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 30px;
+.service-section, .timing-contact-section {
+  flex: 1 1 45%;
+  max-width: 600px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul li {
+  margin-bottom: 8px;
+  padding-left: 25px;
+  position: relative;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--whatsapp-color);
+  font-weight: bold;
+}
+
+.map-container {
+  width: 100%;
+  height: 300px;
+  margin-top: 10px;
+}
+
+.appointment-container {
+  max-width:1200px;
+  margin: 20px auto 50px auto;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+}
+
+/* WhatsApp floating button */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--whatsapp-color);
+  color: var(--white);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  z-index: 1000;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+.whatsapp-button:hover {
+  background-color: var(--whatsapp-hover);
+}
+.whatsapp-button img {
+  width: 36px;
+  height: 36px;
+  user-select: none;
+  pointer-events: none;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Testimonials */
+.testimonials-container {
+  max-width:1200px;
+  margin: 40px auto 60px auto;
+  background: var(--card-bg-strong);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+.testimonials-container p {
+  margin-bottom: 20px;
+}
+
+/* Call button */
+#call-btn {
+  position: fixed;
+  bottom: 20px;
+  left: -250px;
+  background-color: var(--success-color);
+  color: var(--white);
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: var(--btn-shadow);
+  z-index: 1000;
+  transition: background-color 0.3s ease, left 0.6s ease;
+  white-space: nowrap;
+}
+#call-btn:hover {
+  background-color: var(--success-hover);
+}
+#call-btn.show {
+  left: 20px;
+}
+
+/* Desktop nav */
+nav.desktop-nav {
+  display: flex;
+  gap: 20px;
+}
+nav.desktop-nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Hamburger menu */
+#menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 2001;
+}
+#menu-toggle div {
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+#menu-toggle.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle.active div:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding-top: 60px;
+  transition: left 0.3s ease-in-out;
+  z-index: 2000;
+}
+#sidebar.show {
+  left: 0;
+}
+#sidebar a {
+  display: block;
+  padding: 15px 20px;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid var(--primary-hover);
+}
+
+/* Overlay */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1500;
+}
+#overlay.show {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav.desktop-nav {
+    display: none;
+  }
+  #menu-toggle {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: background-color 0.3s ease, left 0.6s ease;
-    white-space: nowrap;
   }
-  #call-btn:hover {
-    background-color: #45a049;
+  .services-row, .timing-contact-row {
+    flex-direction: column;
+    padding: 0 10px;
   }
-  /* When loaded */
-  #call-btn.show {
-    left: 20px; /* final position */
+  .service-section, .timing-contact-section {
+    max-width: 100%;
+    flex-basis: 100%;
   }
-    /* Desktop navigation */
-    nav.desktop-nav {
-      display: flex;
-      gap: 20px;
-    }
-    nav.desktop-nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
-    /* Hamburger button (hidden on desktop) */
-    #menu-toggle {
-      display: none; /* hidden by default */
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      z-index: 2001;
-    }
-    #menu-toggle div {
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    /* Hamburger → X animation */
-    #menu-toggle.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    #menu-toggle.active div:nth-child(2) {
-      opacity: 0;
-    }
-    #menu-toggle.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* Sidebar (LEFT side) */
-    #sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px; /* hidden */
-      width: 250px;
-      height: 100%;
-      background-color: #0066cc;
-      color: white;
-      padding-top: 60px;
-      transition: left 0.3s ease-in-out;
-      z-index: 2000;
-    }
-    #sidebar.show {
-      left: 0;
-    }
-    #sidebar a {
-      display: block;
-      padding: 15px 20px;
-      color: white;
-      text-decoration: none;
-      border-bottom: 1px solid #005bb5;
-    }
-
-    /* Overlay */
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 1500;
-    }
-    #overlay.show {
-      display: block;
-    }
+  .appointment-container {
+    max-width: 100%;
+    margin: 20px 10px 50px 10px;
+  }
+  .about-us {
+    margin: 10px 10px;
+  }
+}
+    
+    
+  
+      
+      
 
     
 
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      nav.desktop-nav {
-        display: none; /* hide desktop nav */
-      }
-      #menu-toggle {
-        display: flex; /* show hamburger */
-      }
-    }
   </style>
 </head>
 <body>

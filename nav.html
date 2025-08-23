@@ -594,7 +594,20 @@ ul li::before {
   </div>
 </div>
 
-
+<div style="text-align:center; padding:50px; background:#ffdede;">
+  <div>
+    <h1 id="experience">0</h1>
+    <p>Years of Experience</p>
+  </div>
+  <div>
+    <h1 id="success">0</h1>
+    <p>Successful Surgeries</p>
+  </div>
+  <div>
+    <h1 id="patients">0</h1>
+    <p>Happy Patients</p>
+  </div>
+</div>
 <div class="about-us">
   
   
@@ -879,7 +892,25 @@ function loadWidget() {
   window.addEventListener("load", function(){
     document.getElementById("loader").style.display = "none";
   });
+// Function to animate count up
+function animateCount(id, target, duration) {
+  let element = document.getElementById(id);
+  let start = 0;
+  let increment = target / (duration / 20); // update every 20ms
+  let interval = setInterval(() => {
+    start += increment;
+    if(start >= target) {
+      start = target;
+      clearInterval(interval);
+    }
+    element.textContent = id === "success" ? Math.floor(start) + "%" : Math.floor(start).toLocaleString();
+  }, 20);
+}
 
+// Trigger the animations
+animateCount("experience", 18, 2000);  // 18+ in 2 seconds
+animateCount("success", 92, 2000);     // 92% in 2 seconds
+animateCount("patients", 6000, 2000);  // 6,000+ in 2 seconds
 </script>
 
 </body>

@@ -1,174 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+  <!-- Basic SEO -->
+    
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Sidebar + Desktop Nav</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+  <title>
+    Ortho Clinic in Chromepet | Best Ortho Doctor Near You – Dr Mani Ortho
+  </title>
+  <meta name="description" content="Dr Mani’s Ortho Speciality & General Clinic in Chromepet, Chennai. Trusted ortho doctor near you for knee pain, fractures, arthritis, spine care, and sports injuries. Book appointment online.">
+  <meta name="keywords" content="Ortho Clinic Chromepet,Ortho doctor in Chromepet, Joint Pain Treatment Chromepet, Bone Specialist Chromepet, General Clinic Chromepet in Chromepet">
+  <meta name="author" content="Dr Mani's Ortho Speciality & General Clinic">
 
-    /* Header */
-    header {
-      background-color: #0066cc;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
 
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
+  <!-- Open Graph for Facebook / WhatsApp -->
+  <meta property="og:title" content="Dr Mani's Ortho Speciality & General Clinic - Chromepet, Chennai">
+  <meta property="og:description" content="Expert care for fractures, joint pain, bone problems, and general health needs. Serving Chromepet for over 12 years.">
+  <meta property="og:image" content="https://drmaniortho.in/images/clinic-preview.jpg">
+  <meta property="og:url" content="https://drmaniortho.in">
+  <meta property="og:type" content="website">
 
-    /* Desktop navigation */
-    nav.desktop-nav {
-      display: flex;
-      gap: 20px;
-    }
-    nav.desktop-nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-    }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dr Mani's Ortho Speciality & General Clinic - Chromepet, Chennai">
+  <meta name="twitter:description" content="Expert care for fractures, joint pain, bone problems, and general health needs. Serving Chromepet for over 12 years.">
+  <meta name="twitter:image" content="https://drmaniortho.in/images/clinic-preview.jpg">
 
-    /* Hamburger button (hidden on desktop) */
-    #menu-toggle {
-      display: none; /* hidden by default */
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      z-index: 2001;
-    }
-    #menu-toggle div {
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    /* Hamburger → X animation */
-    #menu-toggle.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    #menu-toggle.active div:nth-child(2) {
-      opacity: 0;
-    }
-    #menu-toggle.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
+  
+    <link rel="canonical" href="https://drmaniortho.in/" />
+  <link rel="icon" type="image/png" href="IMG-20250712-WA0001.jpg">
 
-    /* Sidebar (LEFT side) */
-    #sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px; /* hidden */
-      width: 250px;
-      height: 100%;
-      background-color: #0066cc;
-      color: white;
-      padding-top: 60px;
-      transition: left 0.3s ease-in-out;
-      z-index: 2000;
-    }
-    #sidebar.show {
-      left: 0;
-    }
-    #sidebar a {
-      display: block;
-      padding: 15px 20px;
-      color: white;
-      text-decoration: none;
-      border-bottom: 1px solid #005bb5;
-    }
+    
+  
 
-    /* Overlay */
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 1500;
-    }
-    #overlay.show {
-      display: block;
-    }
 
-    main {
-      padding: 20px;
-    }
+</head>
 
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      nav.desktop-nav {
-        display: none; /* hide desktop nav */
-      }
-      #menu-toggle {
-        display: flex; /* show hamburger */
-      }
+  
+
+  <!-- JSON-LD Structured Data for Services -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Dr Mani's Ortho Speciality & General Clinic",
+  "url": "https://drmaniortho.in/",
+  "image": "https://drmaniortho.in/IMG-20250816-WA0000.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "68, Radha Nagar Main Road, opposite J2 Mahal",
+    "addressLocality": "Chromepet",
+    "addressRegion": "Chennai",
+    "postalCode": "600044",
+    "addressCountry": "IN"
+  },
+  "medicalSpecialty": [
+    {
+      "@type": "MedicalSpecialty",
+      "name": "Orthopedic & Specialized Care"
+    },
+    {
+      "@type": "MedicalSpecialty",
+      "name": "General Health Consultation"
     }
-  </style>
+  ],
+  "makesOffer": [
+    {
+      "@type": "MedicalService",
+      "name": "Knee pain, ligament injuries, and arthritis"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Back or neck pain, slipped disc, and sciatica"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Shoulder pain, stiffness, and tendon tears"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Hip pain, fractures, and arthritis"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Trauma & Fracture Management"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Sports injuries"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Joint Replacement Surgery"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Spine Care & Surgery"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Clinical Laboratory Services"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Physiotherapy"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Digital X-Ray"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Foot, ankle, hand, and wrist injuries or pain"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Fever & Infections"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Stomach Problems"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "General Pain"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Fatigue & Weakness"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Wound Care"
+    },
+    {
+      "@type": "MedicalService",
+      "name": "Diabetic Treatment"
+    }
+  ]
+}
+  </script>
+  
+<style>
+
+:root {
+  --primary-color: #e0e0e0;        /* Light grey for header, links */
+  --primary-dark: #c0c0c0;         /* Slightly darker grey for phone button */
+  --primary-hover: #d0d0d0;        /* Hover grey for nav links */
+  --secondary-color: #f0f0f0;      /* Light grey for WhatsApp button */
+  --secondary-hover: #e8e8e8;      /* Hover grey */
+  --accent-color: #d9d9d9;         /* Soft grey accent */
+  --call-btn-color: #e0e0e0;       /* Light grey for call button */
+  --call-btn-hover: #d0d0d0;       /* Hover for call button */
+  --white: #ffffff;
+  --light-bg: rgba(245, 245, 245, 0.9); /* Lighter grey background for sections */
+  --text-color: #000000;           /* Black text */
+  --text-dark: #111111;            /* Darker black for contrast */
+}
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: var(--text-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+header p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+header p.phone-number {
+  background-color: var(--primary-dark);
+  color: var(--white);
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  max-width: 220px;
+  margin: 10px auto 0 auto;
+  cursor: pointer;
+}
+
+header p.phone-number a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+nav#nav-menu {
+  display: flex;
+  gap: 20px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+nav#nav-menu a {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+nav#nav-menu a:hover,
+nav#nav-menu a:focus {
+  background-color: var(--primary-hover);
+  outline: none;
+}
+
+#menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#menu-toggle div {
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+}
+
+#loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-size: 24px;
+  color: var(--primary-color);
+  font-family: Arial, sans-serif;
+}
+
+.ortho-loader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fade 1.2s infinite;
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Banner carousel styles */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.banner-slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 15px 15px;
+}
+
+.banner-slider .slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+.banner-slider .slide h2 {
+  color: var(--white);
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  text-align: center;
+  padding: 0 15px;
+}
+
+.about-us {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 20px;
+  background: var(--light-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.services-row {
+  max-width: 1200px;
+  margin: 10px auto 30px auto;
+  padding: 0 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.service-section {
+  flex: 1 1 45%;
+  max-width: 600px;
+  background: var(--light-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  color: var(--text-dark);
+}
+
+.timing-contact-row {
+  max-width: 1200px;
+  margin: 10px auto 30px auto;
+  padding: 0 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timing-contact-section {
+  flex: 1 1 45%;
+  max-width: 600px;
+  background: var(--light-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  color: var(--text-dark);
+}
+
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+  padding-left: 25px;
+  position: relative;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.map-container {
+  width: 100%;
+  height: 300px;
+  margin-top: 10px;
+}
+
+.appointment-container {
+  max-width: 1200px;
+  margin: 20px auto 50px auto;
+  background: var(--light-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  color: var(--text-dark);
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  z-index: 1000;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+.whatsapp-button:hover {
+  background-color: var(--secondary-hover);
+}
+
+.whatsapp-button img {
+  width: 36px;
+  height: 36px;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Call button */
+#call-btn {
+  position: fixed;
+  bottom: 20px;
+  left: -250px;
+  background-color: var(--call-btn-color);
+  color: var(--white);
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: background-color 0.3s ease, left 0.6s ease;
+  white-space: nowrap;
+}
+
+#call-btn:hover {
+  background-color: var(--call-btn-hover);
+}
+
+#call-btn.show {
+  left: 20px;
+}
+
+/* Testimonials styles */
+.testimonials-container {
+  max-width: 1200px;
+  margin: 40px auto 60px auto;
+  background: var(--section-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.testimonials-container p {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  #menu-toggle { display: flex; order: 2; }
+  .services-row, .timing-contact-row { flex-direction: column; padding: 0 10px; }
+  .service-section, .timing-contact-section { max-width: 100%; flex-basis: 100%; }
+  nav#nav-menu { display: none; flex-direction: column; width: 100%; background-color: var(--primary-color); margin-top: 10px; order: 3; border-radius: 0 0 10px 10px; }
+  nav#nav-menu.show { display: flex; }
+  nav#nav-menu a { padding: 12px 20px; border-bottom: 1px solid var(--primary-dark); }
+  nav#nav-menu a:last-child { border-bottom: none; }
+  .appointment-container { max-width: 100%; margin: 20px 10px 50px 10px; }
+  .about-us { margin: 10px; }
+}
+</style>
 </head>
 <body>
+  <div id="loader">
+  <div class="ortho-loader">
+    🦴 <span>Loading Ortho Care...</span>
+  </div>
+</div>
   <header>
-    <!-- Left side: hamburger (mobile only) + site title -->
-    <div style="display:flex; align-items:center; gap:15px;">
-      <div id="menu-toggle">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <h1>My Website</h1>
-    </div>
-
-    <!-- Right side: desktop nav -->
-    <nav class="desktop-nav">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Sidebar (for mobile) -->
-  <div id="sidebar">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    
+     <div
+      style="display: flex; justify-content: space-between; align-items: center; gap:20px">
+  <div >
+    <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 
-  <!-- Overlay -->
-  <div id="overlay"></div>
 
-  <main>
-    <h2>Welcome</h2>
-    <p>This is the page content. Try resizing the browser → on desktop you see nav in top right, on mobile you see hamburger in top left.</p>
-  </main>
+  </div>
+  <div>
+    <h1>Dr. MANI'S ORTHO SPECIALITY & GENERAL CLINIC</h1>
+    </div>
+      
+    </div>
+  
+  
+  <nav id="nav-menu">
+    <a href="/">Home</a>
+    <a href="#services">Services</a>
+    <a href="#contact-form">Book Appointment</a>
+    
+  </nav>
+  
+</header>
+<a id="call-btn" href="tel:9444261111" aria-label="Call Dr. Mani" title="Call Dr. Mani">
+  📞 94442&nbsp;61111
+</a>
+<!-- Banner carousel container -->
+<div class="banner-slider">
+  <!-- Common Problems First -->
+  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">
+    <h2>Trauma & Fracture Management</h2>
+  </div>
+  <div class="slide " style="background-image: url('images/images (21).jpeg')">
+    <h2>Knee Pain, Ligament Injuries & Arthritis</h2>
+  </div>
+  <div class="slide" style="background-image: url('images/images (22).jpeg')">
+  
+    <h2>Back or Neck Pain, Slipped Disc & Sciatica</h2>
+  </div>
+  <div class="slide" style="background-image: url('images/images (23).jpeg')">
+    <h2>Shoulder Pain, Stiffness & Tendon Tears</h2>
+  </div>
+  <div class="slide" style="background-image: url('images/images (24).jpeg')">
+    <h2>Hip Pain, Fractures & Arthritis</h2>
+  </div>
+  <div class="slide" style="background-image: url('images/images (25).jpeg')">
+    <h2>Sports Injuries</h2>
+  </div>
+  
 
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
+  <!-- Other Services -->
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1350&q=80');">
+    <h2>Joint Replacement Surgery</h2>
+  </div>
+  <div class="slide" style="background-color: #003300;">
+    <h2>Spine Care & Surgery</h2>
+  </div>
+  <div class="slide" style="background-color: #004080;">
+    <h2>Clinical Laboratory Services</h2>
+  </div>
+  <div class="slide" style="background-color: #660066;">
+    <h2> Advanced Equipped Physiotherapy</h2>
+  </div>
+  <div class="slide" style="background-color: #003300;">
+    <h2>Digital X-Ray</h2>
+  </div>
+  <div class="slide" style="background-color: #2f4f4f;">
+    <h2>Foot, Ankle, Hand & Wrist Injuries or Pain</h2>
+  </div>
+</div>
 
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('show');
-      overlay.classList.toggle('show');
-      menuToggle.classList.toggle('active');
+
+<div class="about-us">
+  
+  
+<section  aria-labelledby="about-dr-mani">
+  <h2 id="about-dr-mani">About Dr. Mani Arumugam</h2>
+    <p>
+      <strong>
+        
+      Dr. Mani Arumugam, M.B.B.S., M.S. (Ortho) 
+        </strong>
+    </p>
+  <p><strong>
+    Orthopedic Specialist & General Physician
+  </strong></p>
+  <p>
+    
+    <strong>12+ years of experience</strong>, Dr. Mani Arumugam has treated
+    <strong>over 10,000 patients</strong> and performed
+    <strong>1,500+ successful surgical procedures</strong>, however he encourages
+    <strong>non-surgical treatment methods</strong> whenever suitable.
+  </p>
+  <p>
+    He offers expert care for <strong>fractures, joint pain, and bone problems</strong>,
+    and provides <strong>general health consultations</strong> for conditions like
+    fever, cold, diabetes, blood pressure, infections, and wound care.
+  </p>
+
+  <div><strong>Trusted care. Proven results.</strong></div>
+  </section>
+</div>
+
+<div id="services" class="services-row" id="detailed-surgeries">
+  <section class="service-section">
+    <!-- Orthopedic & Specialized Care -->
+    <div style=" border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+      <h2 style="color: #1976d2; font-size: 20px; margin: 0 0 10px 0;">Orthopedic & Specialized Care</h2>
+      
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Trauma & Fracture Management
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Knee pain, ligament injuries, and arthritis
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Back or neck pain, slipped disc, and sciatica
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Shoulder pain, stiffness, and tendon tears
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Hip pain, fractures, and arthritis
+        </li>
+        
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Sports injuries
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Joint Replacement Surgery
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Spine Care & Surgery
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Clinical Laboratory Services
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+         Advanced Equipped Physiotherapy
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Digital X-Ray
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Foot, ankle, hand, and wrist injuries or pain
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="service-section">
+    <!-- General Health Consultation -->
+    <div style=" border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+      <h2 style="color: #1976d2; font-size: 20px; margin: 0 0 10px 0;">General Health Consultation</h2>
+      
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Fever & Infections
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Stomach Problems
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          General Pain
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Fatigue & Weakness
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Wound Care
+        </li>
+        <li style="margin-bottom: 8px; padding-left: 26px; position: relative;">
+          <span style="color: #16a34a; position: absolute; left: 0;">✔</span>
+          Diabetic Treatment
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="about-us">
+  
+  <section id="why-choose-us" aria-labelledby="why-choose-us-title">
+  <h2 id="why-choose-us-title">Why Choose Us</h2>
+  <ul>
+    <li><strong>Experienced Orthopedic Doctor in Chromepet</strong></li>
+    <li><strong>12+ years</strong> of expertise with <strong>10,000+ patients</strong> treated</li>
+    <li>Advanced facilities – Digital X-ray, Lab, Physiotherapy</li>
+    <li>Affordable and transparent treatment costs</li>
+    <li>Convenient location near J2 Mahal, Radha Nagar Main Road, Chromepet</li>
+  </ul>
+</section>
+
+</div>
+
+<div class="timing-contact-row">
+  <section class="timing-contact-section">
+    <h2>Clinic Timing</h2>
+    <ul>
+      <li>Monday – Sunday: Open 24 Hours</li>
+    </ul>
+
+      <div id="widgetContainer"></div>
+<button 
+  style="
+          background-color: #4285F4;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+        "
+  onclick="loadWidget()">⭐Click here to see reviews</button>
+  </section>
+
+
+
+
+
+
+  <section class="timing-contact-section">
+    <h2>Contact & Location</h2>
+    <p><strong>Address:</strong> 68, Radha Nagar Main Road, Opposite to J2 Mahal, Chromepet, Chennai – 600044</p>
+    <p><strong>Phone:</strong> +91 94442 61111</p>
+    <div class="map-container">
+      <iframe
+        id="iframe2" 
+        src="https://www.google.com/maps?q=12.9519539,80.1451097&z=17&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+</div>
+  <!-- Button to show widget -->
+
+
+<!-- Widget div (hidden initially) -->
+
+  <!-- Paste your widget code here -->
+  
+
+
+
+  
+
+<div  id="contact-form" class="appointment-container">
+  <h2>Appointment / Contact Form</h2>
+  <iframe 
+    id="iframe1"
+    src="https://whatsform.com/d3olh_" 
+    width="100%" 
+    height="1000" 
+    style="border:none; border-radius: 10px;" 
+    scrolling="no" 
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+<!-- Patient Testimonials Section -->
+
+
+
+<script>
+
+
+
+  
+
+  
+
+
+function loadWidget() {
+  // 1. Create the widget container div
+  let div = document.createElement("div");
+  div.className = "elfsight-app-ff0aa769-35b6-43b1-b509-29937e7567ca";
+  div.setAttribute("data-elfsight-app-lazy", ""); 
+  document.getElementById("widgetContainer").appendChild(div);
+
+  // 2. Load the Elfsight platform script if not already loaded
+  if (!document.getElementById("elfsightScript")) {
+    let script = document.createElement("script");
+    script.src = "https://apps.elfsight.com/p/platform.js";
+    script.defer = true;
+    script.id = "elfsightScript";
+    document.body.appendChild(script);
+  }
+}
+
+  
+
+  
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navMenu.classList.toggle('show');
+    }
+  });
+  const slides = document.querySelectorAll('.banner-slider .slide');
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
     });
+  }
 
-    overlay.addEventListener('click', () => {
-      sidebar.classList.remove('show');
-      overlay.classList.remove('show');
-      menuToggle.classList.remove('active');
-    });
-  </script>
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  
+
+  setInterval(nextSlide, 4000); // change slide every 4 seconds
+  // Wait until page is fully loaded, then slide in the button
+  window.addEventListener('load', function() {
+    document.getElementById('call-btn').classList.add('show');
+  });
+  
+  window.addEventListener("load", function(){
+    document.getElementById("loader").style.display = "none";
+  });
+
+</script>
+
 </body>
 </html>

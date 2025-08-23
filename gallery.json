@@ -1,0 +1,8 @@
+{
+  "images": [
+    { "src": "images/photo1.jpg", "alt": "Clinic Image 1" },
+    { "src": "images/photo2.jpg", "alt": "Clinic Image 2" },
+    { "src": "images/photo3.jpg", "alt": "Clinic Image 3" },
+    { "src": "images/photo4.jpg", "alt": "Clinic Image 4" }
+  ]
+}

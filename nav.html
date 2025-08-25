@@ -148,10 +148,29 @@
           <div><h1 id="surgery">0</h1><p>Surgeries</p></div>
           <div><h1 id="star">5</h1><p>Google Rating</p></div>
         </div>
+        
       </div>
     </section>
   </div>
+  <div class="about-us">
+    <section>
+      <h2>Google Rating</h2>
+<button id="myButton"
+  style="
+          background-color: #4285F4;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+         
+        "
+  onclick="loadWidget()">⭐Click here to see reviews</button>
 
+<div id="widgetContainer"></div>
+    </section>
+  </div>
   <!-- Services -->
   <div class="services-row" id="services">
     <section class="service-section">
@@ -164,6 +183,13 @@
         <li>Hip Pain & Arthritis</li>
         <li>Sports Injuries</li>
         <li>Joint Replacement Surgery</li>
+         <li>Spine Care & Surgery</li>
+        
+  <li>Foot, ankle, hand, and wrist injuries or pain</li>
+        
+        
+<li>Advanced Equipped Physiotherapy</li>
+        <li>Digital X-Ray</li>
       </ul>
     </section>
     <section class="service-section">
@@ -196,9 +222,23 @@
   </div>
 
   <!-- Appointment Form -->
-  <div id="contact-form" class="about-us">
-    <h2>Book Appointment</h2>
+  <div id="contact-form" style="margin-bottom:100px"class="services-row">
+      <section class="service-section">
+          <h2>Book Appointment</h2>
     <iframe src="https://whatsform.com/d3olh_" width="100%" height="800" style="border:none;border-radius:10px;" scrolling="no"></iframe>
+      </section>
+      <section class="service-section">
+  <h2>Why Choose Us</h2>
+      <ul>
+        <li>Experienced Orthopedic Doctor in Chromepet</li>
+        <li>12+ years of expertise with 10,000+ patients treated</li>
+        <li>Advanced facilities – Digital X-ray, Advanced Equipped Physiotherapy</li>
+        <li>Affordable and transparent treatment costs</li>
+        <li>Convenient location near J2 Mahal, Radha Nagar Main Road, Chromepet</li>
+        
+      </ul>
+      </section>
+    
   </div>
 
   <script>
@@ -222,6 +262,24 @@
     animateCount("patients",10000,2000);
     animateCount("surgery",1500,2000);
     animateCount("star",5,2000);
+    
+function loadWidget() {
+  // 1. Create the widget container div
+  let div = document.createElement("div");
+  div.className = "elfsight-app-ff0aa769-35b6-43b1-b509-29937e7567ca";
+  div.setAttribute("data-elfsight-app-lazy", ""); 
+  document.getElementById("widgetContainer").appendChild(div);
+
+  // 2. Load the Elfsight platform script if not already loaded
+  if (!document.getElementById("elfsightScript")) {
+    let script = document.createElement("script");
+    script.src = "https://apps.elfsight.com/p/platform.js";
+    script.defer = true;
+    script.id = "elfsightScript";
+    document.body.appendChild(script);
+  }
+}
+
   </script>
 </body>
 </html>

@@ -1,180 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dr Mani's Ortho Speciality & General Clinic</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Clinic Visit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
 
-  
-    
-    
-    <link rel="stylesheet" href="css/style.css">
-      
-        
-  
+    .form-container {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
 
-  
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label.field-label {
+      font-weight: 700;
+      display: block;
+      margin-top: 12px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* option styling (radio/checkbox alignment) */
+    .option-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .option-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .option {
+      display: inline-flex;
+      align-items: center; /* keeps icon & text aligned */
+      gap: 8px;
+      line-height: 1.2;
+    }
+
+    .option input[type="radio"],
+    .option input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .fixed-buttons {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+    }
+
+    .fixed-buttons button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .call-btn {
+      background: #007bff;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+    }
+  </style>
 </head>
 <body>
-<a id="call-btn" href="tel:9444261111" aria-label="Call Dr. Mani" title="Call Dr. Mani">
-  📞 94442&nbsp;61111
-</a>
-<header>
-  <h1>Dr Mani's Ortho Speciality & General Clinic</h1>
 
-  <!-- Hamburger menu toggle -->
-  <div id="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <div class="form-container">
+    <h2>Book Clinic Visit</h2>
+    <form id="clinicForm">
+      <label class="field-label">Name *</label>
+      <input type="text" id="name" required>
 
-  <nav id="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="form.html">Surgery</a>
-    
-  </nav>
-</header>
+      <label class="field-label">Age *</label>
+      <input type="number" id="age" required min="1">
 
-<!-- Banner slider -->
-<div class="banner-slider">
-  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576765607923-522c426e3266?auto=format&fit=crop&w=1350&q=80');">
-    <h2>Trauma & Fracture Management</h2>
-  </div>
-  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1350&q=80');">
-    <h2>Joint Replacement Surgery</h2>
-  </div>
-  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1350&q=80');">
-    <h2>Spine Care & Surgery</h2>
-  </div>
-  <div class="slide" style="background-color: #004080;">
-    <h2>Clinical Laboratory Services</h2>
-  </div>
-  <div class="slide" style="background-color: #660066;">
-    <h2>Physiotherapy</h2>
-  </div>
-  <div class="slide" style="background-color: #003300;">
-    <h2>Digital X-Ray</h2>
-  </div>
-  <div class="slide" style="background-color: #800000;">
-    <h2>Fever & Infections</h2>
-  </div>
-  <div class="slide" style="background-color: #336699;">
-    <h2>Stomach Problems</h2>
-  </div>
-  <div class="slide" style="background-color: #666633;">
-    <h2>General Pain</h2>
-  </div>
-  <div class="slide" style="background-color: #996633;">
-    <h2>Fatigue & Weakness</h2>
-  </div>
-  <div class="slide" style="background-color: #666666;">
-    <h2>Wound Care</h2>
-  </div>
-  <div class="slide" style="background-color: #990000;">
-    <h2>Diabetic Treatment</h2>
-  </div>
-</div>
-
-
-  <!-- Online Consultation Info Box -->
-<section class="oc-card" aria-labelledby="oc-title">
-  <h2 id="oc-title">Online Consultation – Simple Steps</h2>
-
-  <ol class="oc-steps">
-    <li>
-      <span class="oc-icon">📝</span>
-      <div>
-        <strong>Book your appointment</strong><br>
-        Fill the online form or WhatsApp/Call <a href="tel:9444261111">94442 61111</a>.
+      <label class="field-label">Gender</label>
+      <div class="option-row">
+        <label class="option">
+          <input type="radio" name="gender" value="Male">
+          <span>Male</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="gender" value="Female">
+          <span>Female</span>
+        </label>
       </div>
-    </li>
-    <li>
-      <span class="oc-icon">💳</span>
-      <div>
-        <strong>Make the payment</strong><br>
-        Pay via UPI (GPay/PhonePe/Paytm). We’ll share details after booking.
-      </div>
-    </li>
-    <li>
-      <span class="oc-icon">🔗</span>
-      <div>
-        <strong>Get the meeting link</strong><br>
-        We’ll send a Google Meet / WhatsApp video link and time.
-      </div>
-    </li>
-    <li>
-      <span class="oc-icon">📞</span>
-      <div>
-        <strong>Join on time</strong><br>
-        Keep your reports and questions ready during the call.
-      </div>
-    </li>
-    <li>
-      <span class="oc-icon">📄</span>
-      <div>
-        <strong>Receive prescription</strong><br>
-        We’ll send a digital prescription on WhatsApp or email.
-      </div>
-    </li>
-  </ol>
 
-  <div class="oc-note" style="margin-bottom: 20px;" role="note" aria-live="polite">
-    <span class="oc-note-icon">⚠️</span>
-    <div>
-      <strong>Important:</strong> If the doctor feels a physical check-up is needed,
-      you will be asked to <strong>visit the clinic</strong>.
-    </div>
+      <label class="field-label">Mobile Number *</label>
+      <input type="tel" id="mobile" placeholder="+91" required>
+
+      <label class="field-label">Clinic Visit Date *</label>
+      <input type="date" id="date" required>
+
+      <label class="field-label">Reason for visit *</label>
+      <div class="option-column">
+        <label class="option">
+          <input type="radio" name="reason" value="Ortho">
+          <span>Ortho</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="reason" value="General Problem (Fever, Cold, Others)">
+          <span>General problem (Fever, Cold, Others)</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-whatsapp">Submit on WhatsApp</button>
+    </form>
   </div>
 
-  
-</section>
+  <!-- Fixed buttons at bottom -->
+  <div class="fixed-buttons">
+    <button class="call-btn" onclick="window.location.href='tel:+919876543210'">Call</button>
+    <button class="whatsapp-btn" onclick="window.location.href='https://wa.me/919876543210'">WhatsApp</button>
+  </div>
 
-<!-- Minimal CSS (add to your style.css or keep inline) -->
-<style>
-  .oc-card{
-    max-width: 900px; margin: 16px auto; padding: 18px; border: 1px solid #e5e7eb;
-    border-radius: 12px; background:#fff; box-shadow: 0 6px 18px rgba(0,0,0,.06);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
-  .oc-card h2{ margin:0 0 10px; font-size: 1.3rem; color:#0f172a }
-  .oc-steps{ list-style:none; padding:0; margin:10px 0 14px; display:grid; gap:12px }
-  .oc-steps li{ display:flex; gap:12px; align-items:flex-start; background:#f8fafc; padding:10px 12px; border-radius:10px }
-  .oc-icon{ font-size:22px; line-height:1; margin-top:2px }
-  .oc-steps strong{ color:#0b3c8c }
-  .oc-note{ display:flex; gap:10px; align-items:flex-start; background:#fff7ed; border:1px solid #fed7aa; color:#7c2d12; padding:10px 12px; border-radius:10px; margin-top:6px }
-  .oc-note-icon{ font-size:20px; line-height:1; margin-top:2px }
-  .oc-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px }
-  .oc-btn{
-    display:inline-block; text-decoration:none; padding:10px 14px; border-radius:10px;
-    background:#0b5bd3; color:#fff; font-weight:600; border:1px solid #0b5bd3; text-align:center
-  }
-  .oc-btn:hover{ filter:brightness(1.05) }
-  .oc-btn-outline{ background:#fff; color:#0b5bd3 }
-  @media (max-width:600px){ .oc-card{ padding:14px } .oc-card h2{ font-size:1.15rem } }
-</style>
-<!-- About Us -->
+  <script>
+    document.getElementById("clinicForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
+      let name = document.getElementById("name").value;
+      let age = document.getElementById("age").value;
+      let gender = document.querySelector('input[name="gender"]:checked')?.value || "Not specified";
+      let mobile = document.getElementById("mobile").value;
+      let date = document.getElementById("date").value;
+      let reason = document.querySelector('input[name="reason"]:checked')?.value || "";
 
-<!-- Timing and Contact -->
+      let message = `*Clinic Appointment Request*%0A
+Name: ${name}%0A
+Age: ${age}%0A
+Gender: ${gender}%0A
+Mobile: ${mobile}%0A
+Date: ${date}%0A
+Reason: ${reason}`;
 
-        
-
-<!-- Appointment Form -->
-
-
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/919444261111" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-</a>
-
-<!-- Patient Testimonials -->
-
-
-<script src="is/script.js">
-  // Hamburger menu toggle script
-
-</script>
+      let whatsappURL = `https://wa.me/919876543210?text=${message}`;
+      window.open(whatsappURL, "_blank");
+    });
+  </script>
 
 </body>
 </html>

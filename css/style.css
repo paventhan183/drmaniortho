@@ -1,402 +1,89 @@
-/* ================== Variables ================== */
 
-
-:root {
-  /* Primary Colors */
-  --primary-color: #1e88e5;       /* Blue for header, nav */
-  --secondary-color: #1565c0;     /* Darker blue for buttons, highlights */
-  --hover-color: #0d47a1;         /* Hover effect */
-  --text-color: #ffffff;          /* White text on buttons/nav */
-
-  /* Success / Action Colors */
-  --success-color: #43a047;       /* Green for check marks, highlights */
-  --call-btn-color: #43a047;      /* Green call button */
-  --call-btn-hover: #2e7d32;      /* Darker green hover */
-
-  /* Backgrounds */
-  --background-gradient: linear-gradient(135deg, #f5f9ff, #e3f2fd);
-   --section-bg: #e3f2fd;   /* light blue */   /* light grey instead of white */
-  --section-shadow: 0 0 15px rgba(0,0,0,0.08);
-
-  /* Fonts & Sizes */
-  --font-family: 'Roboto', sans-serif;
-  --header-font-size: 1.5rem;
-  --subheader-font-size: 1.1rem;
-  --slide-font-size: 2.2rem;
-  --text-font-size: 1.05rem;
-
-  /* Spacing & radius */
-  --header-padding: 18px 25px;
-  --border-radius: 10px;
-  --btn-padding: 12px 22px;
-  --gap-small: 8px;
-  --gap-medium: 12px;
-  --gap-large: 20px;
-}
-/* ================== Global Styles ================== */
-body {
-  font-family: var(--font-family);
-  margin: 0;
-  padding: 0;
-  background: var(--background-gradient);
-  color: #333;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* ================== Header ================== */
-header {
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  padding: var(--header-padding);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1000;
-  flex-wrap: wrap;
-}
-
-header h1 {
-  margin: 0;
-  font-size: var(--header-font-size);
-  flex: 1 1 auto;
-  min-width: 200px;
-}
-
-header p {
-  margin: 5px 0;
-  font-size: var(--subheader-font-size);
-}
-
-header p.phone-number {
-  background-color: var(--secondary-color);
-  color: var(--text-color);
-  padding: 8px;
-  border-radius: var(--border-radius);
-  font-weight: bold;
-  max-width: 220px;
-  margin: 10px auto 0 auto;
-  cursor: pointer;
-}
-
-header p.phone-number a {
-  color: var(--text-color);
-}
-
-/* ================== Navigation ================== */
-nav#nav-menu {
-  display: flex;
-  gap: var(--gap-large);
-  flex: 1 1 auto;
-  justify-content: flex-end;
-}
-
-nav#nav-menu a {
-  color: var(--text-color);
-  font-weight: 600;
-  font-size: var(--text-font-size);
-  padding: 8px 12px;
-  border-radius: var(--border-radius);
-  transition: background-color 0.3s;
-  cursor: pointer;
-}
-
-nav#nav-menu a:hover,
-nav#nav-menu a:focus {
-  background-color: var(--hover-color);
-  outline: none;
-}
-
-/* Menu toggle (mobile) */
-#menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  cursor: pointer;
-}
-
-#menu-toggle div {
-  height: 3px;
-  background: var(--text-color);
-  border-radius: 2px;
-}
-
-/* ================== Loader ================== */
-#loader {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: var(--text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  font-size: 24px;
-  color: var(--primary-color);
-  font-family: Arial, sans-serif;
-}
-
-.ortho-loader {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-medium);
-  animation: fade 1.2s infinite;
-}
-
-@keyframes fade {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-/* ================== Banner Slider ================== */
-.banner-slider {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  border-radius: 0 0 15px 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  margin-bottom: 20px;
-}
-
-.banner-slider .slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 0 15px 15px;
-}
-
-.banner-slider .slide.active {
-  opacity: 1;
-  position: relative;
-}
-
-.banner-slider .slide h2 {
-  color: var(--text-color);
-  font-size: var(--slide-font-size);
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
-  text-align: center;
-  padding: 0 15px;
-}
-
-/* ================== Sections ================== */
-.about-us,
-.service-section,
-.timing-contact-section,
-.appointment-container,
-.testimonials-container {
-  max-width: 1200px;
-  margin: 10px auto;
-  padding: 25px;
-  background: var(--section-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--section-shadow);
-  box-sizing: border-box;
-  font-size: var(--text-font-size);
-}
-
-/* Rows */
-.services-row,
-.timing-contact-row {
-  max-width: 1200px;
-  margin: 10px auto 30px auto;
-  padding: 0 10px;
-  display: flex;
-  gap: var(--gap-large);
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.service-section,
-.timing-contact-section {
-  flex: 1 1 45%;
-  max-width: 600px;
-}
-
-/* Headings */
-h2 {
-  color: var(--primary-color);
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
-}
-
-/* Lists */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  margin-bottom: 8px;
-  padding-left: 25px;
-  position: relative;
-  font-size: var(--text-font-size);
-  color: #333;
-}
-
-ul li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: var(--success-color);
-  font-weight: bold;
-}
-
-/* Map */
-.map-container {
-  width: 100%;
-  height: 300px;
-  margin-top: 10px;
-}
-
-/* Floating Buttons */
-.whatsapp-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--success-color);
-  color: var(--text-color);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
-  text-decoration: none;
-  z-index: 1000;
-  animation: bounce 2s infinite;
-  cursor: pointer;
-}
-
-.whatsapp-button:hover {
-  background-color: #388e3c;
-}
-
-.whatsapp-button img {
-  width: 36px;
-  height: 36px;
-  user-select: none;
-  pointer-events: none;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Call Button */
-#call-btn {
-  position: fixed;
-  bottom: 20px;
-  left: -250px;
-  background-color: var(--call-btn-color);
-  color: var(--text-color);
-  font-size: 18px;
-  padding: var(--btn-padding);
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  gap: var(--gap-small);
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  z-index: 1000;
-  transition: background-color 0.3s ease, left 0.6s ease;
-  white-space: nowrap;
-}
-
-#call-btn:hover {
-  background-color: var(--call-btn-hover);
-}
-
-#call-btn.show {
-  left: 20px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  #menu-toggle {
-    display: flex;
-    order: 2;
-  }
-
-  .services-row, .timing-contact-row {
-    flex-direction: column;
-    padding: 0 10px;
-  }
-
-  .service-section, .timing-contact-section,
-  .appointment-container, .about-us {
-    max-width: 100%;
-    flex-basis: 100%;
-    margin: 10px;
-  }
-
-  nav#nav-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--primary-color);
-    margin-top: 10px;
-    order: 3;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-  }
-.stats-section {
-  display: flex;
-  justify-content: space-around;
-  background: #fffbea;
-  padding: 30px 10px;
-  text-align: center;
-}
-
-.stat-card {
-  flex: 1;
-  margin: 10px;
-}
-
-.stat-icon {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-}
-
-.stat-card h2 {
-  font-size: 24px;
-  margin: 5px 0;
-  color: #333;
-}
-
-.stat-card p {
-  font-size: 14px;
-  color: #666;
-}
-  nav#nav-menu.show {
-    display: flex;
-  }
-
-  nav#nav-menu a {
-    padding: 12px 20px;
-    border-bottom: 1px solid #0d47a1;
-  }
-
-  nav#nav-menu a:last-child {
-    border-bottom: none;
-  }
-}
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input[type=text], input[type=number], textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      margin-top: 4px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .row label {
+      flex-basis: 100%;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .row input, .row select {
+      flex: 1 1 45%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .row button.close-btn {
+      flex-basis: 100%;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 4px;
+      max-width: 100px;
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+    #addRowBtn, #submitBtn {
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-top: 15px;
+      background-color: #2ecc71;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    #addRowBtn:hover, #submitBtn:hover {
+      background-color: #27ae60;
+    }
+    @media (min-width: 480px) {
+      .row label {
+        flex-basis: auto;
+        margin-right: 10px;
+        margin-bottom: 0;
+        width: 80px;
+      }
+      .row input, .row select {
+        flex: 1 1 auto;
+      }
+      .row button.close-btn {
+        flex-basis: auto;
+        margin-top: 0;
+        max-width: 40px;
+        padding: 6px 10px;
+      }
+    }

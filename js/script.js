@@ -1,4 +1,4 @@
-<script>
+
   const container = document.getElementById('container');
   const addRowBtn = document.getElementById('addRowBtn');
   const submitBtn = document.getElementById('submitBtn');
@@ -231,4 +231,3 @@
 
     resetForm();
   });
-</script>
